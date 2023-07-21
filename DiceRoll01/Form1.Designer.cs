@@ -106,11 +106,13 @@
             // 
             Result.AutoSize = true;
             Result.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Result.Location = new Point(124, 124);
+            Result.ImageAlign = ContentAlignment.MiddleLeft;
+            Result.Location = new Point(129, 124);
             Result.Name = "Result";
             Result.Size = new Size(28, 21);
             Result.TabIndex = 6;
             Result.Text = "00";
+            Result.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // History
             // 
@@ -120,6 +122,7 @@
             History.TabIndex = 7;
             History.Text = "履歴";
             History.UseVisualStyleBackColor = true;
+            History.Click += History_Click;
             // 
             // SaveHistory
             // 
@@ -129,6 +132,7 @@
             SaveHistory.TabIndex = 8;
             SaveHistory.Text = "保存";
             SaveHistory.UseVisualStyleBackColor = true;
+            SaveHistory.Visible = false;
             // 
             // listView1
             // 
@@ -151,28 +155,29 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(86, 124);
+            label4.Location = new Point(91, 124);
             label4.Name = "label4";
             label4.Size = new Size(32, 21);
             label4.TabIndex = 11;
             label4.Text = "=>";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // DiceCommand
             // 
-            DiceCommand.AutoSize = true;
             DiceCommand.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DiceCommand.Location = new Point(41, 124);
+            DiceCommand.Location = new Point(-15, 124);
             DiceCommand.Name = "DiceCommand";
-            DiceCommand.Size = new Size(39, 21);
+            DiceCommand.Size = new Size(100, 21);
             DiceCommand.TabIndex = 12;
             DiceCommand.Text = "0D0";
+            DiceCommand.TextAlign = ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(211, 473);
+            ClientSize = new Size(211, 177);
             Controls.Add(DiceCommand);
             Controls.Add(label4);
             Controls.Add(button1);
@@ -186,11 +191,13 @@
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
             SizeGripStyle = SizeGripStyle.Hide;
             Text = "DiceRoll";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
