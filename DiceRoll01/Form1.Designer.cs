@@ -37,10 +37,14 @@
             Result = new Label();
             History = new Button();
             SaveHistory = new Button();
-            listView1 = new ListView();
-            button1 = new Button();
+            ResetHistory = new Button();
             label4 = new Label();
             DiceCommand = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            HistoryCommand = new Label();
+            HistoryArrow = new Label();
+            HistoryResult = new Label();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // textBox1
@@ -120,6 +124,7 @@
             History.Name = "History";
             History.Size = new Size(75, 23);
             History.TabIndex = 7;
+            History.TabStop = false;
             History.Text = "履歴";
             History.UseVisualStyleBackColor = true;
             History.Click += History_Click;
@@ -130,26 +135,21 @@
             SaveHistory.Name = "SaveHistory";
             SaveHistory.Size = new Size(75, 23);
             SaveHistory.TabIndex = 8;
+            SaveHistory.TabStop = false;
             SaveHistory.Text = "保存";
             SaveHistory.UseVisualStyleBackColor = true;
             SaveHistory.Visible = false;
             // 
-            // listView1
+            // ResetHistory
             // 
-            listView1.Location = new Point(12, 177);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(187, 261);
-            listView1.TabIndex = 9;
-            listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(124, 444);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 10;
-            button1.Text = "リセット";
-            button1.UseVisualStyleBackColor = true;
+            ResetHistory.Location = new Point(124, 444);
+            ResetHistory.Name = "ResetHistory";
+            ResetHistory.Size = new Size(75, 23);
+            ResetHistory.TabIndex = 10;
+            ResetHistory.TabStop = false;
+            ResetHistory.Text = "リセット";
+            ResetHistory.UseVisualStyleBackColor = true;
+            ResetHistory.Click += ResetHistory_Click;
             // 
             // label4
             // 
@@ -172,16 +172,66 @@
             DiceCommand.Text = "0D0";
             DiceCommand.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.AutoScroll = true;
+            tableLayoutPanel1.BackColor = SystemColors.Window;
+            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(HistoryCommand, 0, 0);
+            tableLayoutPanel1.Controls.Add(HistoryArrow, 1, 0);
+            tableLayoutPanel1.Controls.Add(HistoryResult, 2, 0);
+            tableLayoutPanel1.Location = new Point(12, 177);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(187, 261);
+            tableLayoutPanel1.TabIndex = 14;
+            // 
+            // HistoryCommand
+            // 
+            HistoryCommand.Anchor = AnchorStyles.Top;
+            HistoryCommand.AutoSize = true;
+            HistoryCommand.Location = new Point(39, 2);
+            HistoryCommand.Name = "HistoryCommand";
+            HistoryCommand.Size = new Size(0, 15);
+            HistoryCommand.TabIndex = 0;
+            HistoryCommand.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // HistoryArrow
+            // 
+            HistoryArrow.Anchor = AnchorStyles.Top;
+            HistoryArrow.AutoSize = true;
+            HistoryArrow.Location = new Point(93, 2);
+            HistoryArrow.Name = "HistoryArrow";
+            HistoryArrow.Size = new Size(0, 15);
+            HistoryArrow.TabIndex = 1;
+            HistoryArrow.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // HistoryResult
+            // 
+            HistoryResult.Anchor = AnchorStyles.Top;
+            HistoryResult.AutoSize = true;
+            HistoryResult.Location = new Point(147, 2);
+            HistoryResult.Name = "HistoryResult";
+            HistoryResult.Size = new Size(0, 15);
+            HistoryResult.TabIndex = 2;
+            HistoryResult.TextAlign = ContentAlignment.TopCenter;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(211, 177);
+            ClientSize = new Size(211, 529);
+            Controls.Add(tableLayoutPanel1);
             Controls.Add(DiceCommand);
             Controls.Add(label4);
-            Controls.Add(button1);
-            Controls.Add(listView1);
+            Controls.Add(ResetHistory);
             Controls.Add(SaveHistory);
             Controls.Add(History);
             Controls.Add(Result);
@@ -198,6 +248,8 @@
             SizeGripStyle = SizeGripStyle.Hide;
             Text = "DiceRoll";
             Load += Form1_Load;
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -213,9 +265,12 @@
         private Label Result;
         private Button History;
         private Button SaveHistory;
-        private ListView listView1;
-        private Button button1;
+        private Button ResetHistory;
         private Label label4;
         private Label DiceCommand;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label HistoryCommand;
+        private Label HistoryArrow;
+        private Label HistoryResult;
     }
 }

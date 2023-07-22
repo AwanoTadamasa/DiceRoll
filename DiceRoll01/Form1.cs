@@ -33,6 +33,10 @@ namespace DiceRoll01
                 DiceCommand.Text = dice.GetDiceCommand();
                 Result.Text = dice.GetResult().ToString();
 
+                HistoryCommand.Text += dice.GetDiceCommand() + "\r\n";
+                HistoryArrow.Text += "=>\r\n";
+                HistoryResult.Text += dice.GetResult() + "\r\n";
+
             }
             else
             {
@@ -65,6 +69,13 @@ namespace DiceRoll01
             comboBox1.SelectedIndex = 0;
             DiceCommand.Text = " D ";
             Result.Text = "";
+        }
+
+        private void ResetHistory_Click(object sender, EventArgs e)
+        {
+            HistoryCommand.Text = "";
+            HistoryArrow.Text = "";
+            HistoryResult.Text = "";
         }
     }
 }
