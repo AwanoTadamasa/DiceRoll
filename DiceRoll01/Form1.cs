@@ -33,7 +33,6 @@ namespace DiceRoll01
                 DiceCommand.Text = dice.GetDiceCommand();
                 Result.Text = dice.GetResult().ToString();
 
-
             }
             else
             {
