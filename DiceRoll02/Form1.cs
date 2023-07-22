@@ -9,6 +9,7 @@ namespace DiceRoll02
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: このあたりの値は基本的にはデザイナ側で設定します。
             RollResult.Text = "";
             RollCommand.Text = "";
             HistoryCommand.Text = "";
@@ -16,6 +17,8 @@ namespace DiceRoll02
             HistoryResult.Text = "";
             DiceType.SelectedIndex = 0;
 
+            // TODO: ToggleHistoryの処理と同一にできそうです。
+            // メソッド化できないか検討してみましょう。
             SaveHistory.Visible = false;
             Height = 216;
         }
@@ -50,9 +53,11 @@ namespace DiceRoll02
         {
             IDice Dice = DiceType.Text switch
             {
+                // TODO: "星座" リテラルはGetDiceCommand() と同じように、GetDiceName() あたりで取得できるようにしましょう。
                 "星座" => new ConstellationDice(),
                 _ => new RollBasicDice(DiceNum.Text, DiceType.Text),
             };
+
             if (Dice.GetDiceCommand() == null)
             {
                 MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
@@ -70,6 +75,9 @@ namespace DiceRoll02
 
         private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // TODO: IDiceNumberable というインターフェイスを用意して使ってみましょう。
+            // Numberable は造語です。もっと適当な名前があるか考えてみましょう。
+            // なお以下の条件は true / false を返すだけなので、if 文は無くせます。
             if (DiceType.Text == "星座")
             {
                 DiceNum.Enabled = false;
