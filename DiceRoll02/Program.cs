@@ -14,7 +14,8 @@ namespace DiceRoll02
             Application.Run(new Form1());
         }
     }
-
+    //以降別ファイルに分離、次の版で消す
+    /*
     // TODO: 別ファイルにしましょう。
     // 継承したクラスも別々のファイルにしましょう。
     interface IDice
@@ -111,6 +112,7 @@ namespace DiceRoll02
             return i;
         }
     }
+    
 
     class ConstellationDice : IDice
     {
@@ -144,4 +146,5 @@ namespace DiceRoll02
         }
 
     }
+    */
 }

@@ -9,32 +9,31 @@ namespace DiceRoll02
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: このあたりの値は基本的にはデザイナ側で設定します。
-            RollResult.Text = "";
-            RollCommand.Text = "";
-            HistoryCommand.Text = "";
-            HistorySign.Text = "";
-            HistoryResult.Text = "";
-            DiceType.SelectedIndex = 0;
-
-            // TODO: ToggleHistoryの処理と同一にできそうです。
-            // メソッド化できないか検討してみましょう。
-            SaveHistory.Visible = false;
-            Height = 216;
+            HideHistory();
         }
 
         private void ToggleHistory_Click(object sender, EventArgs e)
         {
             if (SaveHistory.Visible)
             {
-                SaveHistory.Visible = false;
-                this.Height = 216;
+                HideHistory();
             }
             else
             {
-                SaveHistory.Visible = true;
-                this.Height = 512;
+                ShowHistory();
             }
+        }
+
+        private void HideHistory()
+        {
+            SaveHistory.Visible=false;
+            this.Height=216;
+        }
+
+        private void ShowHistory()
+        {
+            SaveHistory.Visible=true;
+            this.Height=512;
         }
 
         private void ResetHistory_Click(object sender, EventArgs e)
@@ -54,8 +53,8 @@ namespace DiceRoll02
             IDice Dice = DiceType.Text switch
             {
                 // TODO: "星座" リテラルはGetDiceCommand() と同じように、GetDiceName() あたりで取得できるようにしましょう。
-                "星座" => new ConstellationDice(),
-                _ => new RollBasicDice(DiceNum.Text, DiceType.Text),
+                "星座" => new ConstellationDiceRoll(),
+                _ => new BasicDiceRoll(DiceNum.Text, DiceType.Text),
             };
 
             if (Dice.GetDiceCommand() == null)

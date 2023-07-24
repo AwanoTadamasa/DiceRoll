@@ -96,6 +96,7 @@
             DiceType.Name = "DiceType";
             DiceType.Size = new Size(100, 23);
             DiceType.TabIndex = 4;
+            DiceType.SelectedIndex = 0;
             DiceType.SelectedIndexChanged += DiceType_SelectedIndexChanged;
             // 
             // RollDice
@@ -126,7 +127,7 @@
             RollCommand.Name = "RollCommand";
             RollCommand.Size = new Size(85, 23);
             RollCommand.TabIndex = 7;
-            RollCommand.Text = "label5";
+            RollCommand.Text = "";
             RollCommand.TextAlign = ContentAlignment.MiddleRight;
             // 
             // RollResult
@@ -137,7 +138,7 @@
             RollResult.Name = "RollResult";
             RollResult.Size = new Size(52, 21);
             RollResult.TabIndex = 8;
-            RollResult.Text = "label6";
+            RollResult.Text = "";
             RollResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ToggleHistory
@@ -199,7 +200,7 @@
             HistorySign.Name = "HistorySign";
             HistorySign.Size = new Size(23, 15);
             HistorySign.TabIndex = 0;
-            HistorySign.Text = "=>";
+            HistorySign.Text = "";
             HistorySign.TextAlign = ContentAlignment.TopCenter;
             // 
             // HistoryCommand
@@ -210,7 +211,7 @@
             HistoryCommand.Name = "HistoryCommand";
             HistoryCommand.Size = new Size(85, 15);
             HistoryCommand.TabIndex = 1;
-            HistoryCommand.Text = "999D100";
+            HistoryCommand.Text = "";
             HistoryCommand.TextAlign = ContentAlignment.TopCenter;
             // 
             // HistoryResult
@@ -221,7 +222,7 @@
             HistoryResult.Name = "HistoryResult";
             HistoryResult.Size = new Size(85, 15);
             HistoryResult.TabIndex = 2;
-            HistoryResult.Text = "99900";
+            HistoryResult.Text = "";
             HistoryResult.TextAlign = ContentAlignment.TopCenter;
             // 
             // ResetHistory
