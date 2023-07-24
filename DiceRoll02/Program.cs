@@ -82,11 +82,13 @@ namespace DiceRoll02
         // TODO: StringToInteger の処理ですね。省略せずに記述しましょう。
         static int StoI(string s)
         {
-            // TODO: int は C# の型名です。これはCLRのクラス名のエイリアスになっているので、同様に使えます。
+            // DONE: int は C# の型名です。これはCLRのクラス名のエイリアスになっているので、同様に使えます。
             // しかし、クラスのメソッドを使う場合は、CLRのクラス名を使った方が文脈的に正しいです。
             // 細かいことですが、クラスやインスタンスを常に意識できるといいですね。
             // Parse ではなく TryParse を使っているところはGOODです。
-            return int.TryParse(s, out int i) && i > 0 ? i : 0;
+            // ちょっと古いですが、下記の記事が参考になります。
+            // https://dobon.net/vb/dotnet/beginner/intvsint32.html
+            return Int32.TryParse(s, out var i) && i > 0 ? i : 0;
         }
 
         // TODO: メソッド名は基本的には動詞から始めます。
