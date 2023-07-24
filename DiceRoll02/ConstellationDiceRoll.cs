@@ -11,9 +11,9 @@ namespace DiceRoll02
         {
             // TODO: 11 ÇÃÉäÉeÉâÉãÇÕïœêîÇ…ÇµÇ‹ÇµÇÂÇ§ÅB
             // UTFÇ≈êØç¿ÇàµÇ¡ÇƒÇ›ÇΩÇÃÇÕGOODÇ≈Ç∑ÅB
-            Random _r = new();
-            int _numberConstellation = 12;
-            return _r.Next(0, _numberConstellation) switch
+            Random r = new();
+            int numberConstellation = 12;
+            return r.Next(0, numberConstellation) switch
             {
                 0 => "\u2648(â≤órç¿)",
                 1 => "\u2649(â≤ãçç¿)",
