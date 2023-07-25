@@ -1,3 +1,5 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace DiceRoll02
 {
     public partial class Form1 : Form
@@ -67,13 +69,16 @@ namespace DiceRoll02
                 "normalDice" => new BasicDiceRoll(DiceNum.Text, DiceType.Text),
                 "lowerDice" => new LowerDiceRoll(DiceNum.Text, DiceType.Text),
                 "upperDice" => new UpperDiceRoll(DiceNum.Text, DiceType.Text),
-                //エラー処理何か考える
-                _ => throw new NotImplementedException()
+                _ => new BasicDiceRoll("1", "0")
             };
 
             if (Dice.GetDiceCommand() == null)
             {
-                MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
+                _ = MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
+            }
+            else if (Dice.GetDiceCommand() == "1D0")
+            {
+                _ = MessageBox.Show("不明なエラーです。");
             }
             else
             {

@@ -29,11 +29,26 @@ namespace DiceRoll02
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-                    using StreamWriter w = new(saveFileDialog.FileName,false,System.Text.Encoding.GetEncoding("shift_jis"));
-                    w.WriteLine(@"コマンド,結果");
-                    for (int i = 0; i < _commandHistory.Length; i++)
+                    try
                     {
-                        w.WriteLine("{0},{1}", _commandHistory[i], _resultHistory[i]);
+                        using StreamWriter w = new(saveFileDialog.FileName, false, System.Text.Encoding.GetEncoding("shift_jis"));
+                        w.WriteLine(@"コマンド,結果");
+                        for (int i = 0; i < _commandHistory.Length; i++)
+                        {
+                            w.WriteLine("{0},{1}", _commandHistory[i], _resultHistory[i]);
+                        }
+                    }
+                    catch (IOException ex) 
+                    {
+                        _ = MessageBox.Show($"エラーが発生しました。指定されたファイルは読み込めませんでした。\r\n{ex}");
+                    }
+                    catch (Exception ex)  
+                    {
+                        _ = MessageBox.Show($"不明なエラーが発生しました。\r\n{ex}");
+                    }
+                    finally 
+                    {
+                        saveFileDialog.Dispose();
                     }
                 }
             }

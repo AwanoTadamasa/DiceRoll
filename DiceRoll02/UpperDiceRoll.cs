@@ -57,7 +57,7 @@
         {
             int result = side;
             Random r = new();
-            for (int i = 1; i < side; i++)
+            for (int i = 0; i < side - 1; i++)
             {
                 if (result == side - i)
                 {
