@@ -4,7 +4,7 @@
     {
         private readonly bool _diceCustomable;
         private readonly string _diceType;
-        internal DiceTypeInfo(string selectedDiceType, GroupBox radioButtonGroup) 
+        internal DiceTypeInfo(string selectedDiceType, GroupBox radioButtonGroup)
         {
             _diceCustomable = selectedDiceType switch
             {
@@ -22,6 +22,9 @@
             };
         }
 
+        // TODO: able は可能な動作を表します。そのためインターフェース名によく使われます。
+        // IDisposable、ICloneable、など
+        // IDisposable は Dispose できるという意味なので、Dispose メソッドを持ちます。
         internal bool IsDiceCustomable()
         {
             return _diceCustomable;

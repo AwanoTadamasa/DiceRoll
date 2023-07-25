@@ -4,6 +4,7 @@
     {
         private readonly int _diceNum;
         private readonly int _diceSide;
+
         public UpperDiceRoll(string diceNum, string diceType)
         {
             this._diceNum = StringToInt(diceNum);
