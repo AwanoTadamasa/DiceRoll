@@ -8,8 +8,8 @@ namespace DiceRoll02
         // https://learn.microsoft.com/ja-jp/dotnet/standard/design-guidelines/naming-guidelines
         // privateなフィールド変数は、いくつかの流派があるのですが、小文字から始めるか、さらに _(アンダースコア) をつけてください。
         // ここではアンダースコアを推しておきます。
-        private int _diceNumber;
-        private int _diceSide;
+        private readonly int _diceNumber;
+        private readonly int _diceSide;
 
         public BasicDiceRoll(string diceNum, string diceType)
         {
@@ -55,7 +55,7 @@ namespace DiceRoll02
         }
 
         // TODO: StringToInteger の処理ですね。省略せずに記述しましょう。
-        private int StringToInt(string str)
+        private static int StringToInt(string str)
         {            
             // DONE: int は C# の型名です。これはCLRのクラス名のエイリアスになっているので、同様に使えます。
             // しかし、クラスのメソッドを使う場合は、CLRのクラス名を使った方が文脈的に正しいです。
@@ -68,7 +68,7 @@ namespace DiceRoll02
 
         // TODO: メソッド名は基本的には動詞から始めます。
         // インスタンス(主語) + メソッド(動詞) で英文として読めるのが理想です。
-        private int DiceTypeToSide(string str) 
+        private static int DiceTypeToSide(string str)
         {
             return str switch
             {
@@ -76,6 +76,7 @@ namespace DiceRoll02
                 // switch 式を使ってみたのはGOODです。短く記述できて読みやすいです。
                 "コイン" => 2,
                 "4面体" => 4,
+                "6面体" => 6,
                 "8面体" => 8,
                 "10面体" => 10,
                 "12面体" => 12,

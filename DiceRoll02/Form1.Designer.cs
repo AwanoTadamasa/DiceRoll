@@ -45,8 +45,14 @@
             HistoryCommand = new Label();
             HistoryResult = new Label();
             ResetHistory = new Button();
+            checkBox1 = new CheckBox();
+            diceTypeGroup = new GroupBox();
+            upperDice = new RadioButton();
+            lowerDice = new RadioButton();
+            normalDice = new RadioButton();
             HistoryScrollBar.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            diceTypeGroup.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -91,12 +97,11 @@
             // 
             DiceType.DropDownStyle = ComboBoxStyle.DropDownList;
             DiceType.FormattingEnabled = true;
-            DiceType.Items.AddRange(new object[] { "コイン", "4面体", "6面体", "8面体", "10面体", "12面体", "20面体", "100面体", "星座" });
+            DiceType.Items.AddRange(new object[] { "コイン", "4面体", "6面体", "8面体", "10面体", "12面体", "20面体", "100面体", "星座", "おみくじ" });
             DiceType.Location = new Point(82, 67);
             DiceType.Name = "DiceType";
             DiceType.Size = new Size(100, 23);
             DiceType.TabIndex = 4;
-            DiceType.SelectedIndex = 0;
             DiceType.SelectedIndexChanged += DiceType_SelectedIndexChanged;
             // 
             // RollDice
@@ -113,7 +118,7 @@
             // 
             RollSign.AutoSize = true;
             RollSign.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            RollSign.Location = new Point(104, 122);
+            RollSign.Location = new Point(100, 168);
             RollSign.Name = "RollSign";
             RollSign.Size = new Size(32, 21);
             RollSign.TabIndex = 6;
@@ -123,40 +128,40 @@
             // RollCommand
             // 
             RollCommand.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            RollCommand.Location = new Point(16, 122);
+            RollCommand.Location = new Point(12, 168);
             RollCommand.Name = "RollCommand";
             RollCommand.Size = new Size(85, 23);
             RollCommand.TabIndex = 7;
-            RollCommand.Text = "";
             RollCommand.TextAlign = ContentAlignment.MiddleRight;
             // 
             // RollResult
             // 
             RollResult.AutoSize = true;
             RollResult.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            RollResult.Location = new Point(130, 122);
+            RollResult.Location = new Point(126, 168);
             RollResult.Name = "RollResult";
-            RollResult.Size = new Size(52, 21);
+            RollResult.Size = new Size(0, 21);
             RollResult.TabIndex = 8;
-            RollResult.Text = "";
             RollResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ToggleHistory
             // 
-            ToggleHistory.Location = new Point(12, 148);
+            ToggleHistory.Location = new Point(12, 194);
             ToggleHistory.Name = "ToggleHistory";
             ToggleHistory.Size = new Size(75, 23);
             ToggleHistory.TabIndex = 9;
+            ToggleHistory.TabStop = false;
             ToggleHistory.Text = "履歴";
             ToggleHistory.UseVisualStyleBackColor = true;
             ToggleHistory.Click += ToggleHistory_Click;
             // 
             // SaveHistory
             // 
-            SaveHistory.Location = new Point(153, 148);
+            SaveHistory.Location = new Point(153, 194);
             SaveHistory.Name = "SaveHistory";
             SaveHistory.Size = new Size(75, 23);
             SaveHistory.TabIndex = 10;
+            SaveHistory.TabStop = false;
             SaveHistory.Text = "保存";
             SaveHistory.UseVisualStyleBackColor = true;
             SaveHistory.Click += SaveHistory_Click;
@@ -165,9 +170,9 @@
             // 
             HistoryScrollBar.AutoScroll = true;
             HistoryScrollBar.Controls.Add(tableLayoutPanel1);
-            HistoryScrollBar.Location = new Point(12, 177);
+            HistoryScrollBar.Location = new Point(12, 223);
             HistoryScrollBar.Name = "HistoryScrollBar";
-            HistoryScrollBar.Size = new Size(216, 264);
+            HistoryScrollBar.Size = new Size(216, 218);
             HistoryScrollBar.TabIndex = 11;
             // 
             // tableLayoutPanel1
@@ -185,22 +190,21 @@
             tableLayoutPanel1.Controls.Add(HistoryResult, 2, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.MinimumSize = new Size(0, 264);
+            tableLayoutPanel1.MinimumSize = new Size(0, 218);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(216, 264);
+            tableLayoutPanel1.Size = new Size(216, 218);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // HistorySign
             // 
             HistorySign.Anchor = AnchorStyles.Top;
             HistorySign.AutoSize = true;
-            HistorySign.Location = new Point(96, 1);
+            HistorySign.Location = new Point(108, 1);
             HistorySign.Name = "HistorySign";
-            HistorySign.Size = new Size(23, 15);
+            HistorySign.Size = new Size(0, 15);
             HistorySign.TabIndex = 0;
-            HistorySign.Text = "";
             HistorySign.TextAlign = ContentAlignment.TopCenter;
             // 
             // HistoryCommand
@@ -211,7 +215,6 @@
             HistoryCommand.Name = "HistoryCommand";
             HistoryCommand.Size = new Size(85, 15);
             HistoryCommand.TabIndex = 1;
-            HistoryCommand.Text = "";
             HistoryCommand.TextAlign = ContentAlignment.TopCenter;
             // 
             // HistoryResult
@@ -222,7 +225,6 @@
             HistoryResult.Name = "HistoryResult";
             HistoryResult.Size = new Size(85, 15);
             HistoryResult.TabIndex = 2;
-            HistoryResult.Text = "";
             HistoryResult.TextAlign = ContentAlignment.TopCenter;
             // 
             // ResetHistory
@@ -231,15 +233,74 @@
             ResetHistory.Name = "ResetHistory";
             ResetHistory.Size = new Size(75, 23);
             ResetHistory.TabIndex = 12;
+            ResetHistory.TabStop = false;
             ResetHistory.Text = "リセット";
             ResetHistory.UseVisualStyleBackColor = true;
             ResetHistory.Click += ResetHistory_Click;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.BackColor = SystemColors.Control;
+            checkBox1.Location = new Point(8, 99);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(74, 19);
+            checkBox1.TabIndex = 13;
+            checkBox1.Text = "詳細設定";
+            checkBox1.UseVisualStyleBackColor = false;
+            checkBox1.CheckedChanged += CheckBox1_CheckedChanged;
+            // 
+            // diceTypeGroup
+            // 
+            diceTypeGroup.Controls.Add(upperDice);
+            diceTypeGroup.Controls.Add(lowerDice);
+            diceTypeGroup.Controls.Add(normalDice);
+            diceTypeGroup.Location = new Point(8, 120);
+            diceTypeGroup.Name = "diceTypeGroup";
+            diceTypeGroup.Size = new Size(224, 45);
+            diceTypeGroup.TabIndex = 14;
+            diceTypeGroup.TabStop = false;
+            diceTypeGroup.Text = "使うサイコロ";
+            // 
+            // upperDice
+            // 
+            upperDice.AutoSize = true;
+            upperDice.Location = new Point(132, 22);
+            upperDice.Name = "upperDice";
+            upperDice.Size = new Size(86, 19);
+            upperDice.TabIndex = 2;
+            upperDice.Text = "上方イカサマ";
+            upperDice.UseVisualStyleBackColor = true;
+            // 
+            // lowerDice
+            // 
+            lowerDice.AutoSize = true;
+            lowerDice.Location = new Point(50, 22);
+            lowerDice.Name = "lowerDice";
+            lowerDice.Size = new Size(86, 19);
+            lowerDice.TabIndex = 1;
+            lowerDice.Text = "下方イカサマ";
+            lowerDice.UseVisualStyleBackColor = true;
+            // 
+            // normalDice
+            // 
+            normalDice.AutoSize = true;
+            normalDice.Checked = true;
+            normalDice.Location = new Point(6, 22);
+            normalDice.Name = "normalDice";
+            normalDice.Size = new Size(49, 19);
+            normalDice.TabIndex = 0;
+            normalDice.TabStop = true;
+            normalDice.Text = "通常";
+            normalDice.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(240, 473);
+            Controls.Add(diceTypeGroup);
+            Controls.Add(checkBox1);
             Controls.Add(ResetHistory);
             Controls.Add(HistoryScrollBar);
             Controls.Add(SaveHistory);
@@ -253,7 +314,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            DoubleBuffered = true;
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -266,6 +326,8 @@
             HistoryScrollBar.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            diceTypeGroup.ResumeLayout(false);
+            diceTypeGroup.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,5 +351,10 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Label HistoryCommand;
         private Label HistoryResult;
+        private CheckBox checkBox1;
+        private GroupBox diceTypeGroup;
+        private RadioButton normalDice;
+        private RadioButton lowerDice;
+        private RadioButton upperDice;
     }
 }

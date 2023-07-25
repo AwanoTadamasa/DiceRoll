@@ -9,7 +9,9 @@ namespace DiceRoll02
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            DiceType.SelectedIndex = 0;
             HideHistory();
+            DetailHide();
         }
 
         private void ToggleHistory_Click(object sender, EventArgs e)
@@ -26,14 +28,21 @@ namespace DiceRoll02
 
         private void HideHistory()
         {
-            SaveHistory.Visible=false;
-            this.Height=216;
+            SaveHistory.Visible = false;
+            if (checkBox1.Checked)
+            {
+                this.Height = 262;
+            }
+            else
+            {
+                this.Height = 216;
+            }
         }
 
         private void ShowHistory()
         {
-            SaveHistory.Visible=true;
-            this.Height=512;
+            SaveHistory.Visible = true;
+            this.Height = 512;
         }
 
         private void ResetHistory_Click(object sender, EventArgs e)
@@ -45,16 +54,21 @@ namespace DiceRoll02
 
         private void SaveHistory_Click(object sender, EventArgs e)
         {
-
+            new SaveHistoryAsCSV(HistoryCommand.Text, HistoryResult.Text).SaveHistory();
         }
 
         private void RollDice_Click(object sender, EventArgs e)
         {
-            IDice Dice = DiceType.Text switch
+            IDice Dice = new DiceTypeInfo(this.DiceType.Text, this.diceTypeGroup).GetDiceType() switch
             {
                 // TODO: "星座" リテラルはGetDiceCommand() と同じように、GetDiceName() あたりで取得できるようにしましょう。
-                "星座" => new ConstellationDiceRoll(),
-                _ => new BasicDiceRoll(DiceNum.Text, DiceType.Text),
+                "constellation" => new ConstellationDiceRoll(),
+                "omikuji" => new OmikujiRoll(),
+                "normalDice" => new BasicDiceRoll(DiceNum.Text, DiceType.Text),
+                "lowerDice" => new LowerDiceRoll(DiceNum.Text, DiceType.Text),
+                "upperDice" => new UpperDiceRoll(DiceNum.Text, DiceType.Text),
+                //エラー処理何か考える
+                _ => throw new NotImplementedException()
             };
 
             if (Dice.GetDiceCommand() == null)
@@ -77,14 +91,74 @@ namespace DiceRoll02
             // TODO: IDiceNumberable というインターフェイスを用意して使ってみましょう。
             // Numberable は造語です。もっと適当な名前があるか考えてみましょう。
             // なお以下の条件は true / false を返すだけなので、if 文は無くせます。
-            if (DiceType.Text == "星座")
+            if (new DiceTypeInfo(this.DiceType.Text, this.diceTypeGroup).IsDiceCustomable())
             {
-                DiceNum.Enabled = false;
+                EnableDiceCustomControll();
             }
             else
             {
-                DiceNum.Enabled = true;
+                DisableDiceCustomControll();
             }
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                DetailShow();
+            }
+            else
+            {
+                DetailHide();
+            }
+        }
+
+        private void DetailHide()
+        {
+            HistoryScrollBar.Height = 264;
+            HistoryScrollBar.Location = new Point(12, 177);
+            tableLayoutPanel1.MinimumSize = new Size(0, 264);
+            SaveHistory.Location = new Point(153, 148);
+            ToggleHistory.Location = new Point(12, 148);
+            RollCommand.Location = new Point(16, 122);
+            RollSign.Location = new Point(104, 122);
+            RollResult.Location = new Point(130, 122);
+            diceTypeGroup.Visible = false;
+            normalDice.Checked = true;
+            if (!SaveHistory.Visible)
+            {
+                this.Height = 216;
+            }
+        }
+
+        private void DetailShow()
+        {
+            HistoryScrollBar.Height = 218;
+            HistoryScrollBar.Location = new Point(12, 223);
+            tableLayoutPanel1.MinimumSize = new Size(0, 218);
+            SaveHistory.Location = new Point(153, 194);
+            ToggleHistory.Location = new Point(12, 194);
+            RollCommand.Location = new Point(12, 168);
+            RollSign.Location = new Point(104, 168);
+            RollResult.Location = new Point(130, 168);
+            diceTypeGroup.Visible = true;
+            if (!SaveHistory.Visible)
+            {
+                this.Height = 262;
+            }
+        }
+
+        private void EnableDiceCustomControll()
+        {
+            DiceNum.Enabled = true;
+            diceTypeGroup.Enabled = true;
+        }
+
+        private void DisableDiceCustomControll()
+        {
+            DiceNum.Enabled = false;
+            diceTypeGroup.Enabled = false;
+            normalDice.Checked = true;
         }
     }
 }
