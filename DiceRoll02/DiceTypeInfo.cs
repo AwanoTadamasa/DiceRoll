@@ -2,7 +2,7 @@
 {
     internal static class DiceTypeInfo
     {
-        // TODO: Canを使う場合は動詞と組み合わせます。
+        // DONE: Canを使う場合は動詞と組み合わせます。
         // bool を返すメソッド名の定形はいくつかあって、
         // Is + 状態名詞
         // Is + 過去分詞
@@ -11,20 +11,20 @@
         // Exists や Contains など三単現s付き
         // などのパターンがあります。
         // この場合は IsCustomDice くらいがよさそうです。そうなってくると、 true/false の意味が逆になってるようです。
-        internal static bool CanDiceCustom(string selectedDiceType)
+        internal static bool IsCustomDice(string selectedDiceType)
         {
             return selectedDiceType switch
             {
-                "星座" or "おみくじ" => false,
-                _ => true
+                "星座" or "おみくじ" => true,
+                _ => false
             };
         }
 
         internal static string GetDiceType(string selectedDiceType, GroupBox radioButtonGroup)
         {
-            // TODO: = の次にスペースがありません。
+            // DONE: = の次にスペースがありません。
             // Ctrl + K, D で現在のドキュメントをフォーマットできます。
-            IEnumerable<RadioButton> radioButtons =radioButtonGroup.Controls.OfType<RadioButton>();
+            IEnumerable<RadioButton> radioButtons = radioButtonGroup.Controls.OfType<RadioButton>();
 
             return selectedDiceType switch
             {

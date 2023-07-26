@@ -7,7 +7,7 @@ namespace DiceRoll02
         internal static void SaveAsCSV(string commandHistory, string resultHistory)
         {
             string[] _commandHistory = commandHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-            string[] _resultHistory = resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries) ;
+            string[] _resultHistory = resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
             if (_commandHistory.Length > 0)
             {
@@ -32,15 +32,15 @@ namespace DiceRoll02
                             w.WriteLine("{0},{1}", _commandHistory[i], _resultHistory[i]);
                         }
                     }
-                    catch (IOException ex) 
+                    catch (IOException ex)
                     {
                         _ = MessageBox.Show($"エラーが発生しました。指定されたファイルは読み込めませんでした。\r\n{ex}");
                     }
-                    catch (Exception ex)  
+                    catch (Exception ex)
                     {
                         _ = MessageBox.Show($"不明なエラーが発生しました。\r\n{ex}");
                     }
-                    finally 
+                    finally
                     {
                         saveFileDialog.Dispose();
                     }

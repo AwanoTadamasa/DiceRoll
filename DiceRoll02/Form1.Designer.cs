@@ -50,9 +50,11 @@
             upperDice = new RadioButton();
             lowerDice = new RadioButton();
             normalDice = new RadioButton();
+            panel1 = new Panel();
             historyScrollBar.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             diceTypeGroup.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -118,7 +120,7 @@
             // 
             rollSign.AutoSize = true;
             rollSign.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollSign.Location = new Point(100, 168);
+            rollSign.Location = new Point(96, 0);
             rollSign.Name = "rollSign";
             rollSign.Size = new Size(32, 21);
             rollSign.TabIndex = 6;
@@ -128,25 +130,24 @@
             // rollCommand
             // 
             rollCommand.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollCommand.Location = new Point(12, 168);
+            rollCommand.Location = new Point(0, 0);
             rollCommand.Name = "rollCommand";
-            rollCommand.Size = new Size(85, 23);
+            rollCommand.Size = new Size(96, 23);
             rollCommand.TabIndex = 7;
             rollCommand.TextAlign = ContentAlignment.MiddleRight;
             // 
             // rollResult
             // 
-            rollResult.AutoSize = true;
             rollResult.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollResult.Location = new Point(126, 168);
+            rollResult.Location = new Point(128, 0);
             rollResult.Name = "rollResult";
-            rollResult.Size = new Size(0, 21);
+            rollResult.Size = new Size(96, 23);
             rollResult.TabIndex = 8;
             rollResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // toggleHistory
             // 
-            toggleHistory.Location = new Point(12, 194);
+            toggleHistory.Location = new Point(4, 26);
             toggleHistory.Name = "toggleHistory";
             toggleHistory.Size = new Size(75, 23);
             toggleHistory.TabIndex = 9;
@@ -157,7 +158,7 @@
             // 
             // saveHistory
             // 
-            saveHistory.Location = new Point(153, 194);
+            saveHistory.Location = new Point(146, 26);
             saveHistory.Name = "saveHistory";
             saveHistory.Size = new Size(75, 23);
             saveHistory.TabIndex = 10;
@@ -170,7 +171,7 @@
             // 
             historyScrollBar.AutoScroll = true;
             historyScrollBar.Controls.Add(tableLayoutPanel1);
-            historyScrollBar.Location = new Point(12, 223);
+            historyScrollBar.Location = new Point(4, 56);
             historyScrollBar.Name = "historyScrollBar";
             historyScrollBar.Size = new Size(216, 218);
             historyScrollBar.TabIndex = 11;
@@ -294,20 +295,28 @@
             normalDice.Text = "通常";
             normalDice.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(saveHistory);
+            panel1.Controls.Add(toggleHistory);
+            panel1.Controls.Add(historyScrollBar);
+            panel1.Controls.Add(rollResult);
+            panel1.Controls.Add(rollCommand);
+            panel1.Controls.Add(rollSign);
+            panel1.Location = new Point(8, 167);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(224, 274);
+            panel1.TabIndex = 15;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(240, 473);
+            Controls.Add(panel1);
             Controls.Add(diceTypeGroup);
             Controls.Add(checkBox1);
             Controls.Add(resetHistory);
-            Controls.Add(historyScrollBar);
-            Controls.Add(saveHistory);
-            Controls.Add(toggleHistory);
-            Controls.Add(rollResult);
-            Controls.Add(rollCommand);
-            Controls.Add(rollSign);
             Controls.Add(rollDice);
             Controls.Add(diceType);
             Controls.Add(diceNum);
@@ -328,6 +337,8 @@
             tableLayoutPanel1.PerformLayout();
             diceTypeGroup.ResumeLayout(false);
             diceTypeGroup.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -356,5 +367,6 @@
         private RadioButton normalDice;
         private RadioButton lowerDice;
         private RadioButton upperDice;
+        private Panel panel1;
     }
 }

@@ -1,15 +1,15 @@
 namespace DiceRoll02;
 
-class BasicDiceRoll : IDice
+internal class BasicDiceRoll : IDice
 {
-    protected readonly int _diceNumber;
-    protected readonly int _diceSide;
+    private readonly int _diceNum;
+    private readonly int _diceSide;
 
     public BasicDiceRoll(string diceNum, string diceType)
     {
-        // TODO: out int は out var と記述できます。
-        // TODO: num>0 に適切なスペースがありません。Ctrl + K, D を試してみましょう。
-        this._diceNumber = Int32.TryParse(diceNum, out int num) && num>0 ? num : 0;
+        // DONE: out int は out var と記述できます。
+        // DONE: num>0 に適切なスペースがありません。Ctrl + K, D を試してみましょう。
+        this._diceNum = Int32.TryParse(diceNum, out var num) && num > 0 ? num : 0;
         this._diceSide = diceType switch
         {
             "コイン" => 2,
@@ -26,9 +26,20 @@ class BasicDiceRoll : IDice
 
     public string? GetDiceCommand()
     {
-        if (this._diceNumber != 0)
+        return this.CheckDiceCommandError() is null ? $"{this._diceNum}D{this._diceSide}" : null;
+    }
+
+    public string? GetRollResult()
+    {
+        if (this.CheckDiceCommandError() is null)
         {
-            return $"{this._diceNumber}D{this._diceSide}";
+            int result = 0;
+            Random r = new();
+            for (int i = 0; i < this._diceNum; i++)
+            {
+                result += r.Next(this._diceSide) + 1;
+            }
+            return result.ToString();
         }
         else
         {
@@ -36,21 +47,19 @@ class BasicDiceRoll : IDice
         }
     }
 
-    public string? GetRollResult()
+    public string? CheckDiceCommandError()
     {
-        int result = 0;
-        Random r = new ();
-        if (this._diceSide > 0 && this._diceNumber != 0 )
+        if (this._diceNum == 0)
         {
-            for ( int i = 0; i < this._diceNumber; i++)
-            {
-                result += r.Next(_diceSide) + 1;
-            }
+            return "HaveNoDice";
         }
-        else if(this._diceSide <=  0)
+        else if (this._diceSide <= 0)
+        {
+            return "HaveUnknownSide";
+        }
+        else
         {
             return null;
         }
-        return result.ToString();
     }
 }

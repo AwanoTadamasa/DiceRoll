@@ -6,4 +6,6 @@ internal interface IDice
     public string? GetDiceCommand();
 
     public string? GetRollResult();
+
+    public string? CheckDiceCommandError();
 }
