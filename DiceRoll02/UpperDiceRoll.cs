@@ -10,7 +10,7 @@
             this._diceNum = StringToInt(diceNum);
             this._diceSide = DiceTypeToSide(diceType);
         }
-
+        
         public string? GetDiceCommand()
         {
             if (this._diceNum != 0)
@@ -53,7 +53,7 @@
                 _ => 0,
             };
         }
-
+        
         private static int UpperDice(int side)
         {
             int result = side;

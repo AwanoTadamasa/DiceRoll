@@ -2,19 +2,13 @@
 
 namespace DiceRoll02
 {
-    internal class SaveHistoryAsCSV
+    internal static class HistorySaver
     {
-        private readonly string[] _commandHistory;
-        private readonly string[] _resultHistory ;
+        internal static void SaveAsCSV(string commandHistory, string resultHistory)
+        {
+            string[] _commandHistory = commandHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+            string[] _resultHistory = resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries) ;
 
-        internal SaveHistoryAsCSV(string commandHistory, string resultHistory)
-        {
-            _commandHistory=(commandHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
-            _resultHistory=(resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
-        }
-        
-        public void SaveHistory()
-        {
             if (_commandHistory.Length > 0)
             {
                 SaveFileDialog saveFileDialog = new()

@@ -7,13 +7,14 @@ namespace DiceRoll02
             return "STARS";
         }
 
+        private readonly int _numberConstellation = 12;
+
         public string GetRollResult()
         {
-            // TODO: 11 のリテラルは変数にしましょう。
+            // DONE: 11 のリテラルは変数にしましょう。
             // UTFで星座を扱ってみたのはGOODです。
             Random r = new();
-            int numberConstellation = 12;
-            return r.Next(0, numberConstellation) switch
+            return r.Next(0, _numberConstellation) switch
             {
                 0 => "\u2648(牡羊座)",
                 1 => "\u2649(牡牛座)",
