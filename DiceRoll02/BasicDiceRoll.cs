@@ -7,7 +7,8 @@ class BasicDiceRoll : IDice
 
     public BasicDiceRoll(string diceNum, string diceType)
     {
-        // DONE: インスタンスメソッドとクラスメソッドが混じる場合は、区別するために、インスタンスメソッドには this を、クラスメソッドにはクラス名をつけます。
+        // TODO: out int は out var と記述できます。
+        // TODO: num>0 に適切なスペースがありません。Ctrl + K, D を試してみましょう。
         this._diceNumber = Int32.TryParse(diceNum, out int num) && num>0 ? num : 0;
         this._diceSide = diceType switch
         {
@@ -52,7 +53,4 @@ class BasicDiceRoll : IDice
         }
         return result.ToString();
     }
-
-    // DONE: 変換メソッドは、インスタンス主体で ToXxx() とするようにしましょう。
-    //      => コンストラクタに合流
 }

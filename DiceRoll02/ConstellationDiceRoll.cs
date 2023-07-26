@@ -7,12 +7,12 @@ namespace DiceRoll02
             return "STARS";
         }
 
+        // TODO: constellation だと星座なので、少し意味が広いです。
+        // _numberOfZodiacSign か ZodiacSignNum でどうでしょうか？
         private readonly int _numberConstellation = 12;
 
         public string GetRollResult()
         {
-            // DONE: 11 のリテラルは変数にしましょう。
-            // UTFで星座を扱ってみたのはGOODです。
             Random r = new();
             return r.Next(0, _numberConstellation) switch
             {
