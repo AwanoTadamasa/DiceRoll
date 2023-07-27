@@ -2,6 +2,20 @@ namespace DiceRoll02;
 
 public partial class Form1 : Form
 {
+    #region Form stretch constant
+
+    private static readonly int FormHeightFull = 512;
+    private static readonly int FormHeightDeteil = 262;
+    private static readonly int FormHeightShort = 216;
+    private static readonly int HistoryHeightLong = 264;
+    private static readonly int HistoryHeightShort = 218;
+    private static readonly int PanelHeightLong = 320;
+    private static readonly int PanelHeightShort = 274;
+    private static readonly Point PanelLocationDetailHide = new(8, 121);
+    private static readonly Point PanelLocationDetailShow = new(8, 167);
+
+    #endregion
+
     public Form1()
     {
         // DONE(WIP): インスタンスのメソッドやフィールドには this をつけましょう。
@@ -25,49 +39,6 @@ public partial class Form1 : Form
         this.historyCommand.Text = "";
         this.historySign.Text = "";
         this.historyResult.Text = "";
-    }
-
-    private void SaveHistory_Click(object sender, EventArgs e)
-    {
-        HistorySaveToCSV.SaveAs(this.historyCommand.Text, this.historyResult.Text);
-    }
-
-    private void RollDice_Click(object sender, EventArgs e)
-    {
-        // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
-        IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
-        {
-            "constellation" => new ConstellationDiceRoll(),
-            "omikuji" => new OmikujiRoll(),
-            "normalDice" => new BasicDiceRoll(this.diceNum.Text, this.diceType.Text),
-            "lowerDice" => new LowerDiceRoll(this.diceNum.Text, this.diceType.Text),
-            "upperDice" => new UpperDiceRoll(this.diceNum.Text, this.diceType.Text),
-            _ => new ErrorDiceRoll()
-        };
-
-        switch (dice.CheckDiceCommandError())
-        {
-            case null:
-                this.rollCommand.Text = dice.GetDiceCommand();
-                this.rollResult.Text = dice.GetRollResult();
-
-                this.historyCommand.Text += this.rollCommand.Text + "\r\n";
-                this.historySign.Text += this.rollSign.Text + "\r\n";
-                this.historyResult.Text += this.rollResult.Text + "\r\n";
-                break;
-            case "HaveNoDice":
-                _ = MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
-                break;
-            case "HaveUnknownSide":
-                _ = MessageBox.Show("不明なサイコロです。");
-                break;
-            case "HaveUnknownType":
-                _ = MessageBox.Show("不明な振り方です。");
-                break;
-            default:
-                _ = MessageBox.Show("不明なエラーです。");
-                break;
-        }
     }
 
     private void ToggleHistory_Click(object sender, EventArgs e)
@@ -105,55 +76,88 @@ public partial class Form1 : Form
             HideDetail();
         }
     }
+    private void SaveHistory_Click(object sender, EventArgs e)
+    {
+        HistorySaveToCSV.SaveAs(this.historyCommand.Text, this.historyResult.Text);
+    }
 
-    // TODO: staticな宣言は、クラスの先頭に持ってくるとよいでしょう。
+    private void RollDice_Click(object sender, EventArgs e)
+    {
+        // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
+        IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
+        {
+            "constellation" => new ConstellationDiceRoll(),
+            "omikuji" => new OmikujiRoll(),
+            "normalDice" => new BasicRollDice(this.diceNum.Text, this.diceType.Text),
+            "lowerDice" => new LowerDiceRoll(this.diceNum.Text, this.diceType.Text),
+            "upperDice" => new UpperDiceRoll(this.diceNum.Text, this.diceType.Text),
+            _ => new ErrorDiceRoll()
+        };
+
+        switch (dice.HasError())
+        {
+            case null:
+                this.rollCommand.Text = dice.GetDiceCommand();
+                this.rollResult.Text = dice.GetRollResult();
+
+                this.historyCommand.Text += this.rollCommand.Text + "\r\n";
+                this.historySign.Text += this.rollSign.Text + "\r\n";
+                this.historyResult.Text += this.rollResult.Text + "\r\n";
+                break;
+            case "HaveNoDice":
+                _ = MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
+                break;
+            case "HaveUnknownSide":
+                _ = MessageBox.Show("不明なサイコロです。");
+                break;
+            case "HaveUnknownType":
+                _ = MessageBox.Show("不明な振り方です。");
+                break;
+            default:
+                _ = MessageBox.Show("不明なエラーです。");
+                break;
+        }
+    }
+
+    // DONE: staticな宣言は、クラスの先頭に持ってくるとよいでしょう。
     // クラス内に region で折り畳める領域を作ると見通しが良くなります。
     // 一例ですが、static なフィールド、static なメソッド、通常のフィールド、コンストラクタ、イベントメソッド、それ以外のメソッド、というような並びが考えられます。
     // 上記のような意味単位ではなく、機能単位に並べることもあります。
-    // TODO: static readonly の場合はパスカルケースとなります。
-    private static readonly int formHeightFull = 512;
-    private static readonly int formHeightDeteil = 262;
-    private static readonly int formHeightShort = 216;
-    private static readonly int historyHeightLong = 264;
-    private static readonly int historyHeightShort = 218;
-    private static readonly int panelHeightLong = 320;
-    private static readonly int panelHeightShort = 274;
-    private static readonly Point panelLocationDetailHide = new(8, 121);
-    private static readonly Point panelLocationDetailShow = new(8, 167);
-
+    // DONE: static readonly の場合はパスカルケースとなります。
+    #region Form stretch method
     private void HideHistory()
     {
         this.saveHistory.Visible = false;
 
-        this.Height = this.checkBox1.Checked ? Form1.formHeightDeteil : Form1.formHeightShort;
+        this.Height = this.checkBox1.Checked ? Form1.FormHeightDeteil : Form1.FormHeightShort;
     }
 
     private void ShowHistory()
     {
         this.saveHistory.Visible = true;
 
-        this.Height = Form1.formHeightFull;
+        this.Height = Form1.FormHeightFull;
     }
 
     private void HideDetail()
     {
-        this.historyScrollBar.Height = Form1.historyHeightLong;
-        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.historyHeightLong);
-        this.panel1.Location = Form1.panelLocationDetailHide;
-        this.panel1.Height = Form1.panelHeightLong;
+        this.historyScrollBar.Height = Form1.HistoryHeightLong;
+        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.HistoryHeightLong);
+        this.panel1.Location = Form1.PanelLocationDetailHide;
+        this.panel1.Height = Form1.PanelHeightLong;
         this.diceTypeGroup.Visible = false;
         this.normalDice.Checked = true;
-        this.Height = this.saveHistory.Visible ? Form1.formHeightFull : Form1.formHeightShort;
+        this.Height = this.saveHistory.Visible ? Form1.FormHeightDeteil : Form1.FormHeightShort;
     }
 
     private void ShowDetail()
     {
-        this.historyScrollBar.Height = Form1.historyHeightShort;
-        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.historyHeightShort);
-        this.panel1.Location = Form1.panelLocationDetailShow;
-        this.panel1.Height = Form1.panelHeightShort;
+        this.historyScrollBar.Height = Form1.HistoryHeightShort;
+        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.HistoryHeightShort);
+        this.panel1.Location = Form1.PanelLocationDetailShow;
+        this.panel1.Height = Form1.PanelHeightShort;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistory.Visible ? Form1.formHeightFull : Form1.formHeightDeteil;
+        this.Height = this.saveHistory.Visible ? Form1.FormHeightDeteil : Form1.FormHeightShort;
     }
 
     private void EnableDiceCustomControll()
@@ -168,4 +172,5 @@ public partial class Form1 : Form
         this.diceTypeGroup.Enabled = false;
         this.normalDice.Checked = true;
     }
+    #endregion
 }

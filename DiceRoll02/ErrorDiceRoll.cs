@@ -14,7 +14,7 @@ internal class ErrorDiceRoll : IDice
         return null;
     }
 
-    public string CheckDiceCommandError()
+    public string HasError()
     {
         return "HaveUnknownType";
     }

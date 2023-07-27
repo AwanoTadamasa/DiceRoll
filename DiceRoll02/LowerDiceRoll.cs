@@ -26,12 +26,12 @@ internal class LowerDiceRoll : IDice
 
     public string? GetDiceCommand()
     {
-        return this.CheckDiceCommandError() is null ? $"{this._diceNum}D{this._diceSide}" : null;
+        return this.HasError() is null ? $"{this._diceNum}D{this._diceSide}" : null;
     }
 
     public string? GetRollResult()
     {
-        if (this.CheckDiceCommandError() is null)
+        if (this.HasError() is null)
         {
             int result = 0;
             Random r = new();
@@ -47,7 +47,7 @@ internal class LowerDiceRoll : IDice
         }
     }
 
-    public string? CheckDiceCommandError()
+    public string? HasError()
     {
         if (this._diceNum == 0)
         {

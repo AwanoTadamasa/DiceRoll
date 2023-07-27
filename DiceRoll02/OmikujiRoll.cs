@@ -26,7 +26,7 @@ internal class OmikujiRoll : IDice
         };
     }
 
-    public string? CheckDiceCommandError()
+    public string? HasError()
     {
         return null;
     }

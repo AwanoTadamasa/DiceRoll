@@ -12,5 +12,5 @@ internal interface IDice
 
     // TODO: Checkという英語は、何をチェックしているか中身を見るまでわかりません。具体的な名前を考えてみましょう。
     // 今後の使い方次第だとは思いますが BasicDiceRoll でしか使わないなら、インターフェースにする必要はあまりないでしょう。
-    public string? CheckDiceCommandError();
+    public string? HasError();
 }
