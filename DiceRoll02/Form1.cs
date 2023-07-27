@@ -75,7 +75,7 @@ public partial class Form1 : Form
     }
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCSV.SaveAs(this.historyCommand.Text, this.historyResult.Text);
+        HistorySaveToCsv.SaveAs(this.historyCommand.Text, this.historyResult.Text);
     }
 
     private void RollDice_Click(object sender, EventArgs e)
@@ -102,16 +102,16 @@ public partial class Form1 : Form
                 this.historyResult.Text += this.rollResult.Text + "\r\n";
                 break;
             case "HaveNoDice":
-                _ = MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
+                MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
                 break;
             case "HaveUnknownSide":
-                _ = MessageBox.Show("不明なサイコロです。");
+                MessageBox.Show("不明なサイコロです。");
                 break;
             case "HaveUnknownType":
-                _ = MessageBox.Show("不明な振り方です。");
+                MessageBox.Show("不明な振り方です。");
                 break;
             default:
-                _ = MessageBox.Show("不明なエラーです。");
+                MessageBox.Show("不明なエラーです。");
                 break;
         }
     }
