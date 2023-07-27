@@ -7,8 +7,6 @@ class ConstellationDiceRoll : IDice
         return "STARS";
     }
 
-    // DONE: constellation ÇæÇ∆êØç¿Ç»ÇÃÇ≈ÅAè≠Çµà”ñ°Ç™çLÇ¢Ç≈Ç∑ÅB
-    // _numberOfZodiacSign Ç© ZodiacSignNum Ç≈Ç«Ç§Ç≈ÇµÇÂÇ§Ç©ÅH
     private readonly int _zodiacSignNum = 12;
 
     public string GetRollResult()

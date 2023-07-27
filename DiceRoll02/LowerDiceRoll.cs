@@ -1,5 +1,7 @@
 ﻿namespace DiceRoll02;
 
+// TODO: BasicDiceRoll と似ています。共通化の余地があるでしょう。
+// abstract キーワードについて調べてみましょう。
 internal class LowerDiceRoll : IDice
 {
     private readonly int _diceNum;
@@ -61,6 +63,7 @@ internal class LowerDiceRoll : IDice
         }
     }
 
+    // TODO: メソッド名は動詞から始めます。
     private static int LowerDice(int side, Random r)
     {
         int result = 1;

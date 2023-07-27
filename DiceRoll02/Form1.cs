@@ -34,9 +34,7 @@ namespace DiceRoll02
 
         private void RollDice_Click(object sender, EventArgs e)
         {
-            // DONE: IDice Dice → dice
             // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
-            // IDice のインスタンスを使うやり方は工夫ができていてGOODです。
             IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
             {
                 "constellation" => new ConstellationDiceRoll(),
@@ -47,8 +45,6 @@ namespace DiceRoll02
                 _ => new ErrorDiceRoll()
             };
 
-            // DONE: この比較は条件が変わると修正の必要があります。有効か、そうでないかを判別するメソッドを用意するのがよいでしょう。
-            //      => IDiceに判定の追加、子クラスに実装
             switch (dice.CheckDiceCommandError())
             {
                 case null:
@@ -110,6 +106,11 @@ namespace DiceRoll02
             }
         }
 
+        // TODO: staticな宣言は、クラスの先頭に持ってくるとよいでしょう。
+        // クラス内に region で折り畳める領域を作ると見通しが良くなります。
+        // 一例ですが、static なフィールド、static なメソッド、通常のフィールド、コンストラクタ、イベントメソッド、それ以外のメソッド、というような並びが考えられます。
+        // 上記のような意味単位ではなく、機能単位に並べることもあります。
+        // TODO: static readonly の場合はパスカルケースとなります。
         private static readonly int formHeightFull = 512;
         private static readonly int formHeightDeteil = 262;
         private static readonly int formHeightShort = 216;
@@ -131,14 +132,11 @@ namespace DiceRoll02
         {
             this.saveHistory.Visible = true;
 
-            // DONE: リテラル値は直接使わず、static readonly な変数に入れてください。
-            // const との違いも調べてみましょう。
             this.Height = Form1.formHeightFull;
         }
 
         private void HideDetail()
         {
-            // DONE: 複数をコントロールの表示/非表示を切り替えたいときは、パネルを配置して、そのパネルごと操作すると楽です。
             this.historyScrollBar.Height = Form1.historyHeightLong;
             this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.historyHeightLong);
             this.panel1.Location = Form1.panelLocationDetailHide;

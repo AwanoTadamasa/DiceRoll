@@ -1,5 +1,8 @@
 namespace DiceRoll02;
 
+// TODO: IDice を継承したクラスの場合は、Dice で終わるクラス名の方がわかりやすいです。
+// サイコロを振る動作を含むクラスだから Roll をつけたくなりますが、
+// その名前を活かすなら、IDiceRollable で、Roll() メソッドをもたせると具体的になります。
 internal class BasicDiceRoll : IDice
 {
     private readonly int _diceNum;
@@ -7,8 +10,6 @@ internal class BasicDiceRoll : IDice
 
     public BasicDiceRoll(string diceNum, string diceType)
     {
-        // DONE: out int は out var と記述できます。
-        // DONE: num>0 に適切なスペースがありません。Ctrl + K, D を試してみましょう。
         this._diceNum = Int32.TryParse(diceNum, out var num) && num > 0 ? num : 0;
         this._diceSide = diceType switch
         {
