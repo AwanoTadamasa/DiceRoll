@@ -86,18 +86,18 @@ public partial class Form1 : Form
         // TODO: DiceTypeInfo ‚ðŽg‚Á‚Ä”»•Ê‚·‚é‚Ì‚Í‚à‚¤­‚µH•v‚ª‚Å‚«‚»‚¤‚Å‚·B
         IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
         {
-            "constellation" => new ConstellationDiceRoll(),
-            "omikuji" => new OmikujiRoll(),
+            "constellation" => new ZodiacSignTableChooseDice(),
+            "omikuji" => new OmikujiTableChooseDice(),
             "normalDice" => new BasicRollDice(this.diceNum.Text, this.diceType.Text),
-            "lowerDice" => new LowerDiceRoll(this.diceNum.Text, this.diceType.Text),
-            "upperDice" => new UpperDiceRoll(this.diceNum.Text, this.diceType.Text),
-            _ => new ErrorDiceRoll()
+            "lowerDice" => new LowerRollDice(this.diceNum.Text, this.diceType.Text),
+            "upperDice" => new UpperRollDice(this.diceNum.Text, this.diceType.Text),
+            _ => new ErrorDice()
         };
 
-        switch (dice.HasError())
+        switch (dice.CommandError)
         {
             case null:
-                this.rollCommand.Text = dice.GetDiceCommand();
+                this.rollCommand.Text = dice.GetRollCommand();
                 this.rollResult.Text = dice.GetRollResult();
 
                 this.historyCommand.Text += this.rollCommand.Text + "\r\n";
@@ -147,7 +147,7 @@ public partial class Form1 : Form
         this.panel1.Height = Form1.PanelHeightLong;
         this.diceTypeGroup.Visible = false;
         this.normalDice.Checked = true;
-        this.Height = this.saveHistory.Visible ? Form1.FormHeightDeteil : Form1.FormHeightShort;
+        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
     }
 
     private void ShowDetail()
@@ -157,7 +157,7 @@ public partial class Form1 : Form
         this.panel1.Location = Form1.PanelLocationDetailShow;
         this.panel1.Height = Form1.PanelHeightShort;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistory.Visible ? Form1.FormHeightDeteil : Form1.FormHeightShort;
+        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightDeteil;
     }
 
     private void EnableDiceCustomControll()

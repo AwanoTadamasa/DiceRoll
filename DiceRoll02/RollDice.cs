@@ -22,11 +22,11 @@ internal abstract class RollDice : IDice
         };
     }
 
-    public string GetDiceCommand()
+    public string GetRollCommand()
     {
-        if (this.HasError() is null)
+        if (this.CommandError is null)
         {
-            return this.CreatDiceCommand;
+            return this.DiceRollCommand;
         }
         else
         {
@@ -36,9 +36,9 @@ internal abstract class RollDice : IDice
 
     public string GetRollResult()
     {
-        if (this.HasError() is null)
+        if (this.CommandError is null)
         {
-            return this.CreatRollResult.ToString();
+            return this.DiceRollResult.ToString();
         }
         else
         {
@@ -46,14 +46,17 @@ internal abstract class RollDice : IDice
         }
     }
 
-    public string? HasError()
+    public string? CommandError
     {
-        if (this._diceNum == 0) { return "HaveNoDice"; }
-        else if (this._diceSide <= 0) { return "HaveUnknownSide"; }
-        else { return null; }
+        get
+        {
+            if (this._diceNum == 0) { return "HaveNoDice"; }
+            else if (this._diceSide <= 0) { return "HaveUnknownSide"; }
+            else { return null; }
+        }
     }
 
-    protected abstract string CreatDiceCommand { get; }
+    protected abstract string DiceRollCommand { get; }
 
-    protected abstract int CreatRollResult { get; }
+    protected abstract int DiceRollResult { get; }
 }
