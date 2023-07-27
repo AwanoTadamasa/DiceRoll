@@ -5,8 +5,8 @@ public partial class Form1 : Form
     #region Form stretch constant
 
     private static readonly int FormHeightFull = 512;
-    // TODO: タイポ
-    private static readonly int FormHeightDeteil = 262;
+    // DONE: タイポ
+    private static readonly int FormHeightDetail = 262;
     private static readonly int FormHeightShort = 216;
     private static readonly int HistoryHeightLong = 264;
     private static readonly int HistoryHeightShort = 218;
@@ -15,7 +15,7 @@ public partial class Form1 : Form
     private static readonly Point PanelLocationDetailHide = new(8, 121);
     private static readonly Point PanelLocationDetailShow = new(8, 167);
 
-    #endregion
+    #endregion Form stretch constant
 
     public Form1()
     {
@@ -25,9 +25,9 @@ public partial class Form1 : Form
     private void Form1_Load(object sender, EventArgs e)
     {
         this.diceType.SelectedIndex = 0;
-        // TODO: this
-        HideHistory();
-        HideDetail();
+        // DONE: this
+        this.HideHistory();
+        this.HideDetail();
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)
@@ -41,11 +41,11 @@ public partial class Form1 : Form
     {
         if (this.saveHistory.Visible)
         {
-            HideHistory();
+            this.HideHistory();
         }
         else
         {
-            ShowHistory();
+            this.ShowHistory();
         }
     }
 
@@ -53,12 +53,12 @@ public partial class Form1 : Form
     {
         if (DiceTypeInfo.IsCustomDice(this.diceType.Text))
         {
-            // TODO: this
-            DisableDiceCustomControll();
+            // DONE: this
+            this.DisableDiceCustomControll();
         }
         else
         {
-            EnableDiceCustomControll();
+            this.EnableDiceCustomControll();
         }
     }
 
@@ -66,11 +66,11 @@ public partial class Form1 : Form
     {
         if (this.checkBox1.Checked)
         {
-            ShowDetail();
+            this.ShowDetail();
         }
         else
         {
-            HideDetail();
+            this.HideDetail();
         }
     }
     private void SaveHistory_Click(object sender, EventArgs e)
@@ -122,7 +122,7 @@ public partial class Form1 : Form
     {
         this.saveHistory.Visible = false;
 
-        this.Height = this.checkBox1.Checked ? Form1.FormHeightDeteil : Form1.FormHeightShort;
+        this.Height = this.checkBox1.Checked ? Form1.FormHeightDetail : Form1.FormHeightShort;
     }
 
     private void ShowHistory()
@@ -150,7 +150,7 @@ public partial class Form1 : Form
         this.panel1.Location = Form1.PanelLocationDetailShow;
         this.panel1.Height = Form1.PanelHeightShort;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightDeteil;
+        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
     }
 
     private void EnableDiceCustomControll()
@@ -166,6 +166,6 @@ public partial class Form1 : Form
         this.normalDice.Checked = true;
     }
 
-    // TODO: region は長くなることが多いので、ペアがわかるように、開始時と同じメッセージを書いておくとよいです。
-    #endregion
+    // DONE: region は長くなることが多いので、ペアがわかるように、開始時と同じメッセージを書いておくとよいです。
+    #endregion Form stretch method
 }
