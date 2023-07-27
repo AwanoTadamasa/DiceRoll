@@ -29,7 +29,7 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaver.SaveAsCSV(this.historyCommand.Text, this.historyResult.Text);
+        HistorySaveToCSV.SaveAs(this.historyCommand.Text, this.historyResult.Text);
     }
 
     private void RollDice_Click(object sender, EventArgs e)
