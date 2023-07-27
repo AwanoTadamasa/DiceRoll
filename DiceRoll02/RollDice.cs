@@ -1,5 +1,9 @@
 ﻿namespace DiceRoll02;
 
+// TODO: C#では慣例的に abstract クラスの名前には -Base のサフィックスをつけます。
+// BasicDice の共通部分という意味で BasicDiceBase でよいと思います。
+// RollDice という名前だと、転がるサイコロ という意味になってます。
+// 転がる以外の何かを実装するならRollingDiceもありだと思いますが・・・。
 internal abstract class RollDice : IDice
 {
     protected readonly int _diceNum;

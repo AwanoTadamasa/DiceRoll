@@ -1,6 +1,4 @@
 ﻿namespace DiceRoll02;
-// DONE: BasicDiceRoll と似ています。共通化の余地があるでしょう。
-// abstract キーワードについて調べてみましょう。
 
 internal class LowerRollDice : RollDice
 {
@@ -28,6 +26,4 @@ internal class LowerRollDice : RollDice
             return result;
         }
     }
-
-    // DONE: メソッド名は動詞から始めます。
 }

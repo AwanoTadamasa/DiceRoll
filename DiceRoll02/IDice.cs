@@ -10,7 +10,8 @@ internal interface IDice
 
     public string GetRollResult();
 
-    // DONE: Checkという英語は、何をチェックしているか中身を見るまでわかりません。具体的な名前を考えてみましょう。
-    // 今後の使い方次第だとは思いますが BasicDiceRoll でしか使わないなら、インターフェースにする必要はあまりないでしょう。
+    // TODO: bool HasError() という名前のメソッドを用意するとともに、
+    // string? GetErrorMessage() という名前のメソッドを用意するのがよさそうです。
+    // 上記を使うことで呼び出し元でエラーメッセージの内容を考えなくてよくなります。
     public string? CommandError { get; }
 }

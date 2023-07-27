@@ -2,18 +2,16 @@
 
 namespace DiceRoll02;
 
+// TODO: CSV → Csv
 internal static class HistorySaveToCSV
 {
-    // TODO: SaveAs は名前をつけて保存でよく使われる名前です。CSVはクラス名の方で判別できるようにした方がよいでしょう。
     internal static void SaveAs(string commandHistory, string resultHistory)
     {
-        // DONE: _(アンダースコア) はインスタンスの private フィールド名に使われます。
-        // また、配列やリストの変数名は複数形を使います。
-        // 例外はありますが、変数名が複数形だと配列だと判断します。
+        // TODO: Historys → Histories
         string[] commandHistorys = commandHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
         string[] resultHistorys = resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
-        // DONE: 早期リターンを使ってみましょう。
+        // TODO: if を 1行にする場合もありますが、その場合は { } は書きません。ここではきちんと改行しましょう。
         if (commandHistorys.Length <= 0) { return; }
         var saveFileDialog = new SaveFileDialog()
         {
@@ -29,21 +27,21 @@ internal static class HistorySaveToCSV
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+                // TODO: スネークケースは使いません。shiftJis か sjis となります。
                 var shift_jisEncoeding = System.Text.Encoding.GetEncoding("Shift_JIS");
 
                 // TODO: Class c = new() の省略形よりも、var c = new Class() の方が取り回しがよいです。
                 // コピペして別のものに変えて使おうと思った時、左端のクラス名を変えジャンプしてコンストラクタの内容を変えるより、
                 // new 以降で変えたほうが移動が少なくて済みます。
                 //      => 見つけ次第変更していきます。
-                // 外部リリーそに using を使ったのはGOODです。
-                // DONE: 少し長いのでsjis のエンコーディングは一度変数に入れたほうが見通しが良くなりそうです。
                 using StreamWriter w = new(saveFileDialog.FileName, false, shift_jisEncoeding);
 
+                // TODO: ここの try-catch は不要と思います。
                 try
                 {
                     w.WriteLine(@"コマンド,結果");
-                    // DONE: for より foreach を使ってみましょう。
-                    //      => 星座で使う記号が化けてしまいます。どうしたらよいでしょうか？
+                    // UNDONE: 星座で使う記号が化けてしまいます。どうしたらよいでしょうか？
+                    // TODO: 文字コードの問題です。星座のコードはUnicodeでしたが、ここではSJISで保存しています。UTF-8で保存してみましょう。
                     foreach (var (command, result) in commandHistorys.Zip(resultHistorys))
                     {
                         w.WriteLine("{0},{1}", command, result);
@@ -57,7 +55,9 @@ internal static class HistorySaveToCSV
         }
         catch (IOException ex)
         {
-            // DONE: 今回の場合は Writer ですので、書き込みですね。
+            // TODO: 丁寧にやる場合は _(アンダースコア) による破棄で正しいですが、冗長に感じます。ない方がよさそうです。
+            // このあたりは昔からやってる人の慣例があると思われます。
+            // _(アンダースコア) による破棄自体がC#言語の新しい機能となります。
             _ = MessageBox.Show($"エラーが発生しました。指定されたファイルは書き込めませんでした。\r\n{ex}");
         }
         catch (Exception ex)
@@ -66,7 +66,6 @@ internal static class HistorySaveToCSV
         }
         finally
         {
-            // DONE: ここだと、if で入らなかったときに Dispose() されないことになります。
             saveFileDialog.Dispose();
         }
     }

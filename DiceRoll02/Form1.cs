@@ -5,6 +5,7 @@ public partial class Form1 : Form
     #region Form stretch constant
 
     private static readonly int FormHeightFull = 512;
+    // TODO: タイポ
     private static readonly int FormHeightDeteil = 262;
     private static readonly int FormHeightShort = 216;
     private static readonly int HistoryHeightLong = 264;
@@ -18,18 +19,13 @@ public partial class Form1 : Form
 
     public Form1()
     {
-        // DONE(WIP): インスタンスのメソッドやフィールドには this をつけましょう。
-        // いくつか利点がありますが・・・
-        // 引数とフィールドが同名の場合も区別できます。
-        // 常にインスタンスであることを意識できます。
-        // クラスメソッドと混ざると this が無いと区別できなくなります。
-        //      => およそ付けたと思います。
         this.InitializeComponent();
     }
 
     private void Form1_Load(object sender, EventArgs e)
     {
         this.diceType.SelectedIndex = 0;
+        // TODO: this
         HideHistory();
         HideDetail();
     }
@@ -57,6 +53,7 @@ public partial class Form1 : Form
     {
         if (DiceTypeInfo.IsCustomDice(this.diceType.Text))
         {
+            // TODO: this
             DisableDiceCustomControll();
         }
         else
@@ -119,12 +116,8 @@ public partial class Form1 : Form
         }
     }
 
-    // DONE: staticな宣言は、クラスの先頭に持ってくるとよいでしょう。
-    // クラス内に region で折り畳める領域を作ると見通しが良くなります。
-    // 一例ですが、static なフィールド、static なメソッド、通常のフィールド、コンストラクタ、イベントメソッド、それ以外のメソッド、というような並びが考えられます。
-    // 上記のような意味単位ではなく、機能単位に並べることもあります。
-    // DONE: static readonly の場合はパスカルケースとなります。
     #region Form stretch method
+
     private void HideHistory()
     {
         this.saveHistory.Visible = false;
@@ -172,5 +165,7 @@ public partial class Form1 : Form
         this.diceTypeGroup.Enabled = false;
         this.normalDice.Checked = true;
     }
+
+    // TODO: region は長くなることが多いので、ペアがわかるように、開始時と同じメッセージを書いておくとよいです。
     #endregion
 }
