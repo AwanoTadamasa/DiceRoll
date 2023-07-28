@@ -1,6 +1,6 @@
 ﻿namespace DiceRoll02;
 
-internal class OmikujiTableChooseDice : TableChooseDice
+internal class OmikujiTableChoose : TableChoosingDiceBase
 {
     protected override string DiceRollCommand => "OMKJI";
 

@@ -1,9 +1,9 @@
 ﻿namespace DiceRoll02;
 
-// TODO: BasicRoll
-internal class BasicRollDice : RollDice
+// DONE: BasicRoll
+internal class BasicRoll : RollingDiceBase
 {
-    public BasicRollDice(string diceNum, string diceType) : base(diceNum, diceType) { }
+    public BasicRoll(string diceNum, string diceType) : base(diceNum, diceType) { }
 
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}";

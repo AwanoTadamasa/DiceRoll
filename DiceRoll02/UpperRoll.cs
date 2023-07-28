@@ -1,8 +1,8 @@
 ﻿namespace DiceRoll02;
 
-internal class UpperRollDice : RollDice
+internal class UpperRoll : RollingDiceBase
 {
-    public UpperRollDice(string diceNum, string diceType) : base(diceNum, diceType) { }
+    public UpperRoll(string diceNum, string diceType) : base(diceNum, diceType) { }
 
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}U";

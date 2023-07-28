@@ -83,36 +83,26 @@ public partial class Form1 : Form
         // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
         IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
         {
-            "constellation" => new ZodiacSignTableChooseDice(),
-            "omikuji" => new OmikujiTableChooseDice(),
-            "normalDice" => new BasicRollDice(this.diceNum.Text, this.diceType.Text),
-            "lowerDice" => new LowerRollDice(this.diceNum.Text, this.diceType.Text),
-            "upperDice" => new UpperRollDice(this.diceNum.Text, this.diceType.Text),
+            "constellation" => new ZodiacSignTableChoose(),
+            "omikuji" => new OmikujiTableChoose(),
+            "normalDice" => new BasicRoll(this.diceNum.Text, this.diceType.Text),
+            "lowerDice" => new LowerRoll(this.diceNum.Text, this.diceType.Text),
+            "upperDice" => new UpperRoll(this.diceNum.Text, this.diceType.Text),
             _ => new ErrorDice()
         };
 
-        switch (dice.CommandError)
+        if (dice.HasError())
         {
-            case null:
-                this.rollCommand.Text = dice.GetRollCommand();
-                this.rollResult.Text = dice.GetRollResult();
+            MessageBox.Show(dice.GetErrorMessage());
+        }
+        else
+        {
+            this.rollCommand.Text = dice.GetRollCommand();
+            this.rollResult.Text = dice.GetRollResult();
 
-                this.historyCommand.Text += this.rollCommand.Text + "\r\n";
-                this.historySign.Text += this.rollSign.Text + "\r\n";
-                this.historyResult.Text += this.rollResult.Text + "\r\n";
-                break;
-            case "HaveNoDice":
-                MessageBox.Show("不正な数字です。\r\n1以上の整数を入力してください。");
-                break;
-            case "HaveUnknownSide":
-                MessageBox.Show("不明なサイコロです。");
-                break;
-            case "HaveUnknownType":
-                MessageBox.Show("不明な振り方です。");
-                break;
-            default:
-                MessageBox.Show("不明なエラーです。");
-                break;
+            this.historyCommand.Text += this.rollCommand.Text + "\r\n";
+            this.historySign.Text += this.rollSign.Text + "\r\n";
+            this.historyResult.Text += this.rollResult.Text + "\r\n";
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace DiceRoll02;
 
-internal class ZodiacSignTableChooseDice : TableChooseDice
+internal class ZodiacSignTableChoose : TableChoosingDiceBase
 {
     protected override string DiceRollCommand => "STARS";
 
