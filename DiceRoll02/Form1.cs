@@ -51,7 +51,7 @@ public partial class Form1 : Form
 
     private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (DiceTypeInfo.IsCustomDice(this.diceType.Text))
+        if (SelectedDiceType.IsCustomDice(this.diceType.Text))
         {
             // DONE: this
             this.DisableDiceCustomControll();
@@ -81,15 +81,7 @@ public partial class Form1 : Form
     private void RollDice_Click(object sender, EventArgs e)
     {
         // TODO: DiceTypeInfo ‚ðŽg‚Á‚Ä”»•Ê‚·‚é‚Ì‚Í‚à‚¤­‚µH•v‚ª‚Å‚«‚»‚¤‚Å‚·B
-        IDice dice = DiceTypeInfo.GetDiceType(this.diceType.Text, this.diceTypeGroup) switch
-        {
-            "constellation" => new ZodiacSignTableChoose(),
-            "omikuji" => new OmikujiTableChoose(),
-            "normalDice" => new BasicRoll(this.diceNum.Text, this.diceType.Text),
-            "lowerDice" => new LowerRoll(this.diceNum.Text, this.diceType.Text),
-            "upperDice" => new UpperRoll(this.diceNum.Text, this.diceType.Text),
-            _ => new ErrorDice()
-        };
+        var dice = SelectedDiceType.Dice(this.diceNum.Text, this.diceType.Text, this.diceTypeGroup);
 
         if (dice.HasError())
         {
