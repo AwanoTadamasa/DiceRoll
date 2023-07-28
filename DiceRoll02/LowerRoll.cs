@@ -17,7 +17,7 @@ internal class LowerRoll : RollingDiceBase
             for (int i = 0; i < this._diceNum; i++)
             {
                 int num = 1;
-                for (int j = 1; j < this._diceSide && num == i; j++)
+                for (int j = 1; j < this._diceSide && num == j; j++)
                 {
                     num += r.Next(2);
                 }
