@@ -2,11 +2,6 @@
 
 namespace DiceRoll02;
 
-// UNDONE: C#では慣例的に abstract クラスの名前には -Base のサフィックスをつけます。
-// BasicDice の共通部分という意味で BasicDiceBase でよいと思います。
-// RollDice という名前だと、転がるサイコロ という意味になってます。
-// 転がる以外の何かを実装するならRollingDiceもありだと思いますが・・・。
-//      => サイコロを振ることを「ダイスロール」と言うので、できればこの名前で行きたいです。
 /// <summary>
 /// サイコロを振り、その合計を結果として返す
 /// </summary>
@@ -20,7 +15,6 @@ internal abstract partial class RollingDiceBase : IDice
     /// </summary>
     /// <param name="diceNumText">サイコロの数。"n"もしくは"n個"(string)</param>
     /// <param name="diceTypeText">サイコロの形。"コイン"もしくは"n面体"(n >= 2)(string)</param>
-
     public RollingDiceBase(string diceNumText, string diceTypeText)
     {
         var diceNum = _regDiceNumMatchPattern().Match(diceNumText);
@@ -81,6 +75,7 @@ internal abstract partial class RollingDiceBase : IDice
         {
             try
             {
+                // TODO: ???
                 _ = this.DiceRollCommand;
                 _ = this.DiceRollResult;
                 return null;
@@ -105,7 +100,6 @@ internal abstract partial class RollingDiceBase : IDice
 
 
     [GeneratedRegex("^([0-9]+)個?$")]
-
     private static partial Regex _regDiceNumMatchPattern();
 
     [GeneratedRegex("^([0-9]+)(面体)?$")]

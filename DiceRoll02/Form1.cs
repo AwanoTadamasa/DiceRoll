@@ -4,8 +4,10 @@ public partial class Form1 : Form
 {
     #region Form stretch constant
 
+    // TODO: Form は固定長にしないでデザインしてみましょう。
+    // Formを固定長にすると環境によってズレます。ボタンが隠れたりすると詰みます。
+    // なので、基本的にはサイズが変えられることを前提に設計します。
     private static readonly int FormHeightFull = 512;
-    // DONE: タイポ
     private static readonly int FormHeightDetail = 262;
     private static readonly int FormHeightShort = 216;
     private static readonly int HistoryHeightLong = 264;
@@ -25,7 +27,6 @@ public partial class Form1 : Form
     private void Form1_Load(object sender, EventArgs e)
     {
         this.diceType.SelectedIndex = 0;
-        // DONE: this
         this.HideHistory();
         this.HideDetail();
     }
@@ -39,6 +40,13 @@ public partial class Form1 : Form
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
+        // TODO: 各コントロールが何なのか名前から判別できるようにした方が読みやすいです。
+        // saveHistory だけだと、保存された履歴の一覧と思うかもしれません。
+        // でも動詞から始まってるので動きのある何か、ボタンかな？という推測はできます。
+        // こういった推測は間違いの元ですし、確認の手間がありますので、明確な命名が大切です。
+        // これは古いテクニックのひとつですが、btnSaveHistory とプレフィックスでコントロールを表すやり方があります。
+        // ハンガリアン記法の一種なので、最近はあまり見ないかもしれまん。
+        // 素直に書くなら saveHistoryButton となるでしょうか。
         if (this.saveHistory.Visible)
         {
             this.HideHistory();
@@ -53,7 +61,6 @@ public partial class Form1 : Form
     {
         if (SelectedDiceType.IsCustomDice(this.diceType.Text))
         {
-            // DONE: this
             this.DisableDiceCustomControll();
         }
         else
@@ -148,6 +155,5 @@ public partial class Form1 : Form
         this.normalDice.Checked = true;
     }
 
-    // DONE: region は長くなることが多いので、ペアがわかるように、開始時と同じメッセージを書いておくとよいです。
     #endregion Form stretch method
 }

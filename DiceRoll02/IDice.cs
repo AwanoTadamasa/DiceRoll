@@ -10,6 +10,9 @@ namespace DiceRoll02;
 /// </summary>
 internal interface IDice
 {
+    // TODO: returns には型名は含めない方がよいでしょう。
+    // 型名はIDEでコードを記述するときに見えるので、コメントに書くと冗長です。
+    // あと、型を変更したらコメントまで直さないといけないのでめんどくさいと思います。
     /// <summary>
     /// 生成されたコマンド。2D6、STARS　など
     /// </summary>
@@ -22,9 +25,6 @@ internal interface IDice
     /// <returns>結果(string)</returns>
     public string GetRollResult();
 
-    // DONE: bool HasError() という名前のメソッドを用意するとともに、
-    // string? GetErrorMessage() という名前のメソッドを用意するのがよさそうです。
-    // 上記を使うことで呼び出し元でエラーメッセージの内容を考えなくてよくなります。
     /// <summary>
     /// エラーで結果が出なかった時true
     /// </summary>

@@ -1,19 +1,29 @@
 ﻿namespace DiceRoll02;
 
-// DONE: CSV → Csv
+// TODO: こういうクラスは、命名が難しいのですが、Historyを助けるための
+// ユーティリティクラス(便利クラス)という意味でHistoryHelperと呼ばれることが多いです。
+// ユーティリティクラスの特徴として、staticなメソッドしか持たないというものがあります。
 internal static class HistorySaveToCsv
 {
+    // TODO: 補足です。通常の保存は Save ですが、例えば、エクセルからCSVに変換する場合は、Export という単語が使われます。
+    // Export は変換して出力する意味を持ちます。対義語の Import は取り込んで変換するというニュアンスがあります。
+    // 変換を挟まない場合は Output/Input という単語がよく使われます。
+    // 今回は元となるデータがなくて初めて保存する形式がたまたまCSVというだけなので、Saveでも違和感はありません。
     internal static void SaveAs(string commandHistory, string resultHistory)
     {
-        // DONE: Histories → Histories
         string[] commandHistories = commandHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
         string[] resultHistories = resultHistory.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
-        // DONE: if を 1行にする場合もありますが、その場合は { } は書きません。ここではきちんと改行しましょう。
         if (commandHistories.Length <= 0)
         {
             return;
         }
+
+        // TODO: 保存先を選択する処理は、このメソッドの外に持っていきましょう。
+        // そうすると、SaveAsというメソッドはSaveというメソッド名に変えて、よりシンプルな感じになります。
+        // さらにその上で、SaveAsというメソッドを作ってみましょう。
+        // ただ、ユーティリティクラスとして見た場合は、Windowが表示されて処理が止まったりするのは避けたいので、
+        // パスはあらかじめ外部で選んでおくのが通例です。
         var saveFileDialog = new SaveFileDialog()
         {
             FileName = "RollHistory.csv",
@@ -27,7 +37,7 @@ internal static class HistorySaveToCsv
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // DONE: スネークケースは使いません。shiftJis か sjis となります。
+                // TODO: デフォルトのエンコーディングについて調べてみましょう。
                 var uniEncoding = System.Text.Encoding.GetEncoding("UTF-8");
                 // TODO: Class c = new() の省略形よりも、var c = new Class() の方が取り回しがよいです。
                 // コピペして別のものに変えて使おうと思った時、左端のクラス名を変えジャンプしてコンストラクタの内容を変えるより、
@@ -35,11 +45,7 @@ internal static class HistorySaveToCsv
                 //      => 見つけ次第変更していきます。
                 using var w = new StreamWriter(saveFileDialog.FileName, false, uniEncoding);
 
-                // DONE: ここの try-catch は不要と思います。
-
                 w.WriteLine(@"コマンド,結果");
-                // UNDONE: 星座で使う記号が化けてしまいます。どうしたらよいでしょうか？
-                // DONE: 文字コードの問題です。星座のコードはUnicodeでしたが、ここではSJISで保存しています。UTF-8で保存してみましょう。
                 foreach (var (command, result) in commandHistories.Zip(resultHistories))
                 {
                     w.WriteLine("{0},{1}", command, result);
@@ -48,9 +54,6 @@ internal static class HistorySaveToCsv
         }
         catch (IOException ex)
         {
-            // DONE: 丁寧にやる場合は _(アンダースコア) による破棄で正しいですが、冗長に感じます。ない方がよさそうです。
-            // このあたりは昔からやってる人の慣例があると思われます。
-            // _(アンダースコア) による破棄自体がC#言語の新しい機能となります。
             MessageBox.Show($"エラーが発生しました。指定されたファイルは書き込めませんでした。\r\n{ex}");
         }
         catch (Exception ex)
