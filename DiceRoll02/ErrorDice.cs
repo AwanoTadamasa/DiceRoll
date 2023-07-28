@@ -12,5 +12,7 @@ internal class ErrorDice : IDice
         return "ERROR";
     }
 
-    public string CommandError => "HaveUnknownType";
+    public string? GetErrorMessage() => "不明な振り方です。";
+
+    public bool HasError() => true;
 }
