@@ -7,8 +7,6 @@ internal class UpperRoll : RollingDiceBase
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}U";
 
-
-
     protected override int DiceRollResult
     {
         get

@@ -24,20 +24,20 @@ internal abstract partial class RollingDiceBase : IDice
     public RollingDiceBase(string diceNumText, string diceTypeText)
     {
         var diceNum = _regDiceNumMatchPattern().Match(diceNumText);
-        _diceNum = diceNum.Success && Int32.TryParse(diceNum.Groups[1].Value, out var num) && num > 0 ? num : 0;
+        this._diceNum = diceNum.Success && Int32.TryParse(diceNum.Groups[1].Value, out var num) && num > 0 ? num : 0;
 
         var diceType = _regDiceSideMatchPattern().Match(diceTypeText);
         if (diceTypeText == "コイン")
         {
-            _diceSide = 2;
+            this._diceSide = 2;
         }
         else if (diceType.Success)
         {
-            _diceSide = Int32.TryParse(diceType.Groups[1].Value, out var side) && side > 1 ? side : 0;
+            this._diceSide = Int32.TryParse(diceType.Groups[1].Value, out var side) && side > 1 ? side : 0;
         }
         else
         {
-            _diceSide = 0;
+            this._diceSide = 0;
         }
     }
 
