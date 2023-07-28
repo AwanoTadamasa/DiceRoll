@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace DiceRoll02;
+﻿namespace DiceRoll02;
 
 // DONE: CSV → Csv
 internal static class HistorySaveToCsv
@@ -29,21 +27,19 @@ internal static class HistorySaveToCsv
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
                 // DONE: スネークケースは使いません。shiftJis か sjis となります。
-                var sjisEncoeding = System.Text.Encoding.GetEncoding("Shift_JIS");
-
+                var uniEncoding = System.Text.Encoding.GetEncoding("UTF-8");
                 // TODO: Class c = new() の省略形よりも、var c = new Class() の方が取り回しがよいです。
                 // コピペして別のものに変えて使おうと思った時、左端のクラス名を変えジャンプしてコンストラクタの内容を変えるより、
                 // new 以降で変えたほうが移動が少なくて済みます。
                 //      => 見つけ次第変更していきます。
-                using var w = new StreamWriter(saveFileDialog.FileName, false, sjisEncoeding);
+                using var w = new StreamWriter(saveFileDialog.FileName, false, uniEncoding);
 
                 // DONE: ここの try-catch は不要と思います。
 
                 w.WriteLine(@"コマンド,結果");
                 // UNDONE: 星座で使う記号が化けてしまいます。どうしたらよいでしょうか？
-                // TODO: 文字コードの問題です。星座のコードはUnicodeでしたが、ここではSJISで保存しています。UTF-8で保存してみましょう。
+                // DONE: 文字コードの問題です。星座のコードはUnicodeでしたが、ここではSJISで保存しています。UTF-8で保存してみましょう。
                 foreach (var (command, result) in commandHistories.Zip(resultHistories))
                 {
                     w.WriteLine("{0},{1}", command, result);
