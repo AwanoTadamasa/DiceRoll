@@ -40,13 +40,7 @@ public partial class Form1 : Form
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
-        // DONE: 各コントロールが何なのか名前から判別できるようにした方が読みやすいです。
-        // saveHistory だけだと、保存された履歴の一覧と思うかもしれません。
-        // でも動詞から始まってるので動きのある何か、ボタンかな？という推測はできます。
-        // こういった推測は間違いの元ですし、確認の手間がありますので、明確な命名が大切です。
-        // これは古いテクニックのひとつですが、btnSaveHistory とプレフィックスでコントロールを表すやり方があります。
-        // ハンガリアン記法の一種なので、最近はあまり見ないかもしれまん。
-        // 素直に書くなら saveHistoryButton となるでしょうか。
+        // TODO: Buton → Button
         if (this.saveHistoryButon.Visible)
         {
             this.HideHistory();

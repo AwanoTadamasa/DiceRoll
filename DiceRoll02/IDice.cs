@@ -10,9 +10,6 @@ namespace DiceRoll02;
 /// </summary>
 internal interface IDice
 {
-    // DONE: returns には型名は含めない方がよいでしょう。
-    // 型名はIDEでコードを記述するときに見えるので、コメントに書くと冗長です。
-    // あと、型を変更したらコメントまで直さないといけないのでめんどくさいと思います。
     /// <summary>
     /// 生成されたコマンド。2D6、STARS　など
     /// </summary>
