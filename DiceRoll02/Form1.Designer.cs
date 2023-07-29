@@ -38,7 +38,7 @@
             rollCommandLabel = new Label();
             rollResultLabel = new Label();
             toggleHistoryButton = new Button();
-            saveHistoryButon = new Button();
+            saveHistoryButton = new Button();
             historyScrollBar = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             historySignLabel = new Label();
@@ -156,16 +156,16 @@
             toggleHistoryButton.UseVisualStyleBackColor = true;
             toggleHistoryButton.Click += ToggleHistory_Click;
             // 
-            // saveHistoryButon
+            // saveHistoryButton
             // 
-            saveHistoryButon.Location = new Point(146, 26);
-            saveHistoryButon.Name = "saveHistoryButon";
-            saveHistoryButon.Size = new Size(75, 23);
-            saveHistoryButon.TabIndex = 10;
-            saveHistoryButon.TabStop = false;
-            saveHistoryButon.Text = "保存";
-            saveHistoryButon.UseVisualStyleBackColor = true;
-            saveHistoryButon.Click += SaveHistory_Click;
+            saveHistoryButton.Location = new Point(146, 26);
+            saveHistoryButton.Name = "saveHistoryButton";
+            saveHistoryButton.Size = new Size(75, 23);
+            saveHistoryButton.TabIndex = 10;
+            saveHistoryButton.TabStop = false;
+            saveHistoryButton.Text = "保存";
+            saveHistoryButton.UseVisualStyleBackColor = true;
+            saveHistoryButton.Click += SaveHistory_Click;
             // 
             // historyScrollBar
             // 
@@ -297,7 +297,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(saveHistoryButon);
+            panel1.Controls.Add(saveHistoryButton);
             panel1.Controls.Add(toggleHistoryButton);
             panel1.Controls.Add(historyScrollBar);
             panel1.Controls.Add(rollResultLabel);
@@ -355,7 +355,7 @@
         private Label rollCommandLabel;
         private Label rollResultLabel;
         private Button toggleHistoryButton;
-        private Button saveHistoryButon;
+        private Button saveHistoryButton;
         private Panel historyScrollBar;
         private Button resetHistoryButton;
         private Label historySignLabel;

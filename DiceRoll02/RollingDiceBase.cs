@@ -7,14 +7,9 @@ namespace DiceRoll02;
 /// </summary>
 internal abstract partial class RollingDiceBase : IDice
 {
-    /// <summary>
-    /// 振るサイコロの数
-    /// </summary>
     protected readonly int _diceNum;
-    /// <summary>
-    /// 振るサイコロの面数
-    /// </summary>
     protected readonly int _diceSide;
+    protected readonly List<int> _results;
 
     /// <summary>
     /// コンストラクタ。内部で整数型にする。
@@ -39,6 +34,8 @@ internal abstract partial class RollingDiceBase : IDice
         {
             this._diceSide = 0;
         }
+
+        this._results = this.RollDices();
     }
 
     public string GetRollCommand()
@@ -61,7 +58,19 @@ internal abstract partial class RollingDiceBase : IDice
         }
         else
         {
-            return this.DiceRollResult.ToString();
+            return this._results.Sum().ToString();
+        }
+    }
+
+    public int[] GetRollResultArray()
+    {
+        if (this.HasError())
+        {
+            return Array.Empty<int>();
+        }
+        else
+        {
+            return this._results.ToArray();
         }
     }
 
@@ -82,9 +91,9 @@ internal abstract partial class RollingDiceBase : IDice
             try
             {
                 // TODO: ???
-                //  => 子クラスで実装したとき、そのエラーが分かればと思いました。
+                //  => 子クラスを実装したとき、そのエラーが分かればと思いました。
                 _ = this.DiceRollCommand;
-                _ = this.DiceRollResult;
+                _ = this.RollDices();
                 return null;
             }
             catch
@@ -102,7 +111,8 @@ internal abstract partial class RollingDiceBase : IDice
     /// <summary>
     /// サイコロ1個を振り、その数値を返す
     /// </summary>
-    protected abstract int DiceRollResult { get; }
+    /// <param name="random">ランダムクラスのインスタンス ランダム性の確保のため</param>
+    protected abstract List<int> RollDices();
 
     [GeneratedRegex("^([0-9]+)個?$")]
     private static partial Regex _regDiceNumMatchPattern();

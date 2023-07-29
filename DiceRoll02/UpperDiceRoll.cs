@@ -15,23 +15,20 @@ internal class UpperDiceRoll : RollingDiceBase
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}U";
 
-    protected override int DiceRollResult
+    protected override List<int> RollDices()
     {
-        get
-        {
-            int result = 0;
-            var r = new Random();
+        var results = new List<int>();
+        var r = new Random();
 
-            for (int i = 0; i < this._diceNum; i++)
+        for (int i = 0; i < this._diceNum; i++)
+        {
+            int num = this._diceSide;
+            for (int j = 1; j < this._diceSide && num == this._diceSide - j + 1; j++)
             {
-                int num = this._diceSide;
-                for (int j = 1; j < this._diceSide && num == this._diceSide - j + 1; j++)
-                {
-                    num -= r.Next(2);
-                }
-                result += num;
+                num -= r.Next(2);
             }
-            return result;
+            results.Add(num);
         }
+        return results;
     }
 }

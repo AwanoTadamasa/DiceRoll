@@ -40,8 +40,8 @@ public partial class Form1 : Form
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
-        // TODO: Buton Å® Button
-        if (this.saveHistoryButon.Visible)
+        // DONE: Buton Å® Button
+        if (this.saveHistoryButton.Visible)
         {
             this.HideHistory();
         }
@@ -103,14 +103,14 @@ public partial class Form1 : Form
 
     private void HideHistory()
     {
-        this.saveHistoryButon.Visible = false;
+        this.saveHistoryButton.Visible = false;
 
         this.Height = this.checkBox1.Checked ? Form1.FormHeightDetail : Form1.FormHeightShort;
     }
 
     private void ShowHistory()
     {
-        this.saveHistoryButon.Visible = true;
+        this.saveHistoryButton.Visible = true;
 
         this.Height = Form1.FormHeightFull;
     }
@@ -123,7 +123,7 @@ public partial class Form1 : Form
         this.panel1.Height = Form1.PanelHeightLong;
         this.diceTypeGroup.Visible = false;
         this.normalDiceRadio.Checked = true;
-        this.Height = this.saveHistoryButon.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
+        this.Height = this.saveHistoryButton.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
     }
 
     private void ShowDetail()
@@ -133,7 +133,7 @@ public partial class Form1 : Form
         this.panel1.Location = Form1.PanelLocationDetailShow;
         this.panel1.Height = Form1.PanelHeightShort;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistoryButon.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
+        this.Height = this.saveHistoryButton.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
     }
 
     private void EnableDiceCustomControll()

@@ -15,23 +15,20 @@ internal class LowerDiceRoll : RollingDiceBase
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}L";
 
-    protected override int DiceRollResult
+    protected override List<int> RollDices()
     {
-        get
-        {
-            int result = 0;
-            var r = new Random();
+        var results = new List<int>();
+        var r = new Random();
 
-            for (int i = 0; i < this._diceNum; i++)
+        for (int i = 0; i < this._diceNum; i++)
+        {
+            int num = 1;
+            for (int j = 1; j < this._diceSide && num == j; j++)
             {
-                int num = 1;
-                for (int j = 1; j < this._diceSide && num == j; j++)
-                {
-                    num += r.Next(2);
-                }
-                result += num;
+                num += r.Next(2);
             }
-            return result;
+            results.Add(num);
         }
+        return results;
     }
 }

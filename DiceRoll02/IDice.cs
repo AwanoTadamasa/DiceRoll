@@ -11,16 +11,22 @@ namespace DiceRoll02;
 internal interface IDice
 {
     /// <summary>
-    /// 生成されたコマンド。2D6、STARS　など
+    /// 生成されたコマンド。2D6、STARS など"
     /// </summary>
     /// <returns>コマンド</returns>
     public string GetRollCommand();
 
     /// <summary>
-    /// 生成された結果の文字列
+    /// サイコロを振った結果の合計を文字列にしたもの 
     /// </summary>
     /// <returns>結果</returns>
     public string GetRollResult();
+
+    /// <summary>
+    /// サイコロを振った結果のリスト
+    /// </summary>
+    /// <returns></returns>
+    public int[] GetRollResultArray();
 
     /// <summary>
     /// エラーで結果が出なかった時true

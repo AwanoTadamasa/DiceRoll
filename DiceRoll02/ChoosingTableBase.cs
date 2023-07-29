@@ -5,6 +5,15 @@
 /// </summary>
 internal abstract class ChoosingTableBase : IDice
 {
+    private readonly List<int> _results;
+
+    public ChoosingTableBase()
+    {
+        _results = new List<int>
+        {
+            new Random().Next(this.DiceChooseTable.Length)
+        };
+    }
     public string GetRollCommand()
     {
         if (this.HasError())
@@ -25,10 +34,15 @@ internal abstract class ChoosingTableBase : IDice
         }
         else
         {
-            var r = new Random();
-            return this.DiceChooseTable[r.Next(this.DiceChooseTable.Length)];
+            return this.DiceChooseTable[this._results.First()];
         }
     }
+
+    public int[] GetRollResultArray()
+    {
+        return _results.ToArray();
+    }
+
     public bool HasError() => this.GetErrorMessage() is not null;
 
     public string? GetErrorMessage()
