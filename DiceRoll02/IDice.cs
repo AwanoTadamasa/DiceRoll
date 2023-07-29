@@ -10,30 +10,30 @@ namespace DiceRoll02;
 /// </summary>
 internal interface IDice
 {
-    // TODO: returns には型名は含めない方がよいでしょう。
+    // DONE: returns には型名は含めない方がよいでしょう。
     // 型名はIDEでコードを記述するときに見えるので、コメントに書くと冗長です。
     // あと、型を変更したらコメントまで直さないといけないのでめんどくさいと思います。
     /// <summary>
     /// 生成されたコマンド。2D6、STARS　など
     /// </summary>
-    /// <returns>コマンド(string)</returns>
+    /// <returns>コマンド</returns>
     public string GetRollCommand();
 
     /// <summary>
     /// 生成された結果の文字列
     /// </summary>
-    /// <returns>結果(string)</returns>
+    /// <returns>結果</returns>
     public string GetRollResult();
 
     /// <summary>
     /// エラーで結果が出なかった時true
     /// </summary>
-    /// <returns>true/false(bool)</returns>
+    /// <returns>true/false</returns>
     public bool HasError();
 
     /// <summary>
     /// エラー時のメッセージ、結果が出た時にはnull
     /// </summary>
-    /// <returns>メッセージ(string)/null</returns>
+    /// <returns>メッセージ/null</returns>
     public string? GetErrorMessage();
 }

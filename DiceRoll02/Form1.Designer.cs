@@ -31,25 +31,25 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            diceNum = new TextBox();
-            diceType = new ComboBox();
-            rollDice = new Button();
-            rollSign = new Label();
-            rollCommand = new Label();
-            rollResult = new Label();
-            toggleHistory = new Button();
-            saveHistory = new Button();
+            diceNumTextBox = new TextBox();
+            diceTypeCoｍboBox = new ComboBox();
+            rollDiceButtone = new Button();
+            rollSignLabel = new Label();
+            rollCommandLabel = new Label();
+            rollResultLabel = new Label();
+            toggleHistoryButton = new Button();
+            saveHistoryButon = new Button();
             historyScrollBar = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
-            historySign = new Label();
-            historyCommand = new Label();
-            historyResult = new Label();
-            resetHistory = new Button();
+            historySignLabel = new Label();
+            historyCommandLabel = new Label();
+            historyResultLabel = new Label();
+            resetHistoryButton = new Button();
             checkBox1 = new CheckBox();
             diceTypeGroup = new GroupBox();
-            upperDice = new RadioButton();
-            lowerDice = new RadioButton();
-            normalDice = new RadioButton();
+            upperDiceRadio = new RadioButton();
+            lowerDiceRadio = new RadioButton();
+            normalDiceRadio = new RadioButton();
             panel1 = new Panel();
             historyScrollBar.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -85,87 +85,87 @@
             label3.TabIndex = 2;
             label3.Text = "種類：";
             // 
-            // diceNum
+            // diceNumTextBox
             // 
-            diceNum.BorderStyle = BorderStyle.FixedSingle;
-            diceNum.ImeMode = ImeMode.Alpha;
-            diceNum.Location = new Point(82, 38);
-            diceNum.MaxLength = 3;
-            diceNum.Name = "diceNum";
-            diceNum.Size = new Size(100, 23);
-            diceNum.TabIndex = 3;
+            diceNumTextBox.BorderStyle = BorderStyle.FixedSingle;
+            diceNumTextBox.ImeMode = ImeMode.Alpha;
+            diceNumTextBox.Location = new Point(82, 38);
+            diceNumTextBox.MaxLength = 3;
+            diceNumTextBox.Name = "diceNumTextBox";
+            diceNumTextBox.Size = new Size(100, 23);
+            diceNumTextBox.TabIndex = 3;
             // 
-            // diceType
+            // diceTypeCoｍboBox
             // 
-            diceType.DropDownStyle = ComboBoxStyle.DropDownList;
-            diceType.FormattingEnabled = true;
-            diceType.Items.AddRange(new object[] { "コイン", "4面体", "6面体", "8面体", "10面体", "12面体", "20面体", "100面体", "星座", "おみくじ" });
-            diceType.Location = new Point(82, 67);
-            diceType.Name = "diceType";
-            diceType.Size = new Size(100, 23);
-            diceType.TabIndex = 4;
-            diceType.SelectedIndexChanged += DiceType_SelectedIndexChanged;
+            diceTypeCoｍboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            diceTypeCoｍboBox.FormattingEnabled = true;
+            diceTypeCoｍboBox.Items.AddRange(new object[] { "コイン", "4面体", "6面体", "8面体", "10面体", "12面体", "20面体", "100面体", "星座", "おみくじ" });
+            diceTypeCoｍboBox.Location = new Point(82, 67);
+            diceTypeCoｍboBox.Name = "diceTypeCoｍboBox";
+            diceTypeCoｍboBox.Size = new Size(100, 23);
+            diceTypeCoｍboBox.TabIndex = 4;
+            diceTypeCoｍboBox.SelectedIndexChanged += DiceType_SelectedIndexChanged;
             // 
-            // rollDice
+            // rollDiceButtone
             // 
-            rollDice.Location = new Point(82, 96);
-            rollDice.Name = "rollDice";
-            rollDice.Size = new Size(75, 23);
-            rollDice.TabIndex = 5;
-            rollDice.Text = "ロール!!";
-            rollDice.UseVisualStyleBackColor = true;
-            rollDice.Click += RollDice_Click;
+            rollDiceButtone.Location = new Point(82, 96);
+            rollDiceButtone.Name = "rollDiceButtone";
+            rollDiceButtone.Size = new Size(75, 23);
+            rollDiceButtone.TabIndex = 5;
+            rollDiceButtone.Text = "ロール!!";
+            rollDiceButtone.UseVisualStyleBackColor = true;
+            rollDiceButtone.Click += RollDice_Click;
             // 
-            // rollSign
+            // rollSignLabel
             // 
-            rollSign.AutoSize = true;
-            rollSign.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollSign.Location = new Point(96, 0);
-            rollSign.Name = "rollSign";
-            rollSign.Size = new Size(32, 21);
-            rollSign.TabIndex = 6;
-            rollSign.Text = "=>";
-            rollSign.TextAlign = ContentAlignment.MiddleCenter;
+            rollSignLabel.AutoSize = true;
+            rollSignLabel.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            rollSignLabel.Location = new Point(96, 0);
+            rollSignLabel.Name = "rollSignLabel";
+            rollSignLabel.Size = new Size(32, 21);
+            rollSignLabel.TabIndex = 6;
+            rollSignLabel.Text = "=>";
+            rollSignLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // rollCommand
+            // rollCommandLabel
             // 
-            rollCommand.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollCommand.Location = new Point(0, 0);
-            rollCommand.Name = "rollCommand";
-            rollCommand.Size = new Size(96, 23);
-            rollCommand.TabIndex = 7;
-            rollCommand.TextAlign = ContentAlignment.MiddleRight;
+            rollCommandLabel.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            rollCommandLabel.Location = new Point(0, 0);
+            rollCommandLabel.Name = "rollCommandLabel";
+            rollCommandLabel.Size = new Size(96, 23);
+            rollCommandLabel.TabIndex = 7;
+            rollCommandLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // rollResult
+            // rollResultLabel
             // 
-            rollResult.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rollResult.Location = new Point(128, 0);
-            rollResult.Name = "rollResult";
-            rollResult.Size = new Size(96, 23);
-            rollResult.TabIndex = 8;
-            rollResult.TextAlign = ContentAlignment.MiddleLeft;
+            rollResultLabel.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            rollResultLabel.Location = new Point(128, 0);
+            rollResultLabel.Name = "rollResultLabel";
+            rollResultLabel.Size = new Size(96, 23);
+            rollResultLabel.TabIndex = 8;
+            rollResultLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // toggleHistory
+            // toggleHistoryButton
             // 
-            toggleHistory.Location = new Point(4, 26);
-            toggleHistory.Name = "toggleHistory";
-            toggleHistory.Size = new Size(75, 23);
-            toggleHistory.TabIndex = 9;
-            toggleHistory.TabStop = false;
-            toggleHistory.Text = "履歴";
-            toggleHistory.UseVisualStyleBackColor = true;
-            toggleHistory.Click += ToggleHistory_Click;
+            toggleHistoryButton.Location = new Point(4, 26);
+            toggleHistoryButton.Name = "toggleHistoryButton";
+            toggleHistoryButton.Size = new Size(75, 23);
+            toggleHistoryButton.TabIndex = 9;
+            toggleHistoryButton.TabStop = false;
+            toggleHistoryButton.Text = "履歴";
+            toggleHistoryButton.UseVisualStyleBackColor = true;
+            toggleHistoryButton.Click += ToggleHistory_Click;
             // 
-            // saveHistory
+            // saveHistoryButon
             // 
-            saveHistory.Location = new Point(146, 26);
-            saveHistory.Name = "saveHistory";
-            saveHistory.Size = new Size(75, 23);
-            saveHistory.TabIndex = 10;
-            saveHistory.TabStop = false;
-            saveHistory.Text = "保存";
-            saveHistory.UseVisualStyleBackColor = true;
-            saveHistory.Click += SaveHistory_Click;
+            saveHistoryButon.Location = new Point(146, 26);
+            saveHistoryButon.Name = "saveHistoryButon";
+            saveHistoryButon.Size = new Size(75, 23);
+            saveHistoryButon.TabIndex = 10;
+            saveHistoryButon.TabStop = false;
+            saveHistoryButon.Text = "保存";
+            saveHistoryButon.UseVisualStyleBackColor = true;
+            saveHistoryButon.Click += SaveHistory_Click;
             // 
             // historyScrollBar
             // 
@@ -186,9 +186,9 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(historySign, 1, 0);
-            tableLayoutPanel1.Controls.Add(historyCommand, 0, 0);
-            tableLayoutPanel1.Controls.Add(historyResult, 2, 0);
+            tableLayoutPanel1.Controls.Add(historySignLabel, 1, 0);
+            tableLayoutPanel1.Controls.Add(historyCommandLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(historyResultLabel, 2, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.MinimumSize = new Size(0, 218);
@@ -198,46 +198,46 @@
             tableLayoutPanel1.Size = new Size(216, 218);
             tableLayoutPanel1.TabIndex = 1;
             // 
-            // historySign
+            // historySignLabel
             // 
-            historySign.Anchor = AnchorStyles.Top;
-            historySign.AutoSize = true;
-            historySign.Location = new Point(108, 1);
-            historySign.Name = "historySign";
-            historySign.Size = new Size(0, 15);
-            historySign.TabIndex = 0;
-            historySign.TextAlign = ContentAlignment.TopCenter;
+            historySignLabel.Anchor = AnchorStyles.Top;
+            historySignLabel.AutoSize = true;
+            historySignLabel.Location = new Point(108, 1);
+            historySignLabel.Name = "historySignLabel";
+            historySignLabel.Size = new Size(0, 15);
+            historySignLabel.TabIndex = 0;
+            historySignLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // historyCommand
+            // historyCommandLabel
             // 
-            historyCommand.AutoSize = true;
-            historyCommand.Dock = DockStyle.Top;
-            historyCommand.Location = new Point(4, 1);
-            historyCommand.Name = "historyCommand";
-            historyCommand.Size = new Size(85, 15);
-            historyCommand.TabIndex = 1;
-            historyCommand.TextAlign = ContentAlignment.TopCenter;
+            historyCommandLabel.AutoSize = true;
+            historyCommandLabel.Dock = DockStyle.Top;
+            historyCommandLabel.Location = new Point(4, 1);
+            historyCommandLabel.Name = "historyCommandLabel";
+            historyCommandLabel.Size = new Size(85, 15);
+            historyCommandLabel.TabIndex = 1;
+            historyCommandLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // historyResult
+            // historyResultLabel
             // 
-            historyResult.AutoSize = true;
-            historyResult.Dock = DockStyle.Top;
-            historyResult.Location = new Point(127, 1);
-            historyResult.Name = "historyResult";
-            historyResult.Size = new Size(85, 15);
-            historyResult.TabIndex = 2;
-            historyResult.TextAlign = ContentAlignment.TopCenter;
+            historyResultLabel.AutoSize = true;
+            historyResultLabel.Dock = DockStyle.Top;
+            historyResultLabel.Location = new Point(127, 1);
+            historyResultLabel.Name = "historyResultLabel";
+            historyResultLabel.Size = new Size(85, 15);
+            historyResultLabel.TabIndex = 2;
+            historyResultLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // resetHistory
+            // resetHistoryButton
             // 
-            resetHistory.Location = new Point(153, 447);
-            resetHistory.Name = "resetHistory";
-            resetHistory.Size = new Size(75, 23);
-            resetHistory.TabIndex = 12;
-            resetHistory.TabStop = false;
-            resetHistory.Text = "リセット";
-            resetHistory.UseVisualStyleBackColor = true;
-            resetHistory.Click += ResetHistory_Click;
+            resetHistoryButton.Location = new Point(153, 447);
+            resetHistoryButton.Name = "resetHistoryButton";
+            resetHistoryButton.Size = new Size(75, 23);
+            resetHistoryButton.TabIndex = 12;
+            resetHistoryButton.TabStop = false;
+            resetHistoryButton.Text = "リセット";
+            resetHistoryButton.UseVisualStyleBackColor = true;
+            resetHistoryButton.Click += ResetHistory_Click;
             // 
             // checkBox1
             // 
@@ -253,9 +253,9 @@
             // 
             // diceTypeGroup
             // 
-            diceTypeGroup.Controls.Add(upperDice);
-            diceTypeGroup.Controls.Add(lowerDice);
-            diceTypeGroup.Controls.Add(normalDice);
+            diceTypeGroup.Controls.Add(upperDiceRadio);
+            diceTypeGroup.Controls.Add(lowerDiceRadio);
+            diceTypeGroup.Controls.Add(normalDiceRadio);
             diceTypeGroup.Location = new Point(8, 120);
             diceTypeGroup.Name = "diceTypeGroup";
             diceTypeGroup.Size = new Size(224, 45);
@@ -263,46 +263,46 @@
             diceTypeGroup.TabStop = false;
             diceTypeGroup.Text = "使うサイコロ";
             // 
-            // upperDice
+            // upperDiceRadio
             // 
-            upperDice.AutoSize = true;
-            upperDice.Location = new Point(132, 22);
-            upperDice.Name = "upperDice";
-            upperDice.Size = new Size(86, 19);
-            upperDice.TabIndex = 2;
-            upperDice.Text = "上方イカサマ";
-            upperDice.UseVisualStyleBackColor = true;
+            upperDiceRadio.AutoSize = true;
+            upperDiceRadio.Location = new Point(132, 22);
+            upperDiceRadio.Name = "upperDiceRadio";
+            upperDiceRadio.Size = new Size(86, 19);
+            upperDiceRadio.TabIndex = 2;
+            upperDiceRadio.Text = "上方イカサマ";
+            upperDiceRadio.UseVisualStyleBackColor = true;
             // 
-            // lowerDice
+            // lowerDiceRadio
             // 
-            lowerDice.AutoSize = true;
-            lowerDice.Location = new Point(50, 22);
-            lowerDice.Name = "lowerDice";
-            lowerDice.Size = new Size(86, 19);
-            lowerDice.TabIndex = 1;
-            lowerDice.Text = "下方イカサマ";
-            lowerDice.UseVisualStyleBackColor = true;
+            lowerDiceRadio.AutoSize = true;
+            lowerDiceRadio.Location = new Point(50, 22);
+            lowerDiceRadio.Name = "lowerDiceRadio";
+            lowerDiceRadio.Size = new Size(86, 19);
+            lowerDiceRadio.TabIndex = 1;
+            lowerDiceRadio.Text = "下方イカサマ";
+            lowerDiceRadio.UseVisualStyleBackColor = true;
             // 
-            // normalDice
+            // normalDiceRadio
             // 
-            normalDice.AutoSize = true;
-            normalDice.Checked = true;
-            normalDice.Location = new Point(6, 22);
-            normalDice.Name = "normalDice";
-            normalDice.Size = new Size(49, 19);
-            normalDice.TabIndex = 0;
-            normalDice.TabStop = true;
-            normalDice.Text = "通常";
-            normalDice.UseVisualStyleBackColor = true;
+            normalDiceRadio.AutoSize = true;
+            normalDiceRadio.Checked = true;
+            normalDiceRadio.Location = new Point(6, 22);
+            normalDiceRadio.Name = "normalDiceRadio";
+            normalDiceRadio.Size = new Size(49, 19);
+            normalDiceRadio.TabIndex = 0;
+            normalDiceRadio.TabStop = true;
+            normalDiceRadio.Text = "通常";
+            normalDiceRadio.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            panel1.Controls.Add(saveHistory);
-            panel1.Controls.Add(toggleHistory);
+            panel1.Controls.Add(saveHistoryButon);
+            panel1.Controls.Add(toggleHistoryButton);
             panel1.Controls.Add(historyScrollBar);
-            panel1.Controls.Add(rollResult);
-            panel1.Controls.Add(rollCommand);
-            panel1.Controls.Add(rollSign);
+            panel1.Controls.Add(rollResultLabel);
+            panel1.Controls.Add(rollCommandLabel);
+            panel1.Controls.Add(rollSignLabel);
             panel1.Location = new Point(8, 167);
             panel1.Name = "panel1";
             panel1.Size = new Size(224, 274);
@@ -316,10 +316,10 @@
             Controls.Add(panel1);
             Controls.Add(diceTypeGroup);
             Controls.Add(checkBox1);
-            Controls.Add(resetHistory);
-            Controls.Add(rollDice);
-            Controls.Add(diceType);
-            Controls.Add(diceNum);
+            Controls.Add(resetHistoryButton);
+            Controls.Add(rollDiceButtone);
+            Controls.Add(diceTypeCoｍboBox);
+            Controls.Add(diceNumTextBox);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -348,25 +348,25 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox diceNum;
-        private ComboBox diceType;
-        private Button rollDice;
-        private Label rollSign;
-        private Label rollCommand;
-        private Label rollResult;
-        private Button toggleHistory;
-        private Button saveHistory;
+        private TextBox diceNumTextBox;
+        private ComboBox diceTypeCoｍboBox;
+        private Button rollDiceButtone;
+        private Label rollSignLabel;
+        private Label rollCommandLabel;
+        private Label rollResultLabel;
+        private Button toggleHistoryButton;
+        private Button saveHistoryButon;
         private Panel historyScrollBar;
-        private Button resetHistory;
-        private Label historySign;
+        private Button resetHistoryButton;
+        private Label historySignLabel;
         private TableLayoutPanel tableLayoutPanel1;
-        private Label historyCommand;
-        private Label historyResult;
+        private Label historyCommandLabel;
+        private Label historyResultLabel;
         private CheckBox checkBox1;
         private GroupBox diceTypeGroup;
-        private RadioButton normalDice;
-        private RadioButton lowerDice;
-        private RadioButton upperDice;
+        private RadioButton normalDiceRadio;
+        private RadioButton lowerDiceRadio;
+        private RadioButton upperDiceRadio;
         private Panel panel1;
     }
 }

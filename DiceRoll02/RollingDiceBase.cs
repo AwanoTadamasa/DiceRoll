@@ -3,18 +3,24 @@
 namespace DiceRoll02;
 
 /// <summary>
-/// サイコロを振り、その合計を結果として返す
+/// サイコロを振り、結果を返す
 /// </summary>
 internal abstract partial class RollingDiceBase : IDice
 {
+    /// <summary>
+    /// 振るサイコロの数
+    /// </summary>
     protected readonly int _diceNum;
+    /// <summary>
+    /// 振るサイコロの面数
+    /// </summary>
     protected readonly int _diceSide;
 
     /// <summary>
-    /// コンストラクタ。引数は文字列で。内部で整数型にする。
+    /// コンストラクタ。内部で整数型にする。
     /// </summary>
-    /// <param name="diceNumText">サイコロの数。"n"もしくは"n個"(string)</param>
-    /// <param name="diceTypeText">サイコロの形。"コイン"もしくは"n面体"(n >= 2)(string)</param>
+    /// <param name="diceNumText">サイコロの数。"n"もしくは"n個"</param>
+    /// <param name="diceTypeText">サイコロの形。"コイン"もしくは"n面体"(n >= 2)</param>
     public RollingDiceBase(string diceNumText, string diceTypeText)
     {
         var diceNum = _regDiceNumMatchPattern().Match(diceNumText);
@@ -76,6 +82,7 @@ internal abstract partial class RollingDiceBase : IDice
             try
             {
                 // TODO: ???
+                //  => 子クラスで実装したとき、そのエラーが分かればと思いました。
                 _ = this.DiceRollCommand;
                 _ = this.DiceRollResult;
                 return null;
@@ -88,16 +95,14 @@ internal abstract partial class RollingDiceBase : IDice
     }
 
     /// <summary>
-    /// 生成したコマンドを入れるフィールド
+    /// GetRollCommand()で返すコマンドを作成する
     /// </summary>
     protected abstract string DiceRollCommand { get; }
 
     /// <summary>
-    /// サイコロを振った合計を数値で入れるフィールド
-    /// 乱数もここで生成する
+    /// サイコロ1個を振り、その数値を返す
     /// </summary>
     protected abstract int DiceRollResult { get; }
-
 
     [GeneratedRegex("^([0-9]+)個?$")]
     private static partial Regex _regDiceNumMatchPattern();

@@ -1,10 +1,19 @@
 ﻿namespace DiceRoll02;
 
-// TODO: サイコロを振るという意味でRollと使いたいと思うので、Diceという名詞がないと困ります。
+// DONE: サイコロを振るという意味でRollと使いたいと思うので、Diceという名詞がないと困ります。
 // Baseクラスの名前を変えたので、それに合わせて変更していきましょう。
-internal class BasicRoll : RollingDiceBase
+
+/// <summary>
+/// 各面の出る確率が等しいサイコロを振るクラス
+/// </summary>
+internal class BasicDiceRoll : RollingDiceBase
 {
-    public BasicRoll(string diceNum, string diceType) : base(diceNum, diceType) { }
+    /// <summary>
+    /// 各面の出る確率が等しいサイコロを振る
+    /// </summary>
+    /// <param name="diceNum">サイコロの数。"n"もしくは"n個"</param>
+    /// <param name="diceType">サイコロの形。"コイン"もしくは"n面体"(n >= 2)</param>
+    public BasicDiceRoll(string diceNum, string diceType) : base(diceNum, diceType) { }
 
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}";

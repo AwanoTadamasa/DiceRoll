@@ -3,7 +3,7 @@
 /// <summary>
 /// テーブルからサイコロで一つ取り出す
 /// </summary>
-internal abstract class TableChoosingDiceBase : IDice
+internal abstract class ChoosingTableBase : IDice
 {
     public string GetRollCommand()
     {

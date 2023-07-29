@@ -26,28 +26,28 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        this.diceType.SelectedIndex = 0;
+        this.diceTypeCoｍboBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)
     {
-        this.historyCommand.Text = "";
-        this.historySign.Text = "";
-        this.historyResult.Text = "";
+        this.historyCommandLabel.Text = "";
+        this.historySignLabel.Text = "";
+        this.historyResultLabel.Text = "";
     }
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
-        // TODO: 各コントロールが何なのか名前から判別できるようにした方が読みやすいです。
+        // DONE: 各コントロールが何なのか名前から判別できるようにした方が読みやすいです。
         // saveHistory だけだと、保存された履歴の一覧と思うかもしれません。
         // でも動詞から始まってるので動きのある何か、ボタンかな？という推測はできます。
         // こういった推測は間違いの元ですし、確認の手間がありますので、明確な命名が大切です。
         // これは古いテクニックのひとつですが、btnSaveHistory とプレフィックスでコントロールを表すやり方があります。
         // ハンガリアン記法の一種なので、最近はあまり見ないかもしれまん。
         // 素直に書くなら saveHistoryButton となるでしょうか。
-        if (this.saveHistory.Visible)
+        if (this.saveHistoryButon.Visible)
         {
             this.HideHistory();
         }
@@ -59,7 +59,7 @@ public partial class Form1 : Form
 
     private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (SelectedDiceType.IsCustomDice(this.diceType.Text))
+        if (SelectedDiceType.IsCustomDice(this.diceTypeCoｍboBox.Text))
         {
             this.DisableDiceCustomControll();
         }
@@ -82,13 +82,13 @@ public partial class Form1 : Form
     }
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCsv.SaveAs(this.historyCommand.Text, this.historyResult.Text);
+        HistorySaveToCsv.SaveAs(this.historyCommandLabel.Text, this.historyResultLabel.Text);
     }
 
     private void RollDice_Click(object sender, EventArgs e)
     {
         // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
-        var dice = SelectedDiceType.Dice(this.diceNum.Text, this.diceType.Text, this.diceTypeGroup);
+        var dice = SelectedDiceType.Dice(this.diceNumTextBox.Text, this.diceTypeCoｍboBox.Text, this.diceTypeGroup);
 
         if (dice.HasError())
         {
@@ -96,12 +96,12 @@ public partial class Form1 : Form
         }
         else
         {
-            this.rollCommand.Text = dice.GetRollCommand();
-            this.rollResult.Text = dice.GetRollResult();
+            this.rollCommandLabel.Text = dice.GetRollCommand();
+            this.rollResultLabel.Text = dice.GetRollResult();
 
-            this.historyCommand.Text += this.rollCommand.Text + "\r\n";
-            this.historySign.Text += this.rollSign.Text + "\r\n";
-            this.historyResult.Text += this.rollResult.Text + "\r\n";
+            this.historyCommandLabel.Text += this.rollCommandLabel.Text + "\r\n";
+            this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";
+            this.historyResultLabel.Text += this.rollResultLabel.Text + "\r\n";
         }
     }
 
@@ -109,14 +109,14 @@ public partial class Form1 : Form
 
     private void HideHistory()
     {
-        this.saveHistory.Visible = false;
+        this.saveHistoryButon.Visible = false;
 
         this.Height = this.checkBox1.Checked ? Form1.FormHeightDetail : Form1.FormHeightShort;
     }
 
     private void ShowHistory()
     {
-        this.saveHistory.Visible = true;
+        this.saveHistoryButon.Visible = true;
 
         this.Height = Form1.FormHeightFull;
     }
@@ -128,8 +128,8 @@ public partial class Form1 : Form
         this.panel1.Location = Form1.PanelLocationDetailHide;
         this.panel1.Height = Form1.PanelHeightLong;
         this.diceTypeGroup.Visible = false;
-        this.normalDice.Checked = true;
-        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
+        this.normalDiceRadio.Checked = true;
+        this.Height = this.saveHistoryButon.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
     }
 
     private void ShowDetail()
@@ -139,20 +139,20 @@ public partial class Form1 : Form
         this.panel1.Location = Form1.PanelLocationDetailShow;
         this.panel1.Height = Form1.PanelHeightShort;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistory.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
+        this.Height = this.saveHistoryButon.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
     }
 
     private void EnableDiceCustomControll()
     {
-        this.diceNum.Enabled = true;
+        this.diceNumTextBox.Enabled = true;
         this.diceTypeGroup.Enabled = true;
     }
 
     private void DisableDiceCustomControll()
     {
-        this.diceNum.Enabled = false;
+        this.diceNumTextBox.Enabled = false;
         this.diceTypeGroup.Enabled = false;
-        this.normalDice.Checked = true;
+        this.normalDiceRadio.Checked = true;
     }
 
     #endregion Form stretch method

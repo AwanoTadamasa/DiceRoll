@@ -1,6 +1,9 @@
 ﻿namespace DiceRoll02;
 
-internal class ZodiacSignTableChoose : TableChoosingDiceBase
+/// <summary>
+/// 黄道12星座を返すクラス
+/// </summary>
+internal class ZodiacSignTableChoose : ChoosingTableBase
 {
     protected override string DiceRollCommand => "STARS";
 
