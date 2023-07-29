@@ -12,6 +12,11 @@ internal class ErrorDice : IDice
         return "ERROR";
     }
 
+    public int[] GetRollResultArray()
+    {
+        return Array.Empty<int>();
+    }
+
     public string? GetErrorMessage() => "不明な振り方です。";
 
     public bool HasError() => true;
