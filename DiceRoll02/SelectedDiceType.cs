@@ -53,9 +53,9 @@ internal static class SelectedDiceType
             var selectionRadioButton = radioButtonGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked);
             return selectionRadioButton.Name switch
             {
-                "normalDice" => new BasicDiceRoll(diceNum, diceType),
-                "lowerDice" => new LowerDiceRoll(diceNum, diceType),
-                "upperDice" => new UpperDiceRoll(diceNum, diceType),
+                "normalDice" => new NormalBasicDice(diceNum, diceType),
+                "lowerDice" => new LowerBasicDice(diceNum, diceType),
+                "upperDice" => new UpperBasicDice(diceNum, diceType),
                 _ => new ErrorDice(),
             };
         }
@@ -76,8 +76,8 @@ internal static class SelectedDiceType
         {
             return diceType switch
             {
-                "星座" => new ZodiacSignTableChoose(),
-                "おみくじ" => new OmikujiTableChoose(),
+                "星座" => new ZodiacSignTextDice(),
+                "おみくじ" => new OmikujiTextDice(),
                 _ => new ErrorDice()
             };
         }

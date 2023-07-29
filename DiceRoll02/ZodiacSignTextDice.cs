@@ -3,7 +3,7 @@
 /// <summary>
 /// 黄道12星座を返すクラス
 /// </summary>
-internal class ZodiacSignTableChoose : ChoosingTableBase
+internal class ZodiacSignTextDice : TextDiceBase
 {
     protected override string DiceRollCommand => "STARS";
 

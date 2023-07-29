@@ -44,7 +44,7 @@
 // 動作にフォーカスすると、上記のようになりますが、結果にフォーカスすると、
 // 数字以外の何か、文字が出力されるサイコロと考えることもできます。
 // BasicDiceBase に対して、TextDiceBase なんてのでもよいかもしれません。
-internal class OmikujiTableChoose : ChoosingTableBase
+internal class OmikujiTextDice : TextDiceBase
 {
     protected override string DiceRollCommand => "OMKJI";
 

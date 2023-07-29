@@ -5,7 +5,7 @@ namespace DiceRoll02;
 /// <summary>
 /// サイコロを振り、結果を返す
 /// </summary>
-internal abstract partial class RollingDiceBase : IDice
+internal abstract partial class BasicDiceBase : IDice
 {
     protected readonly int _diceNum;
     protected readonly int _diceSide;
@@ -16,7 +16,7 @@ internal abstract partial class RollingDiceBase : IDice
     /// </summary>
     /// <param name="diceNumText">サイコロの数。"n"もしくは"n個"</param>
     /// <param name="diceTypeText">サイコロの形。"コイン"もしくは"n面体"(n >= 2)</param>
-    public RollingDiceBase(string diceNumText, string diceTypeText)
+    public BasicDiceBase(string diceNumText, string diceTypeText)
     {
         var diceNum = _regDiceNumMatchPattern().Match(diceNumText);
         this._diceNum = diceNum.Success && Int32.TryParse(diceNum.Groups[1].Value, out var num) && num > 0 ? num : 0;

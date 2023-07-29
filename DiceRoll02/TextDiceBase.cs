@@ -3,11 +3,11 @@
 /// <summary>
 /// テーブルからサイコロで一つ取り出す
 /// </summary>
-internal abstract class ChoosingTableBase : IDice
+internal abstract class TextDiceBase : IDice
 {
     private readonly List<int> _results;
 
-    public ChoosingTableBase()
+    public TextDiceBase()
     {
         _results = new List<int>
         {
