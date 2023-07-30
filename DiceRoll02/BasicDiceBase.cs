@@ -38,6 +38,10 @@ internal abstract partial class BasicDiceBase : IDice
         this._results = this.RollDices();
     }
 
+    // TODO: IDiceの実装なので、継承を表すドキュメンテーションコメントを残してみましょう。
+    // 最新のVisualStudioだと継承タグがなくても、参照したときに継承元のコメントが見えるようになりましたが、
+    // それまでは継承タグが必須だったり、さらにその前は同じコメントを記述する必要がありました。
+    // 現在ではコメントがなくても見えますが、コメント忘れではないことを表すために継承タグを残すのがよいでしょう。
     public string GetRollCommand()
     {
         if (this.HasError())

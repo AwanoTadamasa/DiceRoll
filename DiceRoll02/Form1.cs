@@ -40,7 +40,6 @@ public partial class Form1 : Form
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
-        // DONE: Buton Å® Button
         if (this.saveHistoryButton.Visible)
         {
             this.HideHistory();

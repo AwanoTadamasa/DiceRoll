@@ -16,8 +16,17 @@ internal interface IDice
     /// <returns>コマンド</returns>
     public string GetRollCommand();
 
+    #region ここから
+
+    // TODO: GetRollResult() と GetRollResultArray() ですが、
+    // サイコロの結果の取得方法が複数あるとどちらを使うか、使う方で使い分けなければいけません。
+    // これらはなくして、Roll() して、結果を List<string> で返せば、
+    // シンプルになるのではないでしょうか？
+    // RollDices() とすると、Dice.RollDices() となるので、おかしな感じになります。
+    // Roll() だけで自動詞で転がったと表現するのがよいです。
+
     /// <summary>
-    /// サイコロを振った結果の合計を文字列にしたもの 
+    /// サイコロを振った結果の合計を文字列にしたもの
     /// </summary>
     /// <returns>結果</returns>
     public string GetRollResult();
@@ -27,6 +36,8 @@ internal interface IDice
     /// </summary>
     /// <returns></returns>
     public int[] GetRollResultArray();
+
+    #endregion ここまで
 
     /// <summary>
     /// エラーで結果が出なかった時true
