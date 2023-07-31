@@ -50,11 +50,13 @@
             upperDiceRadio = new RadioButton();
             lowerDiceRadio = new RadioButton();
             normalDiceRadio = new RadioButton();
-            panel1 = new Panel();
+            resultLabelCollection = new Panel();
+            historyDisplayCollection = new Panel();
             historyScrollBar.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             diceTypeGroup.SuspendLayout();
-            panel1.SuspendLayout();
+            resultLabelCollection.SuspendLayout();
+            historyDisplayCollection.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -147,7 +149,7 @@
             // 
             // toggleHistoryButton
             // 
-            toggleHistoryButton.Location = new Point(4, 26);
+            toggleHistoryButton.Location = new Point(12, 193);
             toggleHistoryButton.Name = "toggleHistoryButton";
             toggleHistoryButton.Size = new Size(75, 23);
             toggleHistoryButton.TabIndex = 9;
@@ -158,7 +160,7 @@
             // 
             // saveHistoryButton
             // 
-            saveHistoryButton.Location = new Point(146, 26);
+            saveHistoryButton.Location = new Point(141, 0);
             saveHistoryButton.Name = "saveHistoryButton";
             saveHistoryButton.Size = new Size(75, 23);
             saveHistoryButton.TabIndex = 10;
@@ -171,7 +173,7 @@
             // 
             historyScrollBar.AutoScroll = true;
             historyScrollBar.Controls.Add(tableLayoutPanel1);
-            historyScrollBar.Location = new Point(4, 56);
+            historyScrollBar.Location = new Point(0, 26);
             historyScrollBar.Name = "historyScrollBar";
             historyScrollBar.Size = new Size(216, 218);
             historyScrollBar.TabIndex = 11;
@@ -183,26 +185,25 @@
             tableLayoutPanel1.BackColor = SystemColors.Window;
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.Controls.Add(historySignLabel, 1, 0);
             tableLayoutPanel1.Controls.Add(historyCommandLabel, 0, 0);
             tableLayoutPanel1.Controls.Add(historyResultLabel, 2, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.MinimumSize = new Size(0, 218);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(216, 218);
+            tableLayoutPanel1.Size = new Size(130, 218);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // historySignLabel
             // 
             historySignLabel.Anchor = AnchorStyles.Top;
             historySignLabel.AutoSize = true;
-            historySignLabel.Location = new Point(108, 1);
+            historySignLabel.Location = new Point(107, 1);
             historySignLabel.Name = "historySignLabel";
             historySignLabel.Size = new Size(0, 15);
             historySignLabel.TabIndex = 0;
@@ -214,7 +215,7 @@
             historyCommandLabel.Dock = DockStyle.Top;
             historyCommandLabel.Location = new Point(4, 1);
             historyCommandLabel.Name = "historyCommandLabel";
-            historyCommandLabel.Size = new Size(85, 15);
+            historyCommandLabel.Size = new Size(84, 15);
             historyCommandLabel.TabIndex = 1;
             historyCommandLabel.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -222,15 +223,16 @@
             // 
             historyResultLabel.AutoSize = true;
             historyResultLabel.Dock = DockStyle.Top;
-            historyResultLabel.Location = new Point(127, 1);
+            historyResultLabel.Location = new Point(126, 1);
             historyResultLabel.Name = "historyResultLabel";
-            historyResultLabel.Size = new Size(85, 15);
+            historyResultLabel.Size = new Size(1, 15);
             historyResultLabel.TabIndex = 2;
             historyResultLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // resetHistoryButton
             // 
-            resetHistoryButton.Location = new Point(153, 447);
+            resetHistoryButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            resetHistoryButton.Location = new Point(135, 253);
             resetHistoryButton.Name = "resetHistoryButton";
             resetHistoryButton.Size = new Size(75, 23);
             resetHistoryButton.TabIndex = 12;
@@ -295,28 +297,36 @@
             normalDiceRadio.Text = "通常";
             normalDiceRadio.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // resultLabelCollection
             // 
-            panel1.Controls.Add(saveHistoryButton);
-            panel1.Controls.Add(toggleHistoryButton);
-            panel1.Controls.Add(historyScrollBar);
-            panel1.Controls.Add(rollResultLabel);
-            panel1.Controls.Add(rollCommandLabel);
-            panel1.Controls.Add(rollSignLabel);
-            panel1.Location = new Point(8, 167);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(224, 274);
-            panel1.TabIndex = 15;
+            resultLabelCollection.Controls.Add(rollResultLabel);
+            resultLabelCollection.Controls.Add(rollCommandLabel);
+            resultLabelCollection.Controls.Add(rollSignLabel);
+            resultLabelCollection.Location = new Point(8, 167);
+            resultLabelCollection.Name = "resultLabelCollection";
+            resultLabelCollection.Size = new Size(224, 23);
+            resultLabelCollection.TabIndex = 15;
+            // 
+            // historyDisplayCollection
+            // 
+            historyDisplayCollection.Controls.Add(historyScrollBar);
+            historyDisplayCollection.Controls.Add(saveHistoryButton);
+            historyDisplayCollection.Controls.Add(resetHistoryButton);
+            historyDisplayCollection.Location = new Point(12, 193);
+            historyDisplayCollection.Name = "historyDisplayCollection";
+            historyDisplayCollection.Size = new Size(216, 280);
+            historyDisplayCollection.TabIndex = 16;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(240, 473);
-            Controls.Add(panel1);
+            Controls.Add(toggleHistoryButton);
+            Controls.Add(historyDisplayCollection);
+            Controls.Add(resultLabelCollection);
             Controls.Add(diceTypeGroup);
             Controls.Add(checkBox1);
-            Controls.Add(resetHistoryButton);
             Controls.Add(rollDiceButtone);
             Controls.Add(diceTypeCoｍboBox);
             Controls.Add(diceNumTextBox);
@@ -324,21 +334,22 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
+            MinimumSize = new Size(256, 216);
             Name = "Form1";
-            SizeGripStyle = SizeGripStyle.Hide;
             Text = "DiceRoll";
             Load += Form1_Load;
+            SizeChanged += Form1_SizeChanged;
             historyScrollBar.ResumeLayout(false);
             historyScrollBar.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             diceTypeGroup.ResumeLayout(false);
             diceTypeGroup.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            resultLabelCollection.ResumeLayout(false);
+            resultLabelCollection.PerformLayout();
+            historyDisplayCollection.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -367,6 +378,7 @@
         private RadioButton normalDiceRadio;
         private RadioButton lowerDiceRadio;
         private RadioButton upperDiceRadio;
-        private Panel panel1;
+        private Panel resultLabelCollection;
+        private Panel historyDisplayCollection;
     }
 }

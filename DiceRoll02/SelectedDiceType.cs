@@ -53,9 +53,9 @@ internal static class SelectedDiceType
             var selectionRadioButton = radioButtonGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked);
             return selectionRadioButton.Name switch
             {
-                "normalDice" => new NormalBasicDice(diceNum, diceType),
-                "lowerDice" => new LowerBasicDice(diceNum, diceType),
-                "upperDice" => new UpperBasicDice(diceNum, diceType),
+                "normalDiceRadio" => new NormalBasicDice(diceNum, diceType),
+                "lowerDiceRadio" => new LowerBasicDice(diceNum, diceType),
+                "upperDiceRadio" => new UpperBasicDice(diceNum, diceType),
                 _ => new ErrorDice(),
             };
         }

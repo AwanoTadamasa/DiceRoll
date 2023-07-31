@@ -7,15 +7,15 @@ public partial class Form1 : Form
     // TODO: Form は固定長にしないでデザインしてみましょう。
     // Formを固定長にすると環境によってズレます。ボタンが隠れたりすると詰みます。
     // なので、基本的にはサイズが変えられることを前提に設計します。
+    private static readonly int FormHeightDifferenceHistory = 186;
+    private static readonly int FormHeightShowHistoryMinimam = 384;
+    private static readonly int FormHeightDifferenceDetail = 46;
     private static readonly int FormHeightFull = 512;
-    private static readonly int FormHeightDetail = 262;
     private static readonly int FormHeightShort = 216;
-    private static readonly int HistoryHeightLong = 264;
-    private static readonly int HistoryHeightShort = 218;
-    private static readonly int PanelHeightLong = 320;
-    private static readonly int PanelHeightShort = 274;
-    private static readonly Point PanelLocationDetailHide = new(8, 121);
-    private static readonly Point PanelLocationDetailShow = new(8, 167);
+    private static readonly Point ResultLabelCollectionLocationDetailHide = new(8, 121);
+    private static readonly Point ResultLabelCollectionLocationDetailShow = new(8, 167);
+    private static readonly Point HistoryDisplayCollectionLocationDetailHide = new(12, 147);
+    private static readonly Point HistoryDisplayCollectionLocationDetailShow = new(12, 193);
 
     #endregion Form stretch constant
 
@@ -29,6 +29,7 @@ public partial class Form1 : Form
         this.diceTypeCoｍboBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
+        this.Height = FormHeightShort;
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)
@@ -40,13 +41,41 @@ public partial class Form1 : Form
 
     private void ToggleHistory_Click(object sender, EventArgs e)
     {
-        if (this.saveHistoryButton.Visible)
+        if (this.historyDisplayCollection.Visible)
         {
             this.HideHistory();
         }
         else
         {
             this.ShowHistory();
+            this.Height = Math.Max(this.Height, Form1.FormHeightFull);
+        }
+    }
+
+    private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (this.checkBox1.Checked)
+        {
+            this.ShowDetail();
+        }
+        else
+        {
+            this.HideDetail();
+        }
+    }
+
+    private void Form1_SizeChanged(object sender, EventArgs e)
+    {
+        if (this.historyDisplayCollection.Visible)
+        {
+            if (this.Height < Form1.FormHeightShowHistoryMinimam)
+            {
+                this.historyDisplayCollection.Visible = false;
+            }
+            else
+            {
+                this.HistoryDisplayCollectionStretch();
+            }
         }
     }
 
@@ -62,17 +91,6 @@ public partial class Form1 : Form
         }
     }
 
-    private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
-        if (this.checkBox1.Checked)
-        {
-            this.ShowDetail();
-        }
-        else
-        {
-            this.HideDetail();
-        }
-    }
     private void SaveHistory_Click(object sender, EventArgs e)
     {
         HistorySaveToCsv.SaveAs(this.historyCommandLabel.Text, this.historyResultLabel.Text);
@@ -102,37 +120,31 @@ public partial class Form1 : Form
 
     private void HideHistory()
     {
-        this.saveHistoryButton.Visible = false;
-
-        this.Height = this.checkBox1.Checked ? Form1.FormHeightDetail : Form1.FormHeightShort;
+        this.historyDisplayCollection.Visible = false;
     }
 
     private void ShowHistory()
     {
-        this.saveHistoryButton.Visible = true;
-
-        this.Height = Form1.FormHeightFull;
+        this.historyDisplayCollection.Visible = true;
     }
 
     private void HideDetail()
     {
-        this.historyScrollBar.Height = Form1.HistoryHeightLong;
-        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.HistoryHeightLong);
-        this.panel1.Location = Form1.PanelLocationDetailHide;
-        this.panel1.Height = Form1.PanelHeightLong;
+        this.Height -= Form1.FormHeightDifferenceDetail;
+        this.resultLabelCollection.Location = Form1.ResultLabelCollectionLocationDetailHide;
+        this.historyDisplayCollection.Location = Form1.HistoryDisplayCollectionLocationDetailHide;
+        this.toggleHistoryButton.Location = Form1.HistoryDisplayCollectionLocationDetailHide;
         this.diceTypeGroup.Visible = false;
         this.normalDiceRadio.Checked = true;
-        this.Height = this.saveHistoryButton.Visible ? Form1.FormHeightFull : Form1.FormHeightShort;
     }
 
     private void ShowDetail()
     {
-        this.historyScrollBar.Height = Form1.HistoryHeightShort;
-        this.tableLayoutPanel1.MinimumSize = new Size(0, Form1.HistoryHeightShort);
-        this.panel1.Location = Form1.PanelLocationDetailShow;
-        this.panel1.Height = Form1.PanelHeightShort;
+        this.Height += Form1.FormHeightDifferenceDetail;
+        this.resultLabelCollection.Location = Form1.ResultLabelCollectionLocationDetailShow;
+        this.historyDisplayCollection.Location = Form1.HistoryDisplayCollectionLocationDetailShow;
+        this.toggleHistoryButton.Location = Form1.HistoryDisplayCollectionLocationDetailShow;
         this.diceTypeGroup.Visible = true;
-        this.Height = this.saveHistoryButton.Visible ? Form1.FormHeightFull : Form1.FormHeightDetail;
     }
 
     private void EnableDiceCustomControll()
@@ -146,6 +158,17 @@ public partial class Form1 : Form
         this.diceNumTextBox.Enabled = false;
         this.diceTypeGroup.Enabled = false;
         this.normalDiceRadio.Checked = true;
+    }
+
+    private void HistoryDisplayCollectionStretch()
+    {
+        int targetHeight = this.Height - Form1.FormHeightDifferenceHistory;
+        targetHeight -= this.checkBox1.Checked ? Form1.FormHeightDifferenceDetail : 0;
+        this.historyDisplayCollection.Height = targetHeight;
+        this.historyDisplayCollection.Width = this.Width - 40;
+        this.historyScrollBar.Height = targetHeight - 62;
+        this.historyScrollBar.Width = this.Width - 40;
+        this.tableLayoutPanel1.MinimumSize = new Size(this.historyScrollBar.Width, this.historyScrollBar.Height);
     }
 
     #endregion Form stretch method

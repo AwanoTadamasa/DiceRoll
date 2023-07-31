@@ -42,6 +42,7 @@ internal abstract partial class BasicDiceBase : IDice
     // 最新のVisualStudioだと継承タグがなくても、参照したときに継承元のコメントが見えるようになりましたが、
     // それまでは継承タグが必須だったり、さらにその前は同じコメントを記述する必要がありました。
     // 現在ではコメントがなくても見えますが、コメント忘れではないことを表すために継承タグを残すのがよいでしょう。
+    /// <inheritdoc/>
     public string GetRollCommand()
     {
         if (this.HasError())
@@ -54,6 +55,7 @@ internal abstract partial class BasicDiceBase : IDice
         }
     }
 
+    /// <inheritdoc/>
     public string GetRollResult()
     {
         if (this.HasError())
@@ -66,6 +68,7 @@ internal abstract partial class BasicDiceBase : IDice
         }
     }
 
+    /// <inheritdoc/>
     public int[] GetRollResultArray()
     {
         if (this.HasError())
@@ -78,8 +81,10 @@ internal abstract partial class BasicDiceBase : IDice
         }
     }
 
+    /// <inheritdoc/>
     public bool HasError() => this.GetErrorMessage() is not null;
 
+    /// <inheritdoc/>
     public string? GetErrorMessage()
     {
         if (this._diceNum == 0)
@@ -113,9 +118,8 @@ internal abstract partial class BasicDiceBase : IDice
     protected abstract string DiceRollCommand { get; }
 
     /// <summary>
-    /// サイコロ1個を振り、その数値を返す
+    /// サイコロを指定個数振り、その数値のリストを返す
     /// </summary>
-    /// <param name="random">ランダムクラスのインスタンス ランダム性の確保のため</param>
     protected abstract List<int> RollDices();
 
     [GeneratedRegex("^([0-9]+)個?$")]
