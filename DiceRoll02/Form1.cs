@@ -65,7 +65,7 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCsv.SaveAsWithShowDialog(this.historyCommandLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries),
+        HistorySaveToCSVHelper.SaveAsWithShowDialog(this.historyCommandLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries),
                                               this.historyResultLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
     }
 

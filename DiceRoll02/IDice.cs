@@ -25,7 +25,7 @@ internal interface IDice
     // RollDices() とすると、Dice.RollDices() となるので、おかしな感じになります。
     // Roll() だけで自動詞で転がったと表現するのがよいです。
 
-    // TODO:  List<string> を独自の型にしてみよう！！
+    // DONE:  List<string> を独自の型にしてみよう！！
 
     /// <summary>
     /// サイコロを振った結果
