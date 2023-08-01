@@ -1,7 +1,7 @@
 ﻿namespace DiceRoll02;
 
 
-// TODO: こういうクラスは、命名が難しいのですが、Historyを助けるための
+// DONE: こういうクラスは、命名が難しいのですが、Historyを助けるための
 // ユーティリティクラス(便利クラス)という意味でHistoryHelperと呼ばれることが多いです。
 // ユーティリティクラスの特徴として、staticなメソッドしか持たないというものがあります。
 internal static class HistorySaveToCSVHelper

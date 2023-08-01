@@ -1,11 +1,9 @@
-﻿using Accessibility;
-
-namespace DiceRoll02;
+﻿namespace DiceRoll02;
 
 /// <summary>
 /// 選択されているサイコロの種類からデータを返すクラス
 /// </summary>
-internal static class SelectedDiceType
+internal static class SelectedDiceTypeHelper
 {
     /// <summary>
     /// 表から選択するサイコロか、合計を出すサイコロか
@@ -28,15 +26,15 @@ internal static class SelectedDiceType
     /// <param name="selectionDiceType">選択されているサイコロの種類</param>
     /// <param name="radioButtonGroup">詳細設定のラジオボタングループ</param>
     /// <returns>サイコロを振ったデータ</returns>
-    internal static IDice Dice(string diceNum, string selectionDiceType, GroupBox radioButtonGroup)
+    internal static IDice Dice(string diceNum, string selectionDiceType, string selectionDiceOption)
     {
-        if (SelectedDiceType.IsCustomDice(selectionDiceType))
+        if (SelectedDiceTypeHelper.IsCustomDice(selectionDiceType))
         {
-            return SelectedDiceType.TableChoosingDice(selectionDiceType);
+            return SelectedDiceTypeHelper.TableChoosingDice(selectionDiceType);
         }
         else
         {
-            return SelectedDiceType.RollingDice(diceNum, selectionDiceType, radioButtonGroup);
+            return SelectedDiceTypeHelper.RollingDice(diceNum, selectionDiceType, selectionDiceOption);
         }
     }
     /// <summary>
@@ -46,16 +44,15 @@ internal static class SelectedDiceType
     /// <param name="diceType">選択されているサイコロの種類</param>
     /// <param name="radioButtonGroup">詳細設定のラジオボタングループ</param>
     /// <returns>サイコロを振ったデータ</returns>
-    private static IDice RollingDice(string diceNum, string diceType, GroupBox radioButtonGroup)
+    private static IDice RollingDice(string diceNum, string diceType, string selectionDiceOption)
     {
         try
         {
-            var selectionRadioButton = radioButtonGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked);
-            return selectionRadioButton.Name switch
+            return selectionDiceOption switch
             {
-                "normalDiceRadio" => new NormalBasicDice(diceNum, diceType),
-                "lowerDiceRadio" => new LowerBasicDice(diceNum, diceType),
-                "upperDiceRadio" => new UpperBasicDice(diceNum, diceType),
+                "NormalDice" => new NormalBasicDice(diceNum, diceType),
+                "LowerDice" => new LowerBasicDice(diceNum, diceType),
+                "UpperDice" => new UpperBasicDice(diceNum, diceType),
                 _ => new ErrorDice(),
             };
         }

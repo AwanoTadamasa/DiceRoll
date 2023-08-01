@@ -53,7 +53,7 @@ public partial class Form1 : Form
 
     private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (SelectedDiceType.IsCustomDice(this.diceTypeCoÇçboBox.Text))
+        if (SelectedDiceTypeHelper.IsCustomDice(this.diceTypeCoÇçboBox.Text))
         {
             this.DisableDiceCustomControll();
         }
@@ -72,7 +72,13 @@ public partial class Form1 : Form
     private void RollDice_Click(object sender, EventArgs e)
     {
         // TODO: DiceTypeInfo ÇégÇ¡Çƒîªï Ç∑ÇÈÇÃÇÕÇ‡Ç§è≠ÇµçHïvÇ™Ç≈Ç´ÇªÇ§Ç≈Ç∑ÅB
-        var dice = SelectedDiceType.Dice(this.diceNumTextBox.Text, this.diceTypeCoÇçboBox.Text, this.diceTypeGroup);
+        var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch { 
+            "normalDiceRadio" => "NormalDice",
+            "upperDiceRadio" => "UpperDice",
+            "lowerDiceRadio "=> "LowerDice",
+            _ => "errorDice"
+        };
+        var dice = SelectedDiceTypeHelper.Dice(this.diceNumTextBox.Text, this.diceTypeCoÇçboBox.Text, selectionDiceOption);
 
         if (dice.HasError())
         {
