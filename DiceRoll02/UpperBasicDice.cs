@@ -12,9 +12,11 @@ internal class UpperBasicDice : BasicDiceBase
     /// <param name="diceType">サイコロの形。"コイン"もしくは"n面体"(n >= 2)</param>
     public UpperBasicDice(string diceNum, string diceType) : base(diceNum, diceType) { }
 
+    /// <inheritdoc/>
     protected override string DiceRollCommand
         => $"{this._diceNum}D{this._diceSide}U";
 
+    /// <inheritdoc/>
     protected override List<int> RollDices()
     {
         var results = new List<int>();

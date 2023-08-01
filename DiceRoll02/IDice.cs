@@ -1,6 +1,6 @@
 namespace DiceRoll02;
 
-// TODO(WIP): /// でドキュメンテーションコメントを入力できます。
+// DONE: /// でドキュメンテーションコメントを入力できます。
 // それぞれのクラスやメソッドにドキュメンテーションコメントを入れてみましょう。
 // エディタ上で入力するときに、その説明を読むことができます。
 // 開発規模が大きくなり、複数人で開発するようになると、そのありがたみが強く感じられるようになってくるでしょう。
@@ -18,24 +18,20 @@ internal interface IDice
 
     #region ここから
 
-    // TODO: GetRollResult() と GetRollResultArray() ですが、
+    // DONE: GetRollResult() と GetRollResultArray() ですが、
     // サイコロの結果の取得方法が複数あるとどちらを使うか、使う方で使い分けなければいけません。
     // これらはなくして、Roll() して、結果を List<string> で返せば、
     // シンプルになるのではないでしょうか？
     // RollDices() とすると、Dice.RollDices() となるので、おかしな感じになります。
     // Roll() だけで自動詞で転がったと表現するのがよいです。
 
-    /// <summary>
-    /// サイコロを振った結果の合計を文字列にしたもの
-    /// </summary>
-    /// <returns>結果</returns>
-    public string GetRollResult();
+    // TODO:  List<string> を独自の型にしてみよう！！
 
     /// <summary>
-    /// サイコロを振った結果のリスト
+    /// サイコロを振った結果
     /// </summary>
-    /// <returns></returns>
-    public int[] GetRollResultArray();
+    /// <returns>結果</returns>
+    public RollResult Roll();
 
     #endregion ここまで
 

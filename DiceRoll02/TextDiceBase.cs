@@ -14,6 +14,8 @@ internal abstract class TextDiceBase : IDice
             new Random().Next(this.DiceChooseTable.Length)
         };
     }
+
+    /// <inheritdoc/>
     public string GetRollCommand()
     {
         if (this.HasError())
@@ -26,23 +28,20 @@ internal abstract class TextDiceBase : IDice
         }
     }
 
-    public string GetRollResult()
+    /// <inheritdoc/>
+    public RollResult Roll()
     {
         if (this.HasError())
         {
-            return "ERROR";
+            return new RollResult("ERROR", new List<int>());
         }
         else
         {
-            return this.DiceChooseTable[this._results.First()];
+            return new RollResult(this.DiceChooseTable[this._results.First()], _results);
         }
     }
 
-    public int[] GetRollResultArray()
-    {
-        return _results.ToArray();
-    }
-
+    /// <inheritdoc/>
     public bool HasError() => this.GetErrorMessage() is not null;
 
     public string? GetErrorMessage()

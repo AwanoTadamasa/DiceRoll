@@ -1,6 +1,6 @@
 ﻿namespace DiceRoll02;
 
-// TODO: クラス名についての解説です。
+// DONE: クラス名についての解説です。
 // IDice を継承しているものは、-Dice で終わるとよいです。
 // インターフェースは複数継承できるので、複数ある場合は、その中でも本質を表す名前を使います。
 // 今回の本質は IDice なので、抽象クラスも含めて、-Dice で終わるのが望ましいでしょう。
@@ -46,8 +46,10 @@
 // BasicDiceBase に対して、TextDiceBase なんてのでもよいかもしれません。
 internal class OmikujiTextDice : TextDiceBase
 {
+    /// <inheritdoc/>
     protected override string DiceRollCommand => "OMKJI";
 
+    /// <inheritdoc/>
     protected override string[] DiceChooseTable => new[] {
         "大吉",
         "中吉",

@@ -7,14 +7,9 @@ internal class ErrorDice : IDice
         return "ERROR";
     }
 
-    public string GetRollResult()
+    public RollResult Roll()
     {
-        return "ERROR";
-    }
-
-    public int[] GetRollResultArray()
-    {
-        return Array.Empty<int>();
+        return new RollResult("ERROR", new List<int>());
     }
 
     public string? GetErrorMessage() => "不明な振り方です。";

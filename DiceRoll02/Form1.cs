@@ -65,7 +65,8 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCsv.SaveAs(this.historyCommandLabel.Text, this.historyResultLabel.Text);
+        HistorySaveToCsv.SaveAsWithShowDialog(this.historyCommandLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries),
+                                              this.historyResultLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
     }
 
     private void RollDice_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ public partial class Form1 : Form
         else
         {
             this.rollCommandLabel.Text = dice.GetRollCommand();
-            this.rollResultLabel.Text = dice.GetRollResult();
+            this.rollResultLabel.Text = dice.Roll().Text;
 
             this.historyCommandLabel.Text += this.rollCommandLabel.Text + "\r\n";
             this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";

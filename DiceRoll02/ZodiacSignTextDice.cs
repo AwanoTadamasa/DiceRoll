@@ -5,8 +5,10 @@
 /// </summary>
 internal class ZodiacSignTextDice : TextDiceBase
 {
+    /// <inheritdoc/>
     protected override string DiceRollCommand => "STARS";
 
+    /// <inheritdoc/>
     protected override string[] DiceChooseTable => new[] {
         "\u2648(牡羊座)",
         "\u2649(牡牛座)",
