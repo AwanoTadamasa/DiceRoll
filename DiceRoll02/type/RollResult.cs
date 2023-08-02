@@ -1,4 +1,4 @@
-﻿namespace DiceRoll02;
+﻿namespace DiceRoll02.type;
 
 /// <summary>
 /// サイコロを振った結果を返す型

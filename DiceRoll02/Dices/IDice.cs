@@ -1,4 +1,6 @@
-namespace DiceRoll02;
+using DiceRoll02.type;
+
+namespace DiceRoll02.Dices;
 
 // DONE: /// でドキュメンテーションコメントを入力できます。
 // それぞれのクラスやメソッドにドキュメンテーションコメントを入れてみましょう。

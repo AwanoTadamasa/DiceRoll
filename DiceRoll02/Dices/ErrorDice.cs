@@ -1,4 +1,6 @@
-﻿namespace DiceRoll02;
+﻿using DiceRoll02.type;
+
+namespace DiceRoll02.Dices;
 
 internal class ErrorDice : IDice
 {

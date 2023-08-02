@@ -1,4 +1,4 @@
-﻿namespace DiceRoll02;
+﻿namespace DiceRoll02.helper;
 
 
 // DONE: こういうクラスは、命名が難しいのですが、Historyを助けるための
@@ -65,6 +65,6 @@ internal static class HistorySaveToCSVHelper
         {
             MessageBox.Show($"不明なエラーが発生しました。\r\n{ex}");
         }
-    } 
+    }
 }
 

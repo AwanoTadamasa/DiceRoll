@@ -1,3 +1,6 @@
+using DiceRoll02.enums;
+using DiceRoll02.helper;
+
 namespace DiceRoll02;
 
 public partial class Form1 : Form
@@ -13,7 +16,6 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-
         this.diceTypeCoÇçboBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
@@ -72,11 +74,12 @@ public partial class Form1 : Form
     private void RollDice_Click(object sender, EventArgs e)
     {
         // TODO: DiceTypeInfo ÇégÇ¡Çƒîªï Ç∑ÇÈÇÃÇÕÇ‡Ç§è≠ÇµçHïvÇ™Ç≈Ç´ÇªÇ§Ç≈Ç∑ÅB
-        var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch { 
-            "normalDiceRadio" => "NormalDice",
-            "upperDiceRadio" => "UpperDice",
-            "lowerDiceRadio "=> "LowerDice",
-            _ => "errorDice"
+        var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch
+        {
+            "normalDiceRadio" => DiceOptions.NormalDice,
+            "upperDiceRadio" => DiceOptions.UpperDice,
+            "lowerDiceRadio" => DiceOptions.LowerDice,
+            _ => DiceOptions.ErrorDice
         };
         var dice = SelectedDiceTypeHelper.Dice(this.diceNumTextBox.Text, this.diceTypeCoÇçboBox.Text, selectionDiceOption);
 
