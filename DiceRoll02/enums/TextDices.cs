@@ -2,7 +2,7 @@
 
 internal enum TextDices
 {
-    ErrorDice = 0,
+    OtherDice = 0,
     星座 = 1,
     おみくじ = 2,
 }

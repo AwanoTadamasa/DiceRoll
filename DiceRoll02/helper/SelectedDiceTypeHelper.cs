@@ -16,17 +16,47 @@ internal static class SelectedDiceTypeHelper
     internal static bool IsCustomDice(string selectionDiceType)
     {
 
-        //var names = Enum.GetNames<TextDices>();
+        return !(SelectedDiceTypeHelper.CustomDiceType(selectionDiceType) == TextDices.OtherDice);
+    }
+
+    /// <summary>
+    /// 表から選択するサイコロの時、そのタイプを列挙型で返す
+    /// </summary>
+    /// <param name="selectionDiceType">選択されているサイコロの種類</param>
+    /// <returns></returns>
+    private static TextDices CustomDiceType(string selectionDiceType)
+    {
+        return TextDicesHelper.GetValueFromString(selectionDiceType);
+
+        //var result = TextDices.OtherDice;
+        //var names = Enum.GetValues<TextDices>();
         //foreach (var item in names)
         //{
-        //    if (selectionDiceType == item) return true;
+        //    if (item.ToString() == selectionDiceType)
+        //    {
+        //        result = item; 
+        //        break;
+        //    }
         //}
-        //return false;
-        return selectionDiceType switch
-        {
-            "星座" or "おみくじ" => true,
-            _ => false
-        };
+
+        //for (int i = 0; i < Enum.GetNames<TextDices>().Length; i++)
+        //{
+        //    if (((TextDices)i).ToString() == selectionDiceType)
+        //    {
+        //        result = (TextDices)i;
+        //    }
+        //}
+
+        //var names = Enum.GetNames<TextDices>();
+        //foreach (var item in names) {
+        //    if  (item == selectionDiceType)
+        //    {
+        //        item.
+        //        //result = (TextDices)item;
+        //    }
+        //}
+        
+        //return result;
     }
 
     /// <summary>
@@ -40,7 +70,7 @@ internal static class SelectedDiceTypeHelper
     {
         if (IsCustomDice(selectionDiceType))
         {
-            return TableChoosingDice(selectionDiceType);
+            return TableChoosingDice(TextDicesHelper.GetValueFromString(selectionDiceType));
         }
         else
         {
@@ -70,14 +100,14 @@ internal static class SelectedDiceTypeHelper
     /// </summary>
     /// <param name="diceType">選択されているサイコロの種類</param>
     /// <returns>サイコロを振ったデータ</returns>
-    private static IDice TableChoosingDice(string diceType)
+    private static IDice TableChoosingDice(TextDices diceType)
     {
         try
         {
             return diceType switch
             {
-                "星座" => new ZodiacSignTextDice(),
-                "おみくじ" => new OmikujiTextDice(),
+                TextDices.星座=> new ZodiacSignTextDice(),
+                TextDices.おみくじ => new OmikujiTextDice(),
                 _ => new ErrorDice()
             };
         }
