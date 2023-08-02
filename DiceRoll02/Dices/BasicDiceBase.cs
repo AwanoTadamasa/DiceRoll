@@ -84,19 +84,9 @@ internal abstract partial class BasicDiceBase : IDice
             return "不明なサイコロです。";
         }
         else
+        // DONE: ???
         {
-            try
-            {
-                // TODO: ???
-                //  => 子クラスを実装したとき、そのエラーが分かればと思いました。
-                _ = this.DiceRollCommand;
-                _ = this.RollDices();
-                return null;
-            }
-            catch
-            {
-                return "不明なエラーが発生しました。";
-            }
+            return null;
         }
     }
 

@@ -27,28 +27,4 @@ internal class TextDicesHelper
             );
         return temp;
     }
-
-    //Dictionary<string, TextDices> map;
-
-    //Lazy<string> lazy_text = new(() => "test");
-
-    //TextDices GetValue(string s)
-    //{
-    //    if (map.ContainsKey(s))
-    //    {
-    //        return map[s];
-    //    }
-
-    //    var tmp = Enum
-    //        .GetValues<TextDices>()
-    //        .ToList()
-    //        .Select(x => new
-    //        {
-    //            name = Enum.GetName(typeof(TextDices), x),
-    //            value = x
-    //        });
-
-
-    //    return TextDices.OtherDice;
-    //}
 }
