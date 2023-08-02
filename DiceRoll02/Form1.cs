@@ -12,6 +12,8 @@ public partial class Form1 : Form
     public Form1()
     {
         this.InitializeComponent();
+        //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("jp-JP");
+        //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
     }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -19,7 +21,6 @@ public partial class Form1 : Form
         this.diceTypeCoÇçboBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
-
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)

@@ -27,36 +27,6 @@ internal static class SelectedDiceTypeHelper
     private static TextDices CustomDiceType(string selectionDiceType)
     {
         return TextDicesHelper.GetValueFromString(selectionDiceType);
-
-        //var result = TextDices.OtherDice;
-        //var names = Enum.GetValues<TextDices>();
-        //foreach (var item in names)
-        //{
-        //    if (item.ToString() == selectionDiceType)
-        //    {
-        //        result = item; 
-        //        break;
-        //    }
-        //}
-
-        //for (int i = 0; i < Enum.GetNames<TextDices>().Length; i++)
-        //{
-        //    if (((TextDices)i).ToString() == selectionDiceType)
-        //    {
-        //        result = (TextDices)i;
-        //    }
-        //}
-
-        //var names = Enum.GetNames<TextDices>();
-        //foreach (var item in names) {
-        //    if  (item == selectionDiceType)
-        //    {
-        //        item.
-        //        //result = (TextDices)item;
-        //    }
-        //}
-        
-        //return result;
     }
 
     /// <summary>
