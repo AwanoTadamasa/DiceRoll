@@ -9,13 +9,17 @@ public partial class Form1 : Form
     // Formを固定長にすると環境によってズレます。ボタンが隠れたりすると詰みます。
     // なので、基本的にはサイズが変えられることを前提に設計します。
 
+    Form1ViewModel model = Form1ViewModel.GetInstance();
+
     public Form1()
     {
         this.InitializeComponent();
     }
 
+
     private void Form1_Load(object sender, EventArgs e)
     {
+
         this.diceTypeCoｍboBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
@@ -95,6 +99,21 @@ public partial class Form1 : Form
             this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";
             this.historyResultLabel.Text += this.rollResultLabel.Text + "\r\n";
         }
+    }
+
+    private void UpdateDisplay()
+    {
+        this.rollCommandLabel.Text = this.model.GetHistoryCommands().First();
+        this.rollResultLabel.Text = this.model.GetHistoryResults().First();
+
+        this.historyCommandLabel.Text = this.model.GetHistoryCommands()
+                                                  .Select(x => x + "\r\n")
+                                                  .ToString();
+        this.historyResultLabel.Text = this.model.GetHistoryResults()
+                                                 .Select(x => x + "\r\n")
+                                                 .ToString();
+        this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistory.Count)
+                                               .ToString();
     }
 
     #region Form stretch method

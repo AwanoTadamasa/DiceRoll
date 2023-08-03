@@ -19,12 +19,16 @@ internal class NormalBasicDice : BasicDiceBase
     /// <inheritdoc/>
     protected override List<int> RollDices()
     {
-        var results = new List<int>();
-        var r = new Random();
-        for (int i = 0; i < _diceNum; i++)
-        {
-            results.Add(r.Next(_diceSide) + 1);
-        }
-        return results;
+        return Enumerable.Range(1, this._diceNum)
+                         .Select(x => Random.Shared.Next(this._diceSide) + 1)
+                         .ToList<int>();
+
+        //var results = new List<int>();
+        //var r = new Random();
+        //for (int i = 0; i < _diceNum; i++)
+        //{
+        //    results.Add(r.Next(_diceSide) + 1);
+        //}
+        //return results;
     }
 }

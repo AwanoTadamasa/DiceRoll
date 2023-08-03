@@ -76,7 +76,7 @@ internal static class SelectedDiceTypeHelper
         {
             return diceType switch
             {
-                TextDices.星座=> new ZodiacSignTextDice(),
+                TextDices.黄道12星座=> new ZodiacSignTextDice(),
                 TextDices.おみくじ => new OmikujiTextDice(),
                 _ => new ErrorDice()
             };
