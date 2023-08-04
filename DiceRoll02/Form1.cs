@@ -19,7 +19,6 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-
         this.diceTypeCo‚boBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
@@ -27,9 +26,8 @@ public partial class Form1 : Form
 
     private void ResetHistory_Click(object sender, EventArgs e)
     {
-        this.historyCommandLabel.Text = "";
-        this.historySignLabel.Text = "";
-        this.historyResultLabel.Text = "";
+        this.model.ResetHistory();
+        this.UpdateDisplay();
     }
 
     private void ToggleHistory_Click(object sender, EventArgs e)
@@ -84,36 +82,52 @@ public partial class Form1 : Form
             "lowerDiceRadio" => DiceOptions.LowerDice,
             _ => DiceOptions.ErrorDice
         };
-        var dice = SelectedDiceTypeHelper.Dice(this.diceNumTextBox.Text, this.diceTypeCo‚boBox.Text, selectionDiceOption);
+        model.SetFields(this.diceNumTextBox.Text,
+                        this.diceTypeCo‚boBox.Text,
+                        selectionDiceOption);
 
-        if (dice.HasError())
-        {
-            MessageBox.Show(dice.GetErrorMessage());
-        }
-        else
-        {
-            this.rollCommandLabel.Text = dice.GetRollCommand();
-            this.rollResultLabel.Text = dice.Roll().Text;
+        model.DiceRoll();
 
-            this.historyCommandLabel.Text += this.rollCommandLabel.Text + "\r\n";
-            this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";
-            this.historyResultLabel.Text += this.rollResultLabel.Text + "\r\n";
-        }
+        this.UpdateDisplay();
+        //var dice = SelectedDiceTypeHelper.Dice(this.diceNumTextBox.Text, this.diceTypeCo‚boBox.Text, selectionDiceOption);
+
+        //if (dice.HasError())
+        //{
+        //    MessageBox.Show(dice.GetErrorMessage());
+        //}
+        //else
+        //{
+        //    this.rollCommandLabel.Text = dice.GetRollCommand();
+        //    this.rollResultLabel.Text = dice.Roll().Text;
+
+        //    this.historyCommandLabel.Text += this.rollCommandLabel.Text + "\r\n";
+        //    this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";
+        //    this.historyResultLabel.Text += this.rollResultLabel.Text + "\r\n";
+        //}
     }
 
     private void UpdateDisplay()
     {
-        this.rollCommandLabel.Text = this.model.GetHistoryCommands().First();
-        this.rollResultLabel.Text = this.model.GetHistoryResults().First();
-
-        this.historyCommandLabel.Text = this.model.GetHistoryCommands()
-                                                  .Select(x => x + "\r\n")
-                                                  .ToString();
-        this.historyResultLabel.Text = this.model.GetHistoryResults()
-                                                 .Select(x => x + "\r\n")
-                                                 .ToString();
-        this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistory.Count)
-                                               .ToString();
+        this.rollCommandLabel.Text = this.model.RollCommand;
+        this.rollResultLabel.Text = this.model.RollResult.Text;
+        if (this.model.ResultHistories.Count > 0)
+        {
+            var tmp = 
+            this.historyCommandLabel.Text = this.model.ResultHistories
+                                                      .Select(x => x[0] + "\r\n")
+                                                      .Aggregate((x, y) => x + y);
+            this.historyResultLabel.Text = this.model.ResultHistories
+                                                     .Select(x => x[1])
+                                                     .Aggregate((x, y) => x + "\r\n" + y);
+            this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistories.Count)
+                                                   .Aggregate((x,y)=> x + y);
+        }
+        else
+        {
+            this.historyCommandLabel.Text = string.Empty;
+            this.historySignLabel.Text = string.Empty;
+            this.historyResultLabel.Text = string.Empty;
+        }
     }
 
     #region Form stretch method
