@@ -5,10 +5,6 @@ namespace DiceRoll02;
 
 public partial class Form1 : Form
 {
-    // DONE: Form は固定長にしないでデザインしてみましょう。
-    // Formを固定長にすると環境によってズレます。ボタンが隠れたりすると詰みます。
-    // なので、基本的にはサイズが変えられることを前提に設計します。
-
     Form1ViewModel model = Form1ViewModel.GetInstance();
 
     public Form1()
