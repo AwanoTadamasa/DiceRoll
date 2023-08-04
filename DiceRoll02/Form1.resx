@@ -449,7 +449,7 @@
     <value>3</value>
   </data>
   <data name="saveHistoryButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="saveHistoryButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 317</value>
@@ -500,7 +500,7 @@
     <value>True</value>
   </data>
   <data name="historySignLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 1</value>
+    <value>163, 1</value>
   </data>
   <data name="historySignLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -539,7 +539,7 @@
     <value>4, 0, 4, 0</value>
   </data>
   <data name="historyCommandLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 25</value>
+    <value>149, 25</value>
   </data>
   <data name="historyCommandLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -566,13 +566,13 @@
     <value>Top</value>
   </data>
   <data name="historyResultLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 1</value>
+    <value>172, 1</value>
   </data>
   <data name="historyResultLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="historyResultLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 25</value>
+    <value>150, 25</value>
   </data>
   <data name="historyResultLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -592,6 +592,9 @@
   <data name="&gt;&gt;historyResultLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -605,7 +608,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 308</value>
+    <value>327, 308</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -632,7 +635,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="historyScrollBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 308</value>
+    <value>327, 308</value>
   </data>
   <data name="historyScrollBar.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -653,7 +656,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="resetHistoryButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 317</value>
+    <value>215, 317</value>
   </data>
   <data name="resetHistoryButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -854,13 +857,13 @@
     <value>2</value>
   </data>
   <data name="historyDisplayCollection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 422</value>
+    <value>8, 422</value>
   </data>
   <data name="historyDisplayCollection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>17, 5, 17, 5</value>
+    <value>8, 5, 8, 5</value>
   </data>
   <data name="historyDisplayCollection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 360</value>
+    <value>327, 360</value>
   </data>
   <data name="historyDisplayCollection.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>

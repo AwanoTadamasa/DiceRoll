@@ -1,19 +1,21 @@
-﻿using Newtonsoft.Json;
+﻿using DiceRoll02.type;
+using Newtonsoft.Json;
 
 namespace DiceRoll02.helper;
 
 internal static class HistoryToJsonIOHelper
 {
-    public static void ExpotJson(List<string[]> strings, string filePath)
+    public static void ExpotJson(List<DiceRollHistory> strings, string filePath)
     {
-        var output = JsonConvert.SerializeObject(strings);
-        System.Diagnostics.Debug.WriteLine(output);
+        var setting = new JsonSerializerSettings();
+        //setting.Formatting = Formatting.Indented;
+        var output = JsonConvert.SerializeObject(strings,setting);
 
         using var writer = new StreamWriter(filePath, false);
         writer.Write(output);
     }
 
-    public static List<string[]>? ImpotJson(string filePath)
+    public static List<DiceRollHistory>? ImpotJson(string filePath)
     {
         string? str = null;
         if (File.Exists(filePath))
@@ -28,7 +30,7 @@ internal static class HistoryToJsonIOHelper
         }
         else
         {
-            return JsonConvert.DeserializeObject<List<string[]>>(str);
+            return JsonConvert.DeserializeObject<List<DiceRollHistory>>(str);
         }
     }
 

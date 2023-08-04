@@ -11,7 +11,7 @@ public partial class Form1 : Form
     public Form1()
     {
         this.InitializeComponent();
-        //System.Diagnostics.Debug.WriteLine(resentHistoryFilePath);
+        System.Diagnostics.Debug.WriteLine(resentHistoryFilePath);
     }
 
 
@@ -93,8 +93,8 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCsvHelper.SaveAsWithShowDialog(this.model.ResultHistories.Select(x => x[0]).ToArray(),
-                                                    this.model.ResultHistories.Select(x => x[1]).ToArray());
+        HistorySaveToCsvHelper.SaveAsWithShowDialog(this.model.ResultHistories.Select(x => x.Command).ToArray(),
+                                                    this.model.ResultHistories.Select(x => x.Result).ToArray());
     }
 
     private void RollDice_Click(object sender, EventArgs e)
@@ -124,10 +124,10 @@ public partial class Form1 : Form
         {
             var tmp =
             this.historyCommandLabel.Text = this.model.ResultHistories
-                                                      .Select(x => x[0] + "\r\n")
-                                                      .Aggregate((x, y) => x + y);
+                                                      .Select(x => x.Command)
+                                                      .Aggregate((x, y) => x + "\r\n" + y);
             this.historyResultLabel.Text = this.model.ResultHistories
-                                                     .Select(x => x[1])
+                                                     .Select(x => x.Result)
                                                      .Aggregate((x, y) => x + "\r\n" + y);
             this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistories.Count)
                                                    .Aggregate((x, y) => x + y);

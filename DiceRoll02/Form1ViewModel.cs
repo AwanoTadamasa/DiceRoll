@@ -13,7 +13,7 @@ internal class Form1ViewModel
     private DiceOptions _diceOption;
     private string _rollCommand;
     private RollResult _rollResult;
-    private List<string[]> _resultHistories;
+    private List<DiceRollHistory> _resultHistories;
 
     public string DiceNum
     {
@@ -40,7 +40,7 @@ internal class Form1ViewModel
         get { return this._rollResult; }
         set { this._rollResult = value; }
     }
-    public List<string[]> ResultHistories
+    public List<DiceRollHistory> ResultHistories
     {
         get { return _resultHistories; }
         set { this._resultHistories = value; }
@@ -53,7 +53,7 @@ internal class Form1ViewModel
         this._diceOption = DiceOptions.ErrorDice;
         this._rollCommand = string.Empty;
         this._rollResult = new RollResult(string.Empty, new List<int>());
-        this._resultHistories = new List<string[]>();
+        this._resultHistories = new List<DiceRollHistory>();
     }
 
     public static Form1ViewModel GetInstance()
@@ -85,7 +85,7 @@ internal class Form1ViewModel
             this.RollCommand = dice.GetRollCommand();
             this.RollResult = dice.Roll();
 
-            this.ResultHistories.Add(new string[] { this.RollCommand, this.RollResult.Text });
+            this.ResultHistories.Add(new DiceRollHistory ( this.RollCommand, this.RollResult.Text ));
         }
 
     }
