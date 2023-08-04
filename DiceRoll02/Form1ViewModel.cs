@@ -2,13 +2,12 @@
 using DiceRoll02.enums;
 using DiceRoll02.helper;
 using DiceRoll02.type;
-using System.Reflection;
 
 namespace DiceRoll02;
 
 internal class Form1ViewModel
 {
-    private static Form1ViewModel _viewModel = new Form1ViewModel();
+    private static Form1ViewModel _viewModel = new();
     private string _diceNum;
     private string _diceType;
     private DiceOptions _diceOption;

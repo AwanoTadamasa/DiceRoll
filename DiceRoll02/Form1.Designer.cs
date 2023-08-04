@@ -85,16 +85,16 @@
             // 
             // diceNumTextBox
             // 
-            resources.ApplyResources(diceNumTextBox, "diceNumTextBox");
             diceNumTextBox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(diceNumTextBox, "diceNumTextBox");
             diceNumTextBox.Name = "diceNumTextBox";
             // 
             // diceTypeCoｍboBox
             // 
-            resources.ApplyResources(diceTypeCoｍboBox, "diceTypeCoｍboBox");
             diceTypeCoｍboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             diceTypeCoｍboBox.FormattingEnabled = true;
             diceTypeCoｍboBox.Items.AddRange(new object[] { resources.GetString("diceTypeCoｍboBox.Items"), resources.GetString("diceTypeCoｍboBox.Items1"), resources.GetString("diceTypeCoｍboBox.Items2"), resources.GetString("diceTypeCoｍboBox.Items3"), resources.GetString("diceTypeCoｍboBox.Items4"), resources.GetString("diceTypeCoｍboBox.Items5"), resources.GetString("diceTypeCoｍboBox.Items6"), resources.GetString("diceTypeCoｍboBox.Items7"), resources.GetString("diceTypeCoｍboBox.Items8"), resources.GetString("diceTypeCoｍboBox.Items9") });
+            resources.ApplyResources(diceTypeCoｍboBox, "diceTypeCoｍboBox");
             diceTypeCoｍboBox.Name = "diceTypeCoｍboBox";
             diceTypeCoｍboBox.SelectedIndexChanged += DiceType_SelectedIndexChanged;
             // 
@@ -184,10 +184,10 @@
             // 
             // diceTypeGroup
             // 
-            resources.ApplyResources(diceTypeGroup, "diceTypeGroup");
             diceTypeGroup.Controls.Add(upperDiceRadio);
             diceTypeGroup.Controls.Add(lowerDiceRadio);
             diceTypeGroup.Controls.Add(normalDiceRadio);
+            resources.ApplyResources(diceTypeGroup, "diceTypeGroup");
             diceTypeGroup.Name = "diceTypeGroup";
             diceTypeGroup.TabStop = false;
             // 
@@ -213,18 +213,18 @@
             // 
             // resultLabelCollection
             // 
-            resources.ApplyResources(resultLabelCollection, "resultLabelCollection");
             resultLabelCollection.Controls.Add(rollResultLabel);
             resultLabelCollection.Controls.Add(rollCommandLabel);
             resultLabelCollection.Controls.Add(rollSignLabel);
+            resources.ApplyResources(resultLabelCollection, "resultLabelCollection");
             resultLabelCollection.Name = "resultLabelCollection";
             // 
             // historyDisplayCollection
             // 
-            resources.ApplyResources(historyDisplayCollection, "historyDisplayCollection");
             historyDisplayCollection.Controls.Add(historyScrollBar);
             historyDisplayCollection.Controls.Add(saveHistoryButton);
             historyDisplayCollection.Controls.Add(resetHistoryButton);
+            resources.ApplyResources(historyDisplayCollection, "historyDisplayCollection");
             historyDisplayCollection.Name = "historyDisplayCollection";
             // 
             // flowLayoutPanel1
@@ -239,26 +239,26 @@
             // 
             // userInputGroupe
             // 
-            resources.ApplyResources(userInputGroupe, "userInputGroupe");
             userInputGroupe.Controls.Add(checkBox1);
             userInputGroupe.Controls.Add(typeComboGroupe);
             userInputGroupe.Controls.Add(rollDiceButtone);
             userInputGroupe.Controls.Add(numTextGroupe);
             userInputGroupe.Controls.Add(label1);
+            resources.ApplyResources(userInputGroupe, "userInputGroupe");
             userInputGroupe.Name = "userInputGroupe";
             // 
             // typeComboGroupe
             // 
-            resources.ApplyResources(typeComboGroupe, "typeComboGroupe");
             typeComboGroupe.Controls.Add(label3);
             typeComboGroupe.Controls.Add(diceTypeCoｍboBox);
+            resources.ApplyResources(typeComboGroupe, "typeComboGroupe");
             typeComboGroupe.Name = "typeComboGroupe";
             // 
             // numTextGroupe
             // 
-            resources.ApplyResources(numTextGroupe, "numTextGroupe");
             numTextGroupe.Controls.Add(label2);
             numTextGroupe.Controls.Add(diceNumTextBox);
+            resources.ApplyResources(numTextGroupe, "numTextGroupe");
             numTextGroupe.Name = "numTextGroupe";
             // 
             // Form1
@@ -270,6 +270,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             historyScrollBar.ResumeLayout(false);
             historyScrollBar.PerformLayout();

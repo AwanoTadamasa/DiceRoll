@@ -1,7 +1,7 @@
 ﻿namespace DiceRoll02.helper;
 
-// TODO: CSV → Csv
-internal static class HistorySaveToCSVHelper
+// DONE: CSV → Csv
+internal static class HistorySaveToCsvHelper
 {
 
     internal static void SaveAsWithShowDialog(string[] commandHistory, string[] resultHistory)
@@ -31,9 +31,8 @@ internal static class HistorySaveToCSVHelper
 
         try
         {
-            // TODO: UTF-8はデフォルトエンコーディングなので、省略可能です。
-            var uniEncoding = System.Text.Encoding.GetEncoding("UTF-8");
-            using var w = new StreamWriter(fileName, false, uniEncoding);
+            // DONE: UTF-8はデフォルトエンコーディングなので、省略可能です。
+            using var w = new StreamWriter(fileName);
 
             w.WriteLine(@"コマンド,結果");
             foreach (var (command, result) in commandHistories.Zip(resultHistories))

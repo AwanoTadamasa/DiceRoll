@@ -6,10 +6,12 @@ namespace DiceRoll02;
 public partial class Form1 : Form
 {
     Form1ViewModel model = Form1ViewModel.GetInstance();
+    private readonly string resentHistoryFilePath = Application.StartupPath + @"\ResentHistory.json";
 
     public Form1()
     {
         this.InitializeComponent();
+        //System.Diagnostics.Debug.WriteLine(resentHistoryFilePath);
     }
 
 
@@ -18,6 +20,33 @@ public partial class Form1 : Form
         this.diceTypeCo‚boBox.SelectedIndex = 0;
         this.HideHistory();
         this.HideDetail();
+
+        if (HistoryToJsonIOHelper.IsThere(resentHistoryFilePath))
+        {
+            var imput = HistoryToJsonIOHelper.ImpotJson(resentHistoryFilePath);
+            if (imput != null)
+            {
+                var confilmation = MessageBox.Show("—š—ð‚ð•œŒ³‚µ‚Ü‚·‚©H", "—š—ð‚Ì•œŒ³",
+                                              MessageBoxButtons.YesNo);
+                if (confilmation == DialogResult.Yes)
+                {
+                    model.ResultHistories = imput;
+                }
+            }
+            HistoryToJsonIOHelper.DeleteFile(resentHistoryFilePath);
+        }
+
+        this.UpdateDisplay();
+    }
+
+
+    private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        if (model.ResultHistories.Count > 0)
+        {
+            HistoryToJsonIOHelper.ExpotJson(model.ResultHistories, resentHistoryFilePath);
+        }
+
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)
@@ -64,8 +93,8 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCSVHelper.SaveAsWithShowDialog(this.historyCommandLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries),
-                                              this.historyResultLabel.Text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
+        HistorySaveToCsvHelper.SaveAsWithShowDialog(this.model.ResultHistories.Select(x => x[0]).ToArray(),
+                                                    this.model.ResultHistories.Select(x => x[1]).ToArray());
     }
 
     private void RollDice_Click(object sender, EventArgs e)
@@ -85,21 +114,6 @@ public partial class Form1 : Form
         model.DiceRoll();
 
         this.UpdateDisplay();
-        //var dice = SelectedDiceTypeHelper.Dice(this.diceNumTextBox.Text, this.diceTypeCo‚boBox.Text, selectionDiceOption);
-
-        //if (dice.HasError())
-        //{
-        //    MessageBox.Show(dice.GetErrorMessage());
-        //}
-        //else
-        //{
-        //    this.rollCommandLabel.Text = dice.GetRollCommand();
-        //    this.rollResultLabel.Text = dice.Roll().Text;
-
-        //    this.historyCommandLabel.Text += this.rollCommandLabel.Text + "\r\n";
-        //    this.historySignLabel.Text += this.rollSignLabel.Text + "\r\n";
-        //    this.historyResultLabel.Text += this.rollResultLabel.Text + "\r\n";
-        //}
     }
 
     private void UpdateDisplay()
@@ -108,7 +122,7 @@ public partial class Form1 : Form
         this.rollResultLabel.Text = this.model.RollResult.Text;
         if (this.model.ResultHistories.Count > 0)
         {
-            var tmp = 
+            var tmp =
             this.historyCommandLabel.Text = this.model.ResultHistories
                                                       .Select(x => x[0] + "\r\n")
                                                       .Aggregate((x, y) => x + y);
@@ -116,7 +130,7 @@ public partial class Form1 : Form
                                                      .Select(x => x[1])
                                                      .Aggregate((x, y) => x + "\r\n" + y);
             this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistories.Count)
-                                                   .Aggregate((x,y)=> x + y);
+                                                   .Aggregate((x, y) => x + y);
         }
         else
         {
