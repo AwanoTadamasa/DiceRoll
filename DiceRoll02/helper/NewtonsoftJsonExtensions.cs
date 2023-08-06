@@ -2,7 +2,7 @@
 
 namespace DiceRoll02.helper;
 
-internal static class HistoryToJsonIOHelperExtension
+internal static class NewtonsoftJsonExtensions
 {
     public static string MorphingJsonToken(this JToken jsonToken)
     {
