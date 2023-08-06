@@ -4,40 +4,37 @@ using Newtonsoft.Json.Linq;
 
 namespace DiceRoll02.helper;
 
-internal static class HistoryToJsonIOHelper
+internal static class HistoryToJsonIoHelper
 {
     //シリアライズの設定があれば追記する
-    public readonly static JsonSerializerSettings serializerSettings = new()
+    public static readonly JsonSerializerSettings SerializerSettings = new()
     {
         Formatting = Formatting.None,
     };
 
-    public static void ExpotJson(List<DiceRollHistory> strings, string filePath)
+    public static void ExportJson(List<DiceRollHistory> histories, string filePath)
     {
-        var setting = JsonSerializer.Create(serializerSettings);
-        var output = JToken.FromObject(strings, setting);
+        // TODO: try-catch
+        var serializer = JsonSerializer.Create(SerializerSettings);
+        var token = JToken.FromObject(histories, serializer);
 
         using var writer = new StreamWriter(filePath, false);
-        writer.Write(output.MorphingJsonToken());
+        writer.Write(token.MorphingJsonToken());
     }
 
-    public static List<DiceRollHistory>? ImpotJson(string filePath)
+    public static List<DiceRollHistory>? ImportJson(string filePath)
     {
-        string? str = null;
-        if (File.Exists(filePath))
-        {
-            using var reader = new StreamReader(filePath);
-            str = reader.ReadToEnd();
-        }
-
-        if (str == null)
+        // TODO: try-catch
+        if (!File.Exists(filePath))
         {
             return null;
         }
-        else
-        {
-            return JsonConvert.DeserializeObject<List<DiceRollHistory>>(str);
-        }
+
+        using var reader = new StreamReader(filePath);
+        var str = reader.ReadToEnd();
+
+        var histories = JsonConvert.DeserializeObject<List<DiceRollHistory>>(str);
+        return histories;
     }
 
     public static bool IsThere(string filePath)

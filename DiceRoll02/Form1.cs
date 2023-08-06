@@ -23,9 +23,9 @@ public partial class Form1 : Form
         this.HideHistory();
         this.HideDetail();
 
-        if (HistoryToJsonIOHelper.IsThere(ResentHistoryFilePath))
+        if (HistoryToJsonIoHelper.IsThere(ResentHistoryFilePath))
         {
-            var imput = HistoryToJsonIOHelper.ImpotJson(ResentHistoryFilePath);
+            var imput = HistoryToJsonIoHelper.ImportJson(ResentHistoryFilePath);
             if (imput != null)
             {
                 var confilmation = MessageBox.Show("—š—ð‚ð•œŒ³‚µ‚Ü‚·‚©H", "—š—ð‚Ì•œŒ³",
@@ -35,7 +35,7 @@ public partial class Form1 : Form
                     model.ResultHistories = imput;
                 }
             }
-            HistoryToJsonIOHelper.DeleteFile(ResentHistoryFilePath);
+            HistoryToJsonIoHelper.DeleteFile(ResentHistoryFilePath);
         }
 
         this.UpdateDisplay();
@@ -46,7 +46,7 @@ public partial class Form1 : Form
     {
         if (model.ResultHistories.Count > 0)
         {
-            HistoryToJsonIOHelper.ExpotJson(model.ResultHistories, ResentHistoryFilePath);
+            HistoryToJsonIoHelper.ExportJson(model.ResultHistories, ResentHistoryFilePath);
         }
 
     }
