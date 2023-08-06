@@ -6,12 +6,14 @@ namespace DiceRoll02;
 public partial class Form1 : Form
 {
     Form1ViewModel model = Form1ViewModel.GetInstance();
-    private readonly string resentHistoryFilePath = Application.StartupPath + @"\ResentHistory.json";
+    private readonly static string ResentHistoryFolderPath = Application.StartupPath;
+    private readonly static string ResentHistoryFileName = @"\ResentHistory.json";
+    private readonly static string ResentHistoryFilePath = ResentHistoryFolderPath + ResentHistoryFileName;
 
     public Form1()
     {
         this.InitializeComponent();
-        System.Diagnostics.Debug.WriteLine(resentHistoryFilePath);
+        System.Diagnostics.Debug.WriteLine(ResentHistoryFilePath);
     }
 
 
@@ -21,9 +23,9 @@ public partial class Form1 : Form
         this.HideHistory();
         this.HideDetail();
 
-        if (HistoryToJsonIOHelper.IsThere(resentHistoryFilePath))
+        if (HistoryToJsonIOHelper.IsThere(ResentHistoryFilePath))
         {
-            var imput = HistoryToJsonIOHelper.ImpotJson(resentHistoryFilePath);
+            var imput = HistoryToJsonIOHelper.ImpotJson(ResentHistoryFilePath);
             if (imput != null)
             {
                 var confilmation = MessageBox.Show("—š—ð‚ð•œŒ³‚µ‚Ü‚·‚©H", "—š—ð‚Ì•œŒ³",
@@ -33,7 +35,7 @@ public partial class Form1 : Form
                     model.ResultHistories = imput;
                 }
             }
-            HistoryToJsonIOHelper.DeleteFile(resentHistoryFilePath);
+            HistoryToJsonIOHelper.DeleteFile(ResentHistoryFilePath);
         }
 
         this.UpdateDisplay();
@@ -44,7 +46,7 @@ public partial class Form1 : Form
     {
         if (model.ResultHistories.Count > 0)
         {
-            HistoryToJsonIOHelper.ExpotJson(model.ResultHistories, resentHistoryFilePath);
+            HistoryToJsonIOHelper.ExpotJson(model.ResultHistories, ResentHistoryFilePath);
         }
 
     }

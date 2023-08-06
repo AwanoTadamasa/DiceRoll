@@ -1,18 +1,24 @@
 ﻿using DiceRoll02.type;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DiceRoll02.helper;
 
 internal static class HistoryToJsonIOHelper
 {
+    //シリアライズの設定があれば追記する
+    public readonly static JsonSerializerSettings serializerSettings = new()
+    {
+        Formatting = Formatting.None,
+    };
+
     public static void ExpotJson(List<DiceRollHistory> strings, string filePath)
     {
-        var setting = new JsonSerializerSettings();
-        //setting.Formatting = Formatting.Indented;
-        var output = JsonConvert.SerializeObject(strings,setting);
+        var setting = JsonSerializer.Create(serializerSettings);
+        var output = JToken.FromObject(strings, setting);
 
         using var writer = new StreamWriter(filePath, false);
-        writer.Write(output);
+        writer.Write(output.MorphingJsonToken());
     }
 
     public static List<DiceRollHistory>? ImpotJson(string filePath)
