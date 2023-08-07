@@ -1,19 +1,18 @@
-﻿using DiceRoll02.Dices;
-using DiceRoll02.enums;
-using DiceRoll02.helper;
-using DiceRoll02.type;
+﻿using DiceRoll02.enums;
+using DiceRollLib.type;
+using DiceRollLib.enums;
+using DiceRollLib.util;
 
 namespace DiceRoll02;
 
 internal class Form1ViewModel
 {
-    private static Form1ViewModel _viewModel = new();
+    private static readonly Form1ViewModel _viewModel = new();
     private string _diceNum;
     private string _diceType;
     private DiceOptions _diceOption;
-    private string _rollCommand;
     private RollResult _rollResult;
-    private List<DiceRollHistory> _resultHistories;
+    private List<RollResult> _resultHistories;
 
     public string DiceNum
     {
@@ -30,17 +29,13 @@ internal class Form1ViewModel
         get { return _diceOption; }
         set { this._diceOption = value; }
     }
-    public string RollCommand
-    {
-        get { return _rollCommand; }
-        set { this._rollCommand = value; }
-    }
+    
     public RollResult RollResult
     {
         get { return this._rollResult; }
         set { this._rollResult = value; }
     }
-    public List<DiceRollHistory> ResultHistories
+    public List<RollResult> ResultHistories
     {
         get { return _resultHistories; }
         set { this._resultHistories = value; }
@@ -51,9 +46,8 @@ internal class Form1ViewModel
         this._diceNum = string.Empty;
         this._diceType = string.Empty;
         this._diceOption = DiceOptions.ErrorDice;
-        this._rollCommand = string.Empty;
-        this._rollResult = new RollResult(string.Empty, new List<int>());
-        this._resultHistories = new List<DiceRollHistory>();
+        this._rollResult = new RollResult(string.Empty, string.Empty, new List<int>());
+        this._resultHistories = new List<RollResult>();
     }
 
     public static Form1ViewModel GetInstance()
@@ -75,17 +69,38 @@ internal class Form1ViewModel
 
     public void DiceRoll()
     {
-        IDice dice = SelectedDiceTypeHelper.Dice(this.DiceNum, this.DiceType, this.DiceOption);
+        DiceSelectKeys key = DiceSelectKeys.ErrorDice;
+        if (this.DiceOption == DiceOptions.NormalDice)
+        {
+            key = DiceSelectKeys.NormalDice;
+        }
+        else if(this.DiceOption == DiceOptions.LowerDice)
+        {
+            key= DiceSelectKeys.LowerDice;
+        }
+        else if (this.DiceOption == DiceOptions.UpperDice)
+        {
+            key = DiceSelectKeys.UpperDice;
+        }
+        else if(this.DiceType == "黄道12星座")
+        {
+            key = DiceSelectKeys.ZodiacSign;
+        }
+        else if(this.DiceType == "おみくじ")
+        {
+            key = DiceSelectKeys.Omikuji;
+        }
+        var dice = DiceSelectConteiner.LoadDice(key, this.DiceNum, this.DiceType); 
+
         if (dice.HasError())
         {
             MessageBox.Show(dice.GetErrorMessage());
         }
         else
         {
-            this.RollCommand = dice.GetRollCommand();
             this.RollResult = dice.Roll();
 
-            this.ResultHistories.Add(new DiceRollHistory ( this.RollCommand, this.RollResult.Text ));
+            this.ResultHistories.Add(this.RollResult);
         }
 
     }

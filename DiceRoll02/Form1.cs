@@ -5,15 +5,14 @@ namespace DiceRoll02;
 
 public partial class Form1 : Form
 {
-    Form1ViewModel model = Form1ViewModel.GetInstance();
-    private readonly static string ResentHistoryFolderPath = Application.StartupPath;
+    readonly Form1ViewModel model = Form1ViewModel.GetInstance();
+    private readonly static string ResentFolderPath = Application.StartupPath;
     private readonly static string ResentHistoryFileName = @"\ResentHistory.json";
-    private readonly static string ResentHistoryFilePath = ResentHistoryFolderPath + ResentHistoryFileName;
+    private readonly static string ResentHistoryFilePath = ResentFolderPath + ResentHistoryFileName;
 
     public Form1()
     {
         this.InitializeComponent();
-        System.Diagnostics.Debug.WriteLine(ResentHistoryFilePath);
     }
 
 
@@ -101,27 +100,29 @@ public partial class Form1 : Form
 
     private void RollDice_Click(object sender, EventArgs e)
     {
-        // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
-        var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch
         {
-            "normalDiceRadio" => DiceOptions.NormalDice,
-            "upperDiceRadio" => DiceOptions.UpperDice,
-            "lowerDiceRadio" => DiceOptions.LowerDice,
-            _ => DiceOptions.ErrorDice
-        };
-        model.SetFields(this.diceNumTextBox.Text,
-                        this.diceTypeCoｍboBox.Text,
-                        selectionDiceOption);
+            // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
+            var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch
+            {
+                "normalDiceRadio" => DiceOptions.NormalDice,
+                "upperDiceRadio" => DiceOptions.UpperDice,
+                "lowerDiceRadio" => DiceOptions.LowerDice,
+                _ => DiceOptions.ErrorDice
+            };
+            model.SetFields(this.diceNumTextBox.Text,
+                            this.diceTypeCoｍboBox.Text,
+                            selectionDiceOption);
 
-        model.DiceRoll();
+            model.DiceRoll();
 
-        this.UpdateDisplay();
+            this.UpdateDisplay();
+        }
     }
 
     private void UpdateDisplay()
     {
-        this.rollCommandLabel.Text = this.model.RollCommand;
-        this.rollResultLabel.Text = this.model.RollResult.Text;
+        this.rollCommandLabel.Text = this.model.RollResult.Command;
+        this.rollResultLabel.Text = this.model.RollResult.Result;
         if (this.model.ResultHistories.Count > 0)
         {
             var tmp =

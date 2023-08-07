@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiceRollLib\DiceRollLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="lang\Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

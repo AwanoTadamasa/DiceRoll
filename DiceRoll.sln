@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRoll01", "DiceRoll01\Di
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRoll02", "DiceRoll02\DiceRoll02.csproj", "{029F356D-6AF5-45D4-A36B-AAC25573100F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollLib", "DiceRollLib\DiceRollLib.csproj", "{CCB0E8EA-CFA0-4AE2-A812-B4816E25674B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{029F356D-6AF5-45D4-A36B-AAC25573100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{029F356D-6AF5-45D4-A36B-AAC25573100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{029F356D-6AF5-45D4-A36B-AAC25573100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB0E8EA-CFA0-4AE2-A812-B4816E25674B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB0E8EA-CFA0-4AE2-A812-B4816E25674B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB0E8EA-CFA0-4AE2-A812-B4816E25674B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB0E8EA-CFA0-4AE2-A812-B4816E25674B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

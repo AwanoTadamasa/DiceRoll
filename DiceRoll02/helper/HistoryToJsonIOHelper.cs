@@ -1,4 +1,4 @@
-﻿using DiceRoll02.type;
+﻿using DiceRollLib.type;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -12,29 +12,44 @@ internal static class HistoryToJsonIoHelper
         Formatting = Formatting.None,
     };
 
-    public static void ExportJson(List<DiceRollHistory> histories, string filePath)
+    public static void ExportJson(List<RollResult> histories, string filePath)
     {
-        // TODO: try-catch
-        var serializer = JsonSerializer.Create(SerializerSettings);
-        var token = JToken.FromObject(histories, serializer);
+        // DONE: try-catch
+        try
+        {
+            var serializer = JsonSerializer.Create(SerializerSettings);
+            var token = JToken.FromObject(histories, serializer);
 
-        using var writer = new StreamWriter(filePath, false);
-        writer.Write(token.MorphingJsonToken());
+            using var writer = new StreamWriter(filePath, false);
+            writer.Write(token.MorphingJsonToken());
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"エラーが発生しました\r\n{ex}");
+        }
     }
 
-    public static List<DiceRollHistory>? ImportJson(string filePath)
+    public static List<RollResult>? ImportJson(string filePath)
     {
-        // TODO: try-catch
-        if (!File.Exists(filePath))
+        try
         {
+            // TODO: try-catch
+            if (!File.Exists(filePath))
+            {
+                return null;
+            }
+
+            using var reader = new StreamReader(filePath);
+            var str = reader.ReadToEnd();
+
+            var histories = JsonConvert.DeserializeObject<List<RollResult>>(str);
+            return histories;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"エラーが発生しました\r\n{ex}");
             return null;
         }
-
-        using var reader = new StreamReader(filePath);
-        var str = reader.ReadToEnd();
-
-        var histories = JsonConvert.DeserializeObject<List<DiceRollHistory>>(str);
-        return histories;
     }
 
     public static bool IsThere(string filePath)
