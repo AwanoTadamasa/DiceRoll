@@ -5,8 +5,9 @@ namespace DiceRollLib.TableTextDices;
 
 internal abstract class TableTextDiceBase : IDice
 {
-    private readonly int? _diceNum;
-    private readonly int? _diceSide;
+
+    public int? DiceNum { get; init; }
+    public int? DiceSide { get; init; }
 
     protected TableTextDiceBase()
     {
@@ -15,31 +16,14 @@ internal abstract class TableTextDiceBase : IDice
     }
 
     /// <inheritdoc/>
-    public int? DiceNum
-    {
-        get => this._diceNum;
-        init => this._diceNum = value > 0 ? value : null;
-    }
-
-    /// <inheritdoc/>
-    public int? DiceSide
-    {
-        get => this._diceSide;
-        init => this._diceSide = value > 1 ? value : null;
-    }
-
-    /// <inheritdoc/>
     public string? GetErrorMessage()
     {
-        // TODO: this.HasError() 使えば？
-        if (this.DiceNum is null || this.DiceSide is null)
+        // DONE: this.HasError() 使えば？
+        if (this.HasError())
         {
             return "不正なテーブルです。";
         }
-        else if (this.Roll().Command == "ERROR")
-        {
-            return "不明なエラーです。";
-        }
+
         return null;
     }
 

@@ -8,23 +8,10 @@ namespace DiceRollLib;
 /// </summary>
 internal class ErrorDice : IDice
 {
-    // TODO: 自動実装プロパティでよさそう？
-    private int? _diceNum;
-    private int? _diceSide;
+    // DONE: 自動実装プロパティでよさそう？
 
-    /// <inheritdoc/>
-    public int? DiceNum
-    {
-        get => this._diceNum;
-        init => this._diceNum = value;
-    }
-
-    /// <inheritdoc/>
-    public int? DiceSide
-    {
-        get => this._diceSide;
-        init => this._diceSide = value;
-    }
+    public int? DiceNum { get; init; }
+    public int? DiceSide { get; init; }
 
     public ErrorDice()
     {
