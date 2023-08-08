@@ -83,7 +83,8 @@ public partial class Form1 : Form
 
     private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (SelectedDiceTypeHelper.IsCustomDice(this.diceTypeCoÇçboBox.Text))
+        model.DiceType = this.diceTypeCoÇçboBox.Text;
+        if (model.IsCustomDice())
         {
             this.DisableDiceCustomControll();
         }

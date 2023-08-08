@@ -57,32 +57,13 @@ internal static class NewtonsoftJsonExtensions
                     result.AppendLine(",");
                 }
             }
-            result.AppendFormat("{0}]",indent);
+            result.AppendFormat("{0}]", indent);
             result.AppendLine();
         }
         else
         {
             result.AppendFormat("{0}{1}", indent, jsonToken.ToString(Newtonsoft.Json.Formatting.None));
         }
-        //switch (jsonToken)
-        //{
-        //    case JArray:
-        //        result += $"{indent}[\r\n";
-        //        var tokens = jsonToken
-        //            .Select((x, i) => new { Index = i, Value = x });
-        //        foreach (var token in tokens)
-        //        {
-        //            result += $"{token.Value.MorphingJsonToken(indentLevel + 1)}";
-        //            var len = jsonToken.Count() - 1;
-        //            result += (token.Index == len) ? "" : ",\r\n";
-        //        }
-        //        result += $"\r\n{indent}]\r\n";
-        //        break;
-        //    default:
-        //        result += $"{indent}{jsonToken.ToString(Newtonsoft.Json.Formatting.None)}";
-        //        break;
-        //}
-
         return result.ToString();
     }
 }

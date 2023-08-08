@@ -6,7 +6,7 @@ internal class OmikujiTableTextDice : TableTextDiceBase
 {
     protected override TableTextDiceTable Table
     {
-        get => new (1, 7, "OMKJI", new Dictionary<int, string>
+        get => new(1, 7, "OMKJI", new Dictionary<int, string>
         {
             {1, "大吉" },
             {2, "中吉" },

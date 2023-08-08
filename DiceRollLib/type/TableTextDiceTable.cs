@@ -7,4 +7,4 @@
 /// <param name="DiceSide">Number of diceside</param>
 /// <param name="Command">Dice roll command</param>
 /// <param name="Table">Rolled result sum & text pair</param>
-public record TableTextDiceTable(int DiceNum, int DiceSide, string Command, Dictionary<int,string> NumberTextPairs) { }
+public record TableTextDiceTable(int DiceNum, int DiceSide, string Command, Dictionary<int, string> NumberTextPairs) { }

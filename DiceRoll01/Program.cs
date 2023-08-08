@@ -1,5 +1,3 @@
-using System.Drawing.Text;
-
 namespace DiceRoll01
 {
     internal static class Program
@@ -39,7 +37,7 @@ namespace DiceRoll01
         {
             if (Option == "")
             {
-                return Num.ToString()+"D"+Side.ToString();
+                return Num.ToString() + "D" + Side.ToString();
             }
             else
             {
@@ -54,7 +52,7 @@ namespace DiceRoll01
             for (int i = 0; i < Num; i++)
             {
                 Random r = new Random();
-                Result +=r.Next(0,Side)+1;
+                Result += r.Next(0, Side) + 1;
             }
             return Result;
         }

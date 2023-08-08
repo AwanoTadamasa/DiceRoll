@@ -1,5 +1,4 @@
-﻿using DiceRollLib.type;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DiceRoll02.helper;
@@ -12,7 +11,8 @@ internal static class HistoryToJsonIoHelper
         Formatting = Formatting.None,
     };
 
-    public static void ExportJson(List<RollResult> histories, string filePath)
+    public static void ExportJson<T>(T histories, string filePath)
+        where T : class
     {
         // DONE: try-catch
         try

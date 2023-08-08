@@ -1,6 +1,6 @@
 ﻿using DiceRoll02.enums;
-using DiceRollLib.type;
 using DiceRollLib.enums;
+using DiceRollLib.type;
 using DiceRollLib.util;
 
 namespace DiceRoll02;
@@ -29,7 +29,7 @@ internal class Form1ViewModel
         get { return _diceOption; }
         set { this._diceOption = value; }
     }
-    
+
     public RollResult RollResult
     {
         get { return this._rollResult; }
@@ -70,27 +70,28 @@ internal class Form1ViewModel
     public void DiceRoll()
     {
         DiceSelectKeys key = DiceSelectKeys.ErrorDice;
-        if(this.DiceType == "黄道12星座")
+        if (this.DiceType == "黄道12星座")
         {
             key = DiceSelectKeys.ZodiacSign;
         }
-        else if(this.DiceType == "おみくじ")
+        else if (this.DiceType == "おみくじ")
         {
             key = DiceSelectKeys.Omikuji;
-        }else if (this.DiceOption == DiceOptions.NormalDice)
+        }
+        else if (this.DiceOption == DiceOptions.NormalDice)
         {
             key = DiceSelectKeys.NormalDice;
         }
-        else if(this.DiceOption == DiceOptions.LowerDice)
+        else if (this.DiceOption == DiceOptions.LowerDice)
         {
-            key= DiceSelectKeys.LowerDice;
+            key = DiceSelectKeys.LowerDice;
         }
         else if (this.DiceOption == DiceOptions.UpperDice)
         {
             key = DiceSelectKeys.UpperDice;
         }
-         
-        var dice = DiceSelectConteiner.LoadDice(key, this.DiceNum, this.DiceType); 
+
+        var dice = DiceSelectConteiner.LoadDice(key, this.DiceNum, this.DiceType);
 
         if (dice.HasError())
         {
@@ -102,18 +103,11 @@ internal class Form1ViewModel
 
             this.ResultHistories.Add(this.RollResult);
         }
+    }
 
+    public bool IsCustomDice()
+    {
+        return (this.DiceType == "黄道12星座") ||
+               (this.DiceType == "おみくじ");
     }
 }
-//internal static class Form1ViewModelExtentions{
-
-//    public static Form1ViewModel DiceRoll(this Form1ViewModel model) 
-//    {
-//        IDice dice = SelectedDiceTypeHelper.Dice(model.DiceNum, model.DiceType, model.DiceOption);
-//        model.RollCommand = dice.GetRollCommand();
-//        model.RollResult = dice.Roll();
-
-//        model.ResultHistories.Add(new string[2] { model.RollCommand, model.RollResult.Text });
-//        return model;
-//    }
-//}
