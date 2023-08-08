@@ -1,4 +1,4 @@
-﻿using DiceRollLib.type;
+﻿using DiceRollLib.Types;
 using DiceRollLib.util;
 
 namespace DiceRollLib.TableTextDices;

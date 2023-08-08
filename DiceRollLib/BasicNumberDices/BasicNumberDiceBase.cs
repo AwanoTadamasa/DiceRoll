@@ -1,4 +1,4 @@
-﻿using DiceRollLib.type;
+﻿using DiceRollLib.Types;
 using System.Text.RegularExpressions;
 
 namespace DiceRollLib.BasicNumberDices;

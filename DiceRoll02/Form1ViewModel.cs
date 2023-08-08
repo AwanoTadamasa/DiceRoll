@@ -1,6 +1,6 @@
 ﻿using DiceRoll02.enums;
 using DiceRollLib.Enums;
-using DiceRollLib.type;
+using DiceRollLib.Types;
 using DiceRollLib.util;
 
 namespace DiceRoll02;
