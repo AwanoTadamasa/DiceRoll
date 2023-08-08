@@ -91,7 +91,7 @@ internal class Form1ViewModel
             key = DiceSelectKeys.UpperDice;
         }
 
-        var dice = DiceSelectConteiner.LoadDice(key, this.DiceNum, this.DiceType);
+        var dice = key.LoadDice(this.DiceNum, this.DiceType);
 
         if (dice.HasError())
         {

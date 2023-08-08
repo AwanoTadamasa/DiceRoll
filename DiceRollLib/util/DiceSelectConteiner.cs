@@ -6,7 +6,7 @@ namespace DiceRollLib.util;
 
 public static class DiceSelectConteiner
 {
-    public static IDice LoadDice(DiceSelectKeys key, string diceNum, string diceSide)
+    public static IDice LoadDice(this DiceSelectKeys key, string diceNum, string diceSide)
     {
         return key switch
         {

@@ -18,10 +18,18 @@ internal class LowerBasicNumberDice : BasicNumberDiceBase
     /// <inheritdoc/>
     private protected override List<int> CreateDiceRollResult(int diceNum, int diceSide)
     {
+        var a =        Enumerable.Range(1, diceNum)
+                         .Select(x => Random.Shared.Next(0, (diceSide + 1) * diceSide / 2) + 1)
+                         .Select(x => (int)Math.Ceiling(Math.Pow(0.25 + x * 2, 0.5) - 0.5))
+                         .Select(x => diceSide - x + 1);
+
+        foreach(var b in a)
+        {
+
+        }
         return Enumerable.Range(1, diceNum)
                          .Select(x => Random.Shared.Next(0, (diceSide + 1) * diceSide / 2) + 1)
                          .Select(x => (int)Math.Ceiling(Math.Pow(0.25 + x * 2, 0.5) - 0.5))
                          .Select(x => diceSide - x + 1)
-                         .ToList();
     }
 }
