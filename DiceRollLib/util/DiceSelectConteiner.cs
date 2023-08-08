@@ -1,5 +1,5 @@
 ﻿using DiceRollLib.BasicNumberDices;
-using DiceRollLib.enums;
+using DiceRollLib.Enums;
 using DiceRollLib.TableTextDices;
 
 namespace DiceRollLib.util;

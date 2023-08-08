@@ -1,5 +1,5 @@
 ﻿using DiceRoll02.enums;
-using DiceRollLib.enums;
+using DiceRollLib.Enums;
 using DiceRollLib.type;
 using DiceRollLib.util;
 

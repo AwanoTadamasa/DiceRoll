@@ -1,6 +1,6 @@
 ﻿
-// TODO: enums → Enums
-namespace DiceRollLib.enums;
+// DONE: enums → Enums
+namespace DiceRollLib.Enums;
 
 // TODO: DiceSelectKeys → DiceType
 // enum で複数形の名前をつけるときは特別なときです。
