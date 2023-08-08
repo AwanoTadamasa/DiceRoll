@@ -12,15 +12,15 @@ internal class UpperBasicNumberDice : BasicNumberDiceBase
     /// <inheritdoc/>
     private protected override string CreateDiceRollCommand(int diceNum, int diceSide)
     {
-        return $"{diceNum}D{diceSide}L";
+        return $"{diceNum}D{diceSide}U";
     }
 
     /// <inheritdoc/>
     private protected override List<int> CreateDiceRollResult(int diceNum, int diceSide)
     {
         return Enumerable.Range(0, diceNum)
-                         .Select(x => Random.Shared.Next(0, (diceSide + 1) * diceSide / 2))
-                         .Select(x => (int)Math.Ceiling(0.5 + (0.25 + (diceSide - x) * 2)))
+                         .Select(x => Random.Shared.Next(0, (diceSide + 1) * diceSide / 2) + 1)
+                         .Select(x => (int)Math.Ceiling(Math.Pow(0.25 + x * 2, 0.5) - 0.5))
                          .ToList();
     }
 }

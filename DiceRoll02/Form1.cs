@@ -1,5 +1,6 @@
 using DiceRoll02.enums;
 using DiceRoll02.helper;
+using DiceRollLib.type;
 
 namespace DiceRoll02;
 
@@ -24,7 +25,7 @@ public partial class Form1 : Form
 
         if (HistoryToJsonIoHelper.IsThere(ResentHistoryFilePath))
         {
-            var imput = HistoryToJsonIoHelper.ImportJson(ResentHistoryFilePath);
+            var imput = HistoryToJsonIoHelper.ImportJson<List<RollResult>>(ResentHistoryFilePath);
             if (imput != null)
             {
                 var confilmation = MessageBox.Show("—š—ğ‚ğ•œŒ³‚µ‚Ü‚·‚©H", "—š—ğ‚Ì•œŒ³",

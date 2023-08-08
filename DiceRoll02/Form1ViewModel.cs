@@ -70,7 +70,14 @@ internal class Form1ViewModel
     public void DiceRoll()
     {
         DiceSelectKeys key = DiceSelectKeys.ErrorDice;
-        if (this.DiceOption == DiceOptions.NormalDice)
+        if(this.DiceType == "黄道12星座")
+        {
+            key = DiceSelectKeys.ZodiacSign;
+        }
+        else if(this.DiceType == "おみくじ")
+        {
+            key = DiceSelectKeys.Omikuji;
+        }else if (this.DiceOption == DiceOptions.NormalDice)
         {
             key = DiceSelectKeys.NormalDice;
         }
@@ -82,14 +89,7 @@ internal class Form1ViewModel
         {
             key = DiceSelectKeys.UpperDice;
         }
-        else if(this.DiceType == "黄道12星座")
-        {
-            key = DiceSelectKeys.ZodiacSign;
-        }
-        else if(this.DiceType == "おみくじ")
-        {
-            key = DiceSelectKeys.Omikuji;
-        }
+         
         var dice = DiceSelectConteiner.LoadDice(key, this.DiceNum, this.DiceType); 
 
         if (dice.HasError())

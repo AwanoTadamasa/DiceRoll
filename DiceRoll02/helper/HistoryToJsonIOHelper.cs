@@ -21,19 +21,20 @@ internal static class HistoryToJsonIoHelper
             var token = JToken.FromObject(histories, serializer);
 
             using var writer = new StreamWriter(filePath, false);
-            writer.Write(token.MorphingJsonToken());
+            writer.Write(token.ToStringIndented());
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"エラーが発生しました\r\n{ex}");
+            MessageBox.Show($"エラーが発生しました\r\n出力することができませんでした\r\n{ex}");
         }
     }
 
-    public static List<RollResult>? ImportJson(string filePath)
+    public static T? ImportJson<T>(string filePath)
+        where T : class
     {
         try
         {
-            // TODO: try-catch
+            // DONE: try-catch
             if (!File.Exists(filePath))
             {
                 return null;
@@ -42,12 +43,12 @@ internal static class HistoryToJsonIoHelper
             using var reader = new StreamReader(filePath);
             var str = reader.ReadToEnd();
 
-            var histories = JsonConvert.DeserializeObject<List<RollResult>>(str);
+            var histories = JsonConvert.DeserializeObject<T>(str);
             return histories;
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"エラーが発生しました\r\n{ex}");
+            MessageBox.Show($"エラーが発生しました\r\n読み込むことができませんでした\r\n{ex}");
             return null;
         }
     }

@@ -18,8 +18,8 @@ internal class NormalBasicNumberDice : BasicNumberDiceBase
     /// <inheritdoc/>
     private protected override List<int> CreateDiceRollResult(int diceNum, int diceSide)
     {
-        return Enumerable.Range(1, diceNum)
-                         .Select(i => Random.Shared.Next(0, diceSide))
+        return Enumerable.Range(0, diceNum)
+                         .Select(i => Random.Shared.Next(0, diceSide) + 1)
                          .ToList();
     }
 }
