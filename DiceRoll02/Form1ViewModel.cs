@@ -67,7 +67,7 @@ internal class Form1ViewModel
         this.ResultHistories.Clear();
     }
 
-    public void DiceRoll()
+    public void RollDice()
     {
         DiceSelectKeys key = DiceSelectKeys.ErrorDice;
         if (this.DiceType == "黄道12星座")

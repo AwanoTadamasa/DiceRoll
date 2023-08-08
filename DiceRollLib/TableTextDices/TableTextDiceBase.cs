@@ -1,16 +1,17 @@
 ﻿using DiceRollLib.type;
+using DiceRollLib.util;
 
 namespace DiceRollLib.TableTextDices;
 
 internal abstract class TableTextDiceBase : IDice
 {
-    private int? _diceNum;
-    private int? _diceSide;
+    private readonly int? _diceNum;
+    private readonly int? _diceSide;
 
     protected TableTextDiceBase()
     {
-        this.DiceNum = Table.DiceNum;
-        this.DiceSide = Table.DiceSide;
+        this.DiceNum = this.Table.DiceNum;
+        this.DiceSide = this.Table.DiceSide;
     }
 
     /// <inheritdoc/>
@@ -30,6 +31,7 @@ internal abstract class TableTextDiceBase : IDice
     /// <inheritdoc/>
     public string? GetErrorMessage()
     {
+        // TODO: this.HasError() 使えば？
         if (this.DiceNum is null || this.DiceSide is null)
         {
             return "不正なテーブルです。";

@@ -4,9 +4,8 @@ namespace DiceRollLib.TableTextDices;
 
 internal class OmikujiTableTextDice : TableTextDiceBase
 {
-    protected override TableTextDiceTable Table
-    {
-        get => new(1, 7, "OMKJI", new Dictionary<int, string>
+    protected override TableTextDiceTable Table =>
+        new(1, 7, "OMKJI", new Dictionary<int, string>
         {
             {1, "大吉" },
             {2, "中吉" },
@@ -16,5 +15,4 @@ internal class OmikujiTableTextDice : TableTextDiceBase
             {6, "凶"   },
             {7 ,"大凶" }
         });
-    }
 }

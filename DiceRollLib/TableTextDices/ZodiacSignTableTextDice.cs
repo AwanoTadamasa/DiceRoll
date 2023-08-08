@@ -4,9 +4,8 @@ namespace DiceRollLib.TableTextDices;
 
 internal class ZodiacSignTableTextDice : TableTextDiceBase
 {
-    protected override TableTextDiceTable Table
-    {
-        get => new(1, 12, "STARS", new Dictionary<int, string>
+    protected override TableTextDiceTable Table =>
+        new(1, 12, "STARS", new Dictionary<int, string>
         {
             {1, "\u2648(牡羊座)"},
             {2, "\u2649(牡牛座)"},
@@ -21,5 +20,4 @@ internal class ZodiacSignTableTextDice : TableTextDiceBase
             {11,"\u2652(水瓶座)"},
             {12,"\u2653(魚座)"  },
         });
-    }
 }

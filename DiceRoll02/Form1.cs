@@ -6,16 +6,15 @@ namespace DiceRoll02;
 
 public partial class Form1 : Form
 {
-    readonly Form1ViewModel model = Form1ViewModel.GetInstance();
-    private readonly static string ResentFolderPath = Application.StartupPath;
-    private readonly static string ResentHistoryFileName = @"\ResentHistory.json";
-    private readonly static string ResentHistoryFilePath = ResentFolderPath + ResentHistoryFileName;
+    private readonly Form1ViewModel _model = Form1ViewModel.GetInstance();
+    private static readonly string ResentFolderPath = Application.StartupPath;
+    private static readonly string ResentHistoryFileName = @"\ResentHistory.json";
+    private static readonly string ResentHistoryFilePath = ResentFolderPath + ResentHistoryFileName;
 
     public Form1()
     {
         this.InitializeComponent();
     }
-
 
     private void Form1_Load(object sender, EventArgs e)
     {
@@ -25,14 +24,14 @@ public partial class Form1 : Form
 
         if (HistoryToJsonIoHelper.IsThere(ResentHistoryFilePath))
         {
-            var imput = HistoryToJsonIoHelper.ImportJson<List<RollResult>>(ResentHistoryFilePath);
-            if (imput != null)
+            var input = HistoryToJsonIoHelper.ImportJson<List<RollResult>>(ResentHistoryFilePath);
+            if (input != null)
             {
-                var confilmation = MessageBox.Show("履歴を復元しますか？", "履歴の復元",
+                var confirmation = MessageBox.Show("履歴を復元しますか？", "履歴の復元",
                                               MessageBoxButtons.YesNo);
-                if (confilmation == DialogResult.Yes)
+                if (confirmation == DialogResult.Yes)
                 {
-                    model.ResultHistories = imput;
+                    _model.ResultHistories = input;
                 }
             }
             HistoryToJsonIoHelper.DeleteFile(ResentHistoryFilePath);
@@ -44,16 +43,16 @@ public partial class Form1 : Form
 
     private void Form1_FormClosed(object sender, FormClosedEventArgs e)
     {
-        if (model.ResultHistories.Count > 0)
+        if (_model.ResultHistories.Count > 0)
         {
-            HistoryToJsonIoHelper.ExportJson(model.ResultHistories, ResentHistoryFilePath);
+            HistoryToJsonIoHelper.ExportJson(_model.ResultHistories, ResentHistoryFilePath);
         }
 
     }
 
     private void ResetHistory_Click(object sender, EventArgs e)
     {
-        this.model.ResetHistory();
+        this._model.ResetHistory();
         this.UpdateDisplay();
     }
 
@@ -83,8 +82,8 @@ public partial class Form1 : Form
 
     private void DiceType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        model.DiceType = this.diceTypeCoｍboBox.Text;
-        if (model.IsCustomDice())
+        _model.DiceType = this.diceTypeCoｍboBox.Text;
+        if (_model.IsCustomDice())
         {
             this.DisableDiceCustomControll();
         }
@@ -96,46 +95,45 @@ public partial class Form1 : Form
 
     private void SaveHistory_Click(object sender, EventArgs e)
     {
-        HistorySaveToCsvHelper.SaveAsWithShowDialog(this.model.ResultHistories.Select(x => x.Command).ToArray(),
-                                                    this.model.ResultHistories.Select(x => x.Result).ToArray());
+        HistorySaveToCsvHelper.SaveAsWithShowDialog(
+            this._model.ResultHistories.Select(x => x.Command).ToArray(),
+            this._model.ResultHistories.Select(x => x.Result).ToArray());
     }
 
     private void RollDice_Click(object sender, EventArgs e)
     {
+        var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch
         {
-            // TODO: DiceTypeInfo を使って判別するのはもう少し工夫ができそうです。
-            var selectionDiceOption = this.diceTypeGroup.Controls.OfType<RadioButton>().Single(rb => rb.Checked).Name switch
-            {
-                "normalDiceRadio" => DiceOptions.NormalDice,
-                "upperDiceRadio" => DiceOptions.UpperDice,
-                "lowerDiceRadio" => DiceOptions.LowerDice,
-                _ => DiceOptions.ErrorDice
-            };
-            model.SetFields(this.diceNumTextBox.Text,
-                            this.diceTypeCoｍboBox.Text,
-                            selectionDiceOption);
+            "normalDiceRadio" => DiceOptions.NormalDice,
+            "upperDiceRadio" => DiceOptions.UpperDice,
+            "lowerDiceRadio" => DiceOptions.LowerDice,
+            _ => DiceOptions.ErrorDice
+        };
+        _model.SetFields(
+            this.diceNumTextBox.Text,
+            this.diceTypeCoｍboBox.Text,
+            selectionDiceOption);
 
-            model.DiceRoll();
+        _model.RollDice();
 
-            this.UpdateDisplay();
-        }
+        this.UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
-        this.rollCommandLabel.Text = this.model.RollResult.Command;
-        this.rollResultLabel.Text = this.model.RollResult.Result;
-        if (this.model.ResultHistories.Count > 0)
+        this.rollCommandLabel.Text = this._model.RollResult.Command;
+        this.rollResultLabel.Text = this._model.RollResult.Result;
+        if (this._model.ResultHistories.Count > 0)
         {
-            var tmp =
-            this.historyCommandLabel.Text = this.model.ResultHistories
-                                                      .Select(x => x.Command)
-                                                      .Aggregate((x, y) => x + "\r\n" + y);
-            this.historyResultLabel.Text = this.model.ResultHistories
-                                                     .Select(x => x.Result)
-                                                     .Aggregate((x, y) => x + "\r\n" + y);
-            this.historySignLabel.Text = Enumerable.Repeat("=>\r\n", this.model.ResultHistories.Count)
-                                                   .Aggregate((x, y) => x + y);
+            this.historyCommandLabel.Text = this._model.ResultHistories
+                .Select(x => x.Command)
+                .Aggregate((x, y) => x + "\r\n" + y);
+            this.historyResultLabel.Text = this._model.ResultHistories
+                .Select(x => x.Result)
+                .Aggregate((x, y) => x + "\r\n" + y);
+            this.historySignLabel.Text =
+                Enumerable.Repeat("=>\r\n", this._model.ResultHistories.Count)
+                .Aggregate((x, y) => x + y);
         }
         else
         {

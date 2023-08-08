@@ -21,7 +21,7 @@ public interface IDice
     public RollResult Roll();
 
     /// <summary>
-    /// Return ErrorMessage when Dice can't roll OR null when Roll succes
+    /// Return ErrorMessage when Dice can't roll OR null when Roll success
     /// </summary>
     /// <returns>ErrorMessage/null</returns>
     public string? GetErrorMessage();

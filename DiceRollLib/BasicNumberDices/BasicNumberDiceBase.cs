@@ -5,28 +5,17 @@ namespace DiceRollLib.BasicNumberDices;
 
 internal abstract partial class BasicNumberDiceBase : IDice
 {
-    private int? _diceNum;
-    private int? _diceSide;
+    /// <inheritdoc/>
+    public int? DiceNum { get; init; }
 
     /// <inheritdoc/>
-    public int? DiceNum
-    {
-        get => _diceNum;
-        init => _diceNum = value;
-    }
-
-    /// <inheritdoc/>
-    public int? DiceSide
-    {
-        get => _diceSide;
-        init => _diceSide = value;
-    }
+    public int? DiceSide { get; init; }
 
     /// <summary>
     /// Roll number dice and sum dice roll results
     /// </summary>
     /// <param name="diceNumText">Number of dice</param>
-    /// <param name="diceSideText">Number of diceside</param>
+    /// <param name="diceSideText">Number of diceSide</param>
     protected BasicNumberDiceBase(string diceNumText, string diceSideText)
     {
         var diceNumMatch = _regDiceNumMatchPattern().Match(diceNumText);
@@ -71,6 +60,7 @@ internal abstract partial class BasicNumberDiceBase : IDice
     /// <inheritdoc/>
     public RollResult Roll()
     {
+        // TODO: this.GetHashCode() つかえば？
         if (this.DiceNum is int num && this.DiceSide is int side)
         {
             var result = CreateDiceRollResult(num, side);

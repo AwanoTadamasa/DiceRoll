@@ -4,33 +4,32 @@ namespace DiceRollLib;
 
 
 /// <summary>
-/// Return Error when don't match all other classes 
+/// Return Error when don't match all other classes
 /// </summary>
 internal class ErrorDice : IDice
 {
-
+    // TODO: 自動実装プロパティでよさそう？
     private int? _diceNum;
     private int? _diceSide;
 
     /// <inheritdoc/>
     public int? DiceNum
     {
-        get => _diceNum;
-        init => _diceNum = value;
+        get => this._diceNum;
+        init => this._diceNum = value;
     }
 
     /// <inheritdoc/>
     public int? DiceSide
     {
-        get => _diceSide;
-        init => _diceSide = value;
+        get => this._diceSide;
+        init => this._diceSide = value;
     }
 
-    /// <inheritdoc/>
     public ErrorDice()
     {
-        DiceNum = null;
-        DiceSide = null;
+        this.DiceNum = null;
+        this.DiceSide = null;
     }
 
     /// <inheritdoc/>

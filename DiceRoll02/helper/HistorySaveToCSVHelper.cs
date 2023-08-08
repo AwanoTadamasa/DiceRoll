@@ -1,6 +1,5 @@
 ﻿namespace DiceRoll02.helper;
 
-// DONE: CSV → Csv
 internal static class HistorySaveToCsvHelper
 {
 
@@ -31,7 +30,6 @@ internal static class HistorySaveToCsvHelper
 
         try
         {
-            // DONE: UTF-8はデフォルトエンコーディングなので、省略可能です。
             using var w = new StreamWriter(fileName);
 
             w.WriteLine(@"コマンド,結果");

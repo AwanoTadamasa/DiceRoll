@@ -4,6 +4,7 @@ using DiceRollLib.TableTextDices;
 
 namespace DiceRollLib.util;
 
+// TODO: Container
 public static class DiceSelectConteiner
 {
     public static IDice LoadDice(this DiceSelectKeys key, string diceNum, string diceSide)

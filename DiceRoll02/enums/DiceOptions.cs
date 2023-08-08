@@ -1,5 +1,6 @@
 ﻿namespace DiceRoll02.enums;
 
+// TODO: Libへ
 internal enum DiceOptions
 {
     ErrorDice = 0,

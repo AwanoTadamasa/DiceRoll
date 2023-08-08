@@ -14,7 +14,6 @@ internal static class HistoryToJsonIoHelper
     public static void ExportJson<T>(T histories, string filePath)
         where T : class
     {
-        // DONE: try-catch
         try
         {
             var serializer = JsonSerializer.Create(SerializerSettings);
@@ -34,7 +33,6 @@ internal static class HistoryToJsonIoHelper
     {
         try
         {
-            // DONE: try-catch
             if (!File.Exists(filePath))
             {
                 return null;
