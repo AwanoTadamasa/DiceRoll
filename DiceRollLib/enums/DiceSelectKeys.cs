@@ -1,5 +1,5 @@
 ﻿
-// DONE: enums → Enums
+// TODO: 大文字小文字だけの変更だと、ファイル名が変更されなくて困りませんでした？
 namespace DiceRollLib.Enums;
 
 // TODO: DiceSelectKeys → DiceType

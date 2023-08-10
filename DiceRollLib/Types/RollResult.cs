@@ -1,5 +1,4 @@
-﻿// DONE: type → Types としておくとよい。
-namespace DiceRollLib.Types;
+﻿namespace DiceRollLib.Types;
 
 /// <summary>
 /// Has rolled dices result

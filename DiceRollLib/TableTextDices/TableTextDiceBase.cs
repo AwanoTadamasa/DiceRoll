@@ -18,7 +18,7 @@ internal abstract class TableTextDiceBase : IDice
     /// <inheritdoc/>
     public string? GetErrorMessage()
     {
-        // DONE: this.HasError() 使えば？
+        // TODO: 三項演算子?を使うのがよさそうです。
         if (this.HasError())
         {
             return "不正なテーブルです。";

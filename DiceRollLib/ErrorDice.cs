@@ -8,8 +8,6 @@ namespace DiceRollLib;
 /// </summary>
 internal class ErrorDice : IDice
 {
-    // DONE: 自動実装プロパティでよさそう？
-
     public int? DiceNum { get; init; }
     public int? DiceSide { get; init; }
 
